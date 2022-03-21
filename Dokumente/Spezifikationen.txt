@@ -1,25 +1,26 @@
 Spezifikationen:
 
 • Funktional:
-- Das System soll es dem Nutzer ermöglichen ein Nutzerprofil anzulegen
-- Das System soll es dem Nutzer ermöglichen das eigene Nutzerprofil zu editieren
-- Das System soll es dem Nutzer ermöglichen das eigene Nutzerprofil zu speichern
-- Das System soll es dem Nutzer ermöglichen das Nutzerprofil mit zusätzlichen Daten zu erweitern
-- Das System soll es dem Nutzer ermöglichen Aufgaben hochzuladen
-- Das System soll es dem Nutzer ermöglichen Lösungen hochzuladen
-- Ein Nutzer darf die Aufgaben die er hochgeladen hat nachträglich bearbeiten
-- Ein Dozent darf alle Aufgaben nachträglich bearbeiten
-- Ein Nutzer darf die Lösung die er hochgeladen hat nachträglich bearbeiten
-- Ein Dozent darf alle Lösungen nachträglich bearbeiten
-- Das System soll es dem Nutzer ermöglichen eine selbst hochgeladene Aufgabe einem Themengebiet zuzuweisen
-- Das System soll es dem Nutzer ermöglichen eine selbst hochgeladene Aufgabe einer Schwierigkeitsstufe zuzuweisen
-- Das System soll es dem Nutzer ermöglichen einer selbst hochgeladene Aufgabe einen Zeitbedarf zuzuweisen
-- Das System soll es dem Nutzer ermöglichen eine selbst hochgeladene Aufgabe noch weiter individuell zu konfigurieren
-- Das System soll es dem Nutzer ermöglichen Übungsblätter zusammenzustellen
-- Das System soll es dem Nutzer ermöglichen einem Übungsblatt eine Musterlösung anzuhängen
-- Das System soll es dem Dozent ermöglichen Klausuren zu erstellen
-- Der Nutzer soll vom System ein nach einegegebenen Parametern generiertes Übungsblatt erhalten können
-- Der Dozent soll vom System eine noch änderbare Vorlage für eine Klausur erhalten können
+- Das System soll es Nutzern ermöglichen ein Nutzerprofil anzulegen
+- Nutzer können beim registrieren auswählen ob sie Studierende, Prüfende oder Dozierende sind
+- Dozierende sollen alle Rechte haben die Prüfende haben (und mehr)
+- Das System soll es Nutzern ermöglichen das eigene Nutzerprofil zu editieren
+- Das System soll es Nutzern ermöglichen das eigene Nutzerprofil zu speichern
+- Das System soll es Nutzern ermöglichen das Nutzerprofil mit zusätzlichen Daten zu erweitern
+- Das System soll es Dozierenden ermöglichen Aufgaben hochzuladen
+- Das System soll es Dozierenden ermöglichen Lösungen hochzuladen
+- Dozierende sollen Aufgaben im nachhinein noch bearbeiten können
+- Dozierende sollen Lösungen im nachhinein noch bearbeiten können
+- Das System soll es Dotzierenden ermöglichen eine Aufgabe einem Themengebiet zuzuweisen
+- Das System soll es Dozierenden ermöglichen eine Aufgabe einer Schwierigkeitsstufe zuzuweisen
+- Das System soll es Dozierenden ermöglichen einer Aufgabe einen Zeitbedarf zuzuweisen
+- Nutzer sollen vom System eine nach einegegebenen Parametern generierte Testklausur erhalten können
+- Nutzer sollen wählen können ob sie Lösungen für generierte Testklausuren bekommen
+- Das System soll es Prüfern ermöglichen alle Aufgaben einzusehen
+- Das System soll es Prüfern ermöglichen Übungsblätter zusammenzustellen
+- Das System soll es Prüfern ermöglichen einem Übungsblatt eine Musterlösung anzuhängen
+- Das System soll es dem Prüfenden ermöglichen Klausuren zu erstellen
+- Der Prüfende sollen vom System eine Hilfestellungen zum Klausuren erstellen bekommen
 
 • nicht Funktional:
 
@@ -37,12 +38,12 @@ Qualität:
 Benutzerschnittstelle:
 - Das System soll als Eingabe Pdf Dateien akzeptieren
 - Das System soll als Ausgabeformat Pdf benutzen
-- Der Nutzer soll immer auf sein Profil zugreifen können
+- Nutzer sollen immer auf ihr Profil zugreifen können
 
 Rechtlich-Vertraglich:
 - Das Passwort soll verschlüsselt sein (gehashed)
 - Als Nutzer muss man sich authentifizieren
-- Ein Nutzer soll nicht auf die Profile anderer Nutzer zugreifen können
+- Nutzern sollen nicht auf die Profile anderer Nutzer zugreifen können
 - Das Nutzerprofil soll durch ein Passwort geschützt sein
 
 Prozess:
