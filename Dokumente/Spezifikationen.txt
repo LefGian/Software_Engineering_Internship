@@ -1,0 +1,50 @@
+Spezifikationen:
+
+• Funktional:
+- Das System soll es dem Nutzer ermöglichen ein Nutzerprofil anzulegen
+- Das System soll es dem Nutzer ermöglichen das eigene Nutzerprofil zu editieren
+- Das System soll es dem Nutzer ermöglichen das eigene Nutzerprofil zu speichern
+- Das System soll es dem Nutzer ermöglichen das Nutzerprofil mit zusätzlichen Daten zu erweitern
+- Das System soll es dem Nutzer ermöglichen Aufgaben hochzuladen
+- Das System soll es dem Nutzer ermöglichen Lösungen hochzuladen
+- Ein Nutzer darf die Aufgaben die er hochgeladen hat nachträglich bearbeiten
+- Ein Dozent darf alle Aufgaben nachträglich bearbeiten
+- Ein Nutzer darf die Lösung die er hochgeladen hat nachträglich bearbeiten
+- Ein Dozent darf alle Lösungen nachträglich bearbeiten
+- Das System soll es dem Nutzer ermöglichen eine selbst hochgeladene Aufgabe einem Themengebiet zuzuweisen
+- Das System soll es dem Nutzer ermöglichen eine selbst hochgeladene Aufgabe einer Schwierigkeitsstufe zuzuweisen
+- Das System soll es dem Nutzer ermöglichen einer selbst hochgeladene Aufgabe einen Zeitbedarf zuzuweisen
+- Das System soll es dem Nutzer ermöglichen eine selbst hochgeladene Aufgabe noch weiter individuell zu konfigurieren
+- Das System soll es dem Nutzer ermöglichen Übungsblätter zusammenzustellen
+- Das System soll es dem Nutzer ermöglichen einem Übungsblatt eine Musterlösung anzuhängen
+- Das System soll es dem Dozent ermöglichen Klausuren zu erstellen
+- Der Nutzer soll vom System ein nach einegegebenen Parametern generiertes Übungsblatt erhalten können
+- Der Dozent soll vom System eine noch änderbare Vorlage für eine Klausur erhalten können
+
+• nicht Funktional:
+
+Technisch:
+- Das System soll mit Python 3.10 entwickelt werden
+- Das System soll das Django Framework nutzen
+- Das System soll über einen Webbrowser erreichbar sein
+- Das System muss mit Chrome Version 96 und Firefox Version 94 und neuer kompatibel sein
+
+Qualität:
+- Das System soll für keine Antwort mehr als 20 Sekunden brauchen
+- Das System soll immer eine Antwort liefern (kein Fehlercode oder Crash)
+- Die Website soll übersichtlich gestaltet sein
+
+Benutzerschnittstelle:
+- Das System soll als Eingabe Pdf Dateien akzeptieren
+- Das System soll als Ausgabeformat Pdf benutzen
+- Der Nutzer soll immer auf sein Profil zugreifen können
+
+Rechtlich-Vertraglich:
+- Das Passwort soll verschlüsselt sein (gehashed)
+- Als Nutzer muss man sich authentifizieren
+- Ein Nutzer soll nicht auf die Profile anderer Nutzer zugreifen können
+- Das Nutzerprofil soll durch ein Passwort geschützt sein
+
+Prozess:
+- Deadline am 01.04.2022
+- Es muss eine Abschlusspräsentation geben
