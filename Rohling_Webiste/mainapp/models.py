@@ -1,14 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Aufgabe(models.Model):
-    title = models.TextField(max_length=50)
-    content = models.TextField()
-    thema = models.TextField(max_length=50)
-    bearbeitungszeit = models.IntegerField()
-    schwierigkeitsgrad  = models.IntegerField()
+    name = models.TextField()
+    aufgabenstellung = models.TextField()
+    loesung = models.TextField()
+    user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True)
+    schwierigkeit = models.PositiveIntegerField()
+    zeit = models.PositiveIntegerField()
+    themengebiet = models.TextField()
 
 
     def __str__(self):
         """specify how to default cast Aufgabe"""
-        return self.title
+        return self.name
