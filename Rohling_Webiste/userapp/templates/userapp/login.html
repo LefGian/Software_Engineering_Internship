@@ -1,0 +1,21 @@
+{% extends "mainapp/base.html" %}
+{% load crispy_forms_tags %}
+<!-- Filler Block, wird in base template Body eingebunden -->
+{% block content %}
+    <div class="content-section">
+        <form method="Post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Login</legend>
+                <!-- Paste in UserRegistrationform -->
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Login</button>
+            </div>
+        </from>
+        <div class = "border-top pt-3">
+            <small class="text-muted">Want to register? <a class="ml-2" href="{% url 'register' %}">Sign Up NOW</a></small>
+        </div>
+    </div>    
+{% endblock content %}
