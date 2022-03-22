@@ -38,6 +38,7 @@ function checkInputData(){
     let password = document.getElementById("jgu-password-id");
     let passwordRepeat = document.getElementById("jgu-password-repeat-id");
     let jguSubArt = document.getElementById("jgu-mod-art");
+    let submitter = document.getElementById("submitBtn");
 
     let notifier = document.getElementById("jgu-notification");
 
@@ -59,6 +60,7 @@ function checkInputData(){
         }
         notifier.style.display="block";
     } else {
+        submitter.click();
         notifier.style.display="none";
     }
 }
