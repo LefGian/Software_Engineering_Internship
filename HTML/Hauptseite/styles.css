@@ -1,0 +1,76 @@
+html{
+    min-height: 100%!important;
+    height: 100%;
+}
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+    min-height: 100%!important;
+    height: 100%;
+}
+.main-page{
+    width: 100%;
+    height: 100%;
+    padding:10px;
+    display: flex;
+    flex-wrap:nowrap;
+}
+.main-page .main-image{
+    max-width: 35%;
+}
+.main-page .main-image img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+.main-page .main-area{
+    width:65%;
+    padding:10px;
+    text-align: right;
+}
+
+.main-page .main-area h1{
+    font-weight: bold;
+    margin-bottom:2%;
+}
+
+.main-page .main-area h1 .jgu-brand{
+    color:#c1002a;
+}
+
+.main-page .main-area p .jgu-welcome{
+    font-weight: 500;
+}
+
+.main-page .main-area p .jgu-brand{
+    color:#c1002a;
+    font-weight: 500;
+}
+
+.main-page .main-area .button-area .jgu-btn{
+    margin: 0 0 5px 0;
+    min-width: 195px;
+}
+
+.main-page .main-area .jgu-testklausur{
+    display: none;
+}
+
+@media only screen and (max-width:990px){
+    .main-page{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+    .main-page .main-area{
+        width: 100%;
+        max-width: unset;
+        height: 60%;
+    }
+    .main-page .main-image{
+        width: 100%;
+        max-width: unset;
+        height: 40%;
+    }
+}
