@@ -11,7 +11,81 @@
 
 <div class="main-page">
     <div class="main-image">
-        <img src="aufgaben.jpg" alt="Aufgabe erstellen" title="Mein Aufgabeneditor">
+        <img src="aufgaben.jpg" alt="Aufgabenbereich" title="Mein Aufgabeneditor">
+    </div>
+    <div class="main-settings">
+        <h1 class="jgu-task"><span class="jgu-brand">Mein</span> Aufgabeneditor</h1>
+        <p>Erstellen Sie hier Aufgaben, die sie im späteren in Klausuren oder Übungsblättern beifügen können.</p>
+        <div class="jgu-notifi-area">
+            <p class="jgu-notification" id="jgu-notification"></p>
+        </div>
+        <form action="" method="post">
+            <div class="jgu-task-area">
+                <div class="jgu-task-field">
+                    <label for="jgu-task-name">Aufgabentitel</label>
+                    <input type="text" name="jgu-task-name" id="jgu-task-name" value="" required>
+                </div>
+                <div class="jgu-task-field">
+                    <label for="jgu-topic">Themengebiet</label>
+                    <select name="jgu-topic" id="jgu-topic" required>
+                        <option value="0">Keine Auswahl</option>
+                        <option value="1">Einführung in Programmieren (EIP)</option>
+                        <option value="2">Einführung in Softwareentwicklung (EIS)</option>
+                        <option value="3">Software Engineering (SE)</option>
+                        <option value="4">Programmiersprachen (PS)</option>
+                    </select>
+                </div>
+                <div class="jgu-task-field">
+                    <label for="jgu-time">Bearbeitungszeit</label>
+                    <select name="jgu-time" id="jgu-time" required>
+                        <option value="0" selected>5 Minuten</option>
+                        <option value="1">10 Minuten</option>
+                        <option value="2">15 Minuten</option>
+                        <option value="3">20 Minuten</option>
+                        <option value="4">25 Minuten</option>
+                        <option value="5">30 Minuten</option>
+                        <option value="6">35 Minuten</option>
+                        <option value="7">40 Minuten</option>
+                        <option value="8">45 Minuten</option>
+                        <option value="9">50 Minuten</option>
+                        <option value="10">60 Minuten</option>
+                        <option value="11">75 Minuten</option>
+                        <option value="12">90 Minuten</option>
+                        <option value="13">120 Minuten</option>
+                        <option value="14">150 Minuten</option>
+                        <option value="15">180 Minuten</option>
+                    </select>
+                </div>
+                <div class="jgu-task-field">
+                    <label for="jgu-level">Schwierigkeit</label>
+                    <select name="jgu-level" id="jgu-level">
+                        <option value="0" selected>Sehr leicht</option>
+                        <option value="1">Leicht</option>
+                        <option value="3">Mittel</option>
+                        <option value="4">Mäßig</option>
+                        <option value="5">Schwierig</option>
+                        <option value="6">Sehr schwierig</option>
+                    </select>
+                </div>
+                <div class="jgu-task-field-big">
+                    <div class="jgu-b-area">
+                        <label for="jgu-task-code">Aufgabe:</label>
+                        <textarea name="jgu-task-code" id="jgu-task-code"></textarea>
+                    </div>
+                </div>
+                <div class="jgu-task-field-big">
+                    <div class="jgu-b-area">
+                        <label for="jgu-task-result">Lösung:</label>
+                        <textarea name="jgu-task-result" id="jgu-task-result"></textarea>
+                    </div>
+                </div>
+                <div class="jgu-button-section">
+                    <button type="button" class="btn btn-danger" onclick="checkTaskData()">Aufgabe erstellen</button>
+                    <input type="submit" class="jgu-submitter" id="jgu-submit">
+                </div>
+                <input type="hidden" name="jgu-save" value="1">
+            </div>
+        </form>
     </div>
 </div>
 
