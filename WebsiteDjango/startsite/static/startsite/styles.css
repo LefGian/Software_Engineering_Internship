@@ -1,0 +1,233 @@
+html{
+    min-height: 100%!important;
+    height: 100%;
+}
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+    min-height: 100%!important;
+    height: 100%;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+}
+  
+ul {
+    margin: 0;
+}
+  
+/* change color of navbar background */
+.bg-steel {
+    background-color:#444444;
+}
+  
+/* change color of Text in Navbar */
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+}
+  
+/* change color of Text in Navbar when hovered */
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+.main-page-area{
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    padding:10px;
+}
+
+.main-page-area .main-text-area{
+    min-width: 50%;
+    padding:10px;
+}
+
+.main-page-area .main-text-area h1{
+    font-weight: bold;
+    margin-bottom:5%;
+}
+
+.main-page-area .main-text-area h1 .jgu-brand{
+    color:#c1002a;
+}
+
+.main-page-area .main-image-area{
+    max-width: 50%;
+}
+
+.main-page-area .main-text-area p:nth-child(3){
+    margin-top:5%;
+    font-weight: 500;
+}
+
+
+.main-page-area .main-image-area img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jgu-modal{
+    display: none;
+    position: fixed;
+    z-index: 99;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top:50px
+}
+
+.jgu-modal .jgu-modal-content{
+    position: relative;
+    padding:20px;
+    background-color:#fefefe;
+    margin:5% auto 15% auto;
+    border: 1px solid #e0e0e0;
+    width:60%;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    max-width:750px;
+}
+
+.jgu-modal .jgu-modal-content.fadeOut{
+    -webkit-animation-name: animateback;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animateback;
+    animation-duration: 0.4s;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-header{
+    padding:15px;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-header label{
+    font-size:2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom:-5px;
+    color:#c1002a;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-header p{
+    color:#000000;
+    text-align: center;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-body{
+    padding:2px 16px;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-body .jgu-modal-notification{
+    text-align: center;
+    padding:2px;
+    margin-top: -15px;
+    background-color: #dc3545;
+    color:#ffffff;
+    margin-bottom:20px;
+    display: none;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-body .jgu-field{
+    padding:3px 0;
+    transition: all ease .2s;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-body .jgu-field:focus-within{
+    color:#c1002a;
+    font-weight: bold;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-body .jgu-field label{
+    width:12%;
+    text-align: left;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-body .jgu-field input{
+    width:50%;
+    padding:5px;
+    border:3px solid #000000;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: all ease .2s;
+    outline: none;
+}
+
+.jgu-modal .jgu-modal-content .jgu-modal-body .jgu-field input:focus{
+    border:3px solid #c1002a;
+}
+
+.jgu-modal .jgu-modal-footer{
+    margin-top:20px;
+}
+
+.jgu-modal .jgu-modal-footer .btn{
+    padding:8px 40px;
+    width:100%;
+}
+
+.jgu-modal .jgu-modal-footer .jgu-sub-btn{
+    display: none;
+}
+
+.jgu-modal .jgu-modal-close{
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.jgu-modal .jgu-modal-close{
+    color: #ff0404;
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@-webkit-keyframes animateback {
+    from {top:0; opacity:1}
+    to {top:-300px; opacity:0}
+}
+
+@keyframes animateback {
+    from {top:0; opacity:1}
+    to {top:-300px; opacity:0}
+}
+
+@media only screen and (max-width:990px){
+    .main-page-area{
+        flex-wrap: wrap;
+    }
+    .main-page-area .main-image-area, .main-page-area .main-text-area{
+        max-width: 100%;
+    }
+}
