@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Startseite (vor Login)</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'startsite/styles.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+        <div class="main-page-area">
+            <div class="main-text-area">
+                <h1>Willkommen auf dem <span class="jgu-brand">JG</span>4<span class="jgu-brand">U</span>Board!</h1>
+                <p>
+                    Dies Seite befindet sich aktuell noch in der Entwicklung und wird dir schon bald zur Verfügung stehen. Sei gespannt auf das bevorstehende Projekt. </p>
+                <p>
+                    Schließe dich jetzt diesem genialen Projekt an und bereite dich für deine Klausuren vor!
+                </p>
+                <div class="in-text-button-area">
+                    <button type="button" class="btn btn-danger" onclick="callJGUModal(0)">Anmelden</button>
+                    <button type="button" class="btn btn-danger" onclick="callJGUModal(1)">Registrieren</button>
+                </div>
+            </div>
+            <div class="main-image-area">
+                <img src="{% static 'startsite/learn.jpg' %}" alt="Startseiten Bild" title="MyJG4UBoard">
+            </div>
+        </div>
+
+
+        <!--
+        Modal für Login und Registrieren
+        Wird per Javascript entsprechend geordnet.
+
+        jgu-modal-notification fehlt noch
+        -->
+
+        <div class="jgu-modal" id="jgu-modal">
+            <form class="jgu-modal-content" action="" method="Post" name="signup" id="jgu-m-content">
+                {% csrf_token %}
+                <div class="jgu-modal-header">
+                    <span onclick="closeModal()" class="jgu-modal-close" title="Fenster schließen">&times;</span>
+                    <label id="jgu-m-label">Registrieren</label>
+                    <p id="jgu-m-paragraph">Erstelle jetzt kostenlos und schnell deinen JG4UBoard Account.</p>
+                </div>
+                <div class="jgu-modal-body">
+                    <div class="jgu-modal-notification" id="jgu-notification">
+                        {% if show_login_error %}
+                            {{fehlermeldung_login}}
+                        {% elif show_register_error %}
+                            {% for fehlermeldung in fehlermeldung_register_str_arr %}
+                                {{ fehlermeldung }}</br>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Mögliche Fehlermeldungen werden hier ausgegeben -->
+                    </div>
+                    <div class="jgu-modal-sub">
+                        <div class="jgu-field" id="jguSubArt">
+                            <label for="jgu-name-id">Name</label>
+                            <input type="text" placeholder="Gebe deinen Benutzernamen ein" name="jgu-username" id="jgu-name-id" value="" required>
+                        </div>
+                        <div class="jgu-field" id="j-password">
+                            <label for="jgu-password-id">Passwort</label>
+                            <input type="password" placeholder="Gebe dein Passwort ein" name="jgu-password" id="jgu-password-id" value="" required>
+                        </div>
+                        <div class="jgu-field" id="j-password-repeat">
+                            <label for="jgu-password-repeat-id">Passwort</label>
+                            <input type="password" placeholder="Wiederhole dein Passwort" name="jgu-password-repeat" id="jgu-password-repeat-id" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="jgu-modal-footer">
+                    <button type="button" class="btn btn-danger" id="jgu-m-btn" onclick="checkInputData()">Registrieren</button>
+                    <input type="submit" class="jgu-sub-btn" id="submitBtn">
+                </div>
+                <!-- Dieser zusätzliche hidden Wert wird benötigt, um verstehen zu können, ob es sich hierbei um Signup
+                oder Login handelt.
+                1 = Signup
+                0 = Login
+                -->
+                <input type="hidden" id="jgu-mod-art" name="jgu-mod-value" value="0">
+                <input type="hidden" id="jgu-mod-art_shown" value="0">
+            </form>
+        </div>
+
+       
+
+    {% if show_login_error %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+            callJGUModal(0);
+            document.getElementById('jgu-notification').style.display = 'block';
+            })
+        </script>    
+    {% elif show_register_error %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        callJGUModal(1);
+        document.getElementById('jgu-notification').style.display = 'block';
+        })
+    </script>    
+    {% endif %}
+    
+
+    <script src="{% static 'startsite/scripts.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
