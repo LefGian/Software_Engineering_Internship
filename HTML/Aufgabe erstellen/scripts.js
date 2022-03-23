@@ -8,6 +8,7 @@ function checkTaskData(){
 
     let taskName = document.getElementById("jgu-task-name");
     let taskTopic = document.getElementById("jgu-topic");
+    let overTopic = document.getElementById("jgu-fachgebiet");
     let taskTime = document.getElementById("jgu-time");
     let taskLevel = document.getElementById("jgu-level");
     let taskTextCode = document.getElementById("jgu-task-code");
@@ -21,6 +22,9 @@ function checkTaskData(){
     if (taskName.value.length < 4){
         errorCount++;
         errorMessage = "Der Aufgabentitel ist zu kurz.";
+    } else if (overTopic.value === ""){
+      errorCount++;
+      errorMessage = "Bitte wählen Sie ein Fachgebiet aus.";
     } else if (taskTopic.value === ""){
         errorCount++;
         errorMessage = "Bitte wählen Sie ein Themengebiet aus.";
@@ -45,4 +49,13 @@ function checkTaskData(){
         jguNotification.innerText = errorMessage;
     }
 
+}
+
+function showTheme(option){
+    let hiddenThemenGebiet = document.getElementById("themengebiet-id");
+    if (option==0){
+        hiddenThemenGebiet.style.display="none";
+    } else {
+        hiddenThemenGebiet.style.display="block";
+    }
 }

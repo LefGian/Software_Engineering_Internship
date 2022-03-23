@@ -56,6 +56,10 @@ body {
     width:58%;
 }
 
+.main-page .main-settings .jgu-task-field.themengebiet-cls{
+    display: none;
+}
+
 .main-page .main-settings .jgu-task-field, .jgu-task-field-big{
     padding:3px 0;
     transition: all ease .2s;
