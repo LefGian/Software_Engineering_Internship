@@ -2,13 +2,13 @@
 <!-- Filler Block, wird in base template Body eingebunden -->
 {% block content %}
     <h1>Main Home</h1>
-    {% for aufgabe in aufgaben %}
+    {% comment %} {% for aufgabe in aufgaben %}
         <h3>Titel:  {{ aufgabe.title }}</h3>
         <h3>Thema: {{ aufgabe.thema }}</h3>
         <h3>Schwierigkeitsgrad: {{ aufgabe.schwierigkeitsgrad }}</h3>
         <h3>Aufgabe:</h3>
         <p>{{ aufgabe.content }}</p>
         <h4>--------</h4>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 
 {% endblock content %}
