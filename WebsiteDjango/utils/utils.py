@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User, Group
-from .forms import Aufgabe
 # from ... import Aufgabe muss noch importiert werden
 
 

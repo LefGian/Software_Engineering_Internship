@@ -10,6 +10,8 @@ function checkFirstData(){
     let jguSubmitter = document.getElementById("jgu-submit");
     let jguNotification = document.getElementById("jgu-notification");
 
+    
+
     let errorCounter = 0;
     let errorMessage = "";
 

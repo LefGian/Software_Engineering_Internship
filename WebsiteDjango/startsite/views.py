@@ -67,7 +67,7 @@ def startsite(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                redirect('startsite-startseite')
+                return redirect('userprofile-userprofile')
             else:
                 show_login_error = 1
     
