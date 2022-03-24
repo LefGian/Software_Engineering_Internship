@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>JG4U Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" hreF="all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="main-page">
+    <div class="main-image">
+        <img src="mainPageImage.jpg" alt="Hauptseite Bild" title="Mein Start">
+    </div>
+    <!--
+    Django Fallunterscheidung im Paragraph (<p></p>)>:
+        - Willkommen, <vorname> <nachname>. <message>
+            - <message>: Bei Standard einfach belassen, bei Dotzend oder Prüfer entsprechend anders formulieren.
+    -->
+    <div class="main-area">
+        <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Start</h1>
+        <p><span class="jgu-welcome">Willkommen, Max Mustermann</span>.</br>Sie befinden sich hier auf Ihrem persönlichem <span class="jgu-brand">JGU</span>-Board. Sie können nun direkt anfangen Probeklausuren zu erstellen und zu lernen.</p>
+        <!--
+        Django Fallunterscheidung der Buttons
+        Je nach Rolle muss ein oder zwei Buttons ausgeblendet werden.
+        -->
+        <div class="button-area">
+            <button type="button" class="btn btn-danger jgu-btn" onclick="showProbeKlausur()"><i class="fa-solid fa-play"></i> Probleklausur starten</button>
+            <button type="button" class="btn btn-danger jgu-btn" onclick=""><i class="fa-solid fa-plus"></i> Klausur erstellen</button>
+            <button type="button" class="btn btn-danger jgu-btn" onclick=""><i class="fa-solid fa-plus"></i> Aufgabe erstellen</button>
+        </div>
+        <div class="jgu-testklausur" id="jgu-testklausur-section">
+            <p>Erstellen Sie hier innerhalb von wenigen Klicks eine komplett zufällig generierte Probleklausur.</p>
+        </div>
+        <!-- -->
+        <div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="scripts.js"></script>
+<script src="all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
