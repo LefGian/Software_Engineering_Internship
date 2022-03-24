@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .forms import UserUpdateForm
+from .forms import UserUpdateForm, User
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -14,9 +15,15 @@ def userprofile(request):
     fehlermeldung_password1 = ''
 
     if request.method == 'POST':
-
-        password1 = request.POST['jgu-password']
-        password2 = request.POST['jgu-password-repeat']
+        
+        
+        password1 = ''
+        password2 = ''
+        if 'jgu-password' in request.POST:
+            password1 = request.POST['jgu-password']
+        if 'jgu-password-repeat' in request.POST:
+            password2 = request.POST['jgu-password-repeat']
+        
 
 
         user_update_form_dict = {'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
@@ -26,12 +33,13 @@ def userprofile(request):
                                 }
 
         user_check = authenticate(request, username=user.username, password=password1)
-        if user_check is None:
+        if user_check is not None:
             form_user_update = UserUpdateForm(user_update_form_dict, instance=request.user)
 
             if password2:
+                # request.user.set_password('')
+                # request.user.save()
                 pass
-                
 
 
         else:
