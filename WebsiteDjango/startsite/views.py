@@ -19,6 +19,7 @@ def startsite(request):
     print("IN VIEW")
     show_login_error = 0
     show_register_error = 0
+    is_register = 0
 
     fehlermeldung_login = 'Nutzername oder Password falsch'
 
