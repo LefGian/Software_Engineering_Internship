@@ -1,8 +1,11 @@
 from atexit import register
 from traceback import print_tb
+from unicodedata import name
 from django.shortcuts import redirect, render
 from .forms import UserRegisterForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -39,7 +42,8 @@ def startsite(request):
             register_form_dict = {'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
                                   'username': request.POST['jgu-username'],
                                   'password1': request.POST['jgu-password'],
-                                  'password2': request.POST['jgu-password-repeat']}
+                                  'password2': request.POST['jgu-password-repeat'],
+                                  }
             print(f'register_form_dict: {register_form_dict}')
             
             form_register = UserRegisterForm(register_form_dict)
@@ -47,6 +51,10 @@ def startsite(request):
 
             if form_register.is_valid():
                 form_register.save()
+
+                # user = User.objects.get(username = register_form_dict['username'])
+                # user.groups.add()
+                # print(f'username: {user.username} | userid: {user.id}')
                 return redirect('startsite-startseite')
             else:
                 show_register_error = 1
