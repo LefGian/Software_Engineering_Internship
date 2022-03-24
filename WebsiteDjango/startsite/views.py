@@ -21,7 +21,7 @@ def startsite(request):
     show_register_error = 0
     is_register = 0
 
-    fehlermeldung_login = 'Nutzername oder Password falsch'
+    fehlermeldung_login = 'Username or Password wrong'
 
     if request.method == "POST":    # if we get a post request, initiate form to fillout
         print("IN POST")
