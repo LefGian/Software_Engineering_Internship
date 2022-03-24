@@ -56,12 +56,14 @@ body {
 .main-page .main-area .jgu-testklausur, .jgu-klausur-erstellen{
     display: none;
     padding:10px;
-    margin-top:5%;
+    margin-top:2%;
+    border-top: 2px solid #c1002a;
 }
 
 .main-page .main-area .jgu-testklausur h2, .jgu-klausur-erstellen h2{
     font-size:1.6rem;
     font-weight: 500;
+    margin-top:1%;
 }
 
 .main-page .main-area .jgu-testklausur h2 .jgu-brand, .jgu-klausur-erstellen h2 .jgu-brand{
