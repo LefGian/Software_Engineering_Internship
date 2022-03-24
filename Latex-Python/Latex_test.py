@@ -19,3 +19,13 @@ def toLatex(aufgabe_arr, type: int, loesung: bool):
     par:    loesung,    sollen die Musterloesungen draufgeschieben wreden ?
     returns:    Tuple of LatexFile and .pdf File -> (latexfile, pdf)
     """
+    with open("questions.tex", "w") as latex:
+        latex.write("\\begin{questions}\n")
+        for aufgabe in aufgabe_arr:
+            latex.write(aufgabe.name + "\n")
+            latex.write(aufgabe.aufgabenstellung + "\n")
+        if loesung:
+            latex.write(aufgabe.loesung + "\n")
+        latex.write("\\pagebreak\n")
+        latex.write("\\end{questions}\n")
+    return latex
