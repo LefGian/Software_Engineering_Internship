@@ -85,6 +85,10 @@ body {
     outline: none;
 }
 
+.main-page .main-settings .jgu-task-field-big textarea{
+    min-height: 50px;
+}
+
 .main-page .main-settings .jgu-task-field-big .jgu-b-area{
     display: flex;
     justify-content: left;
