@@ -125,3 +125,20 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
                       schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet)
 
     aufgabe.save()
+
+
+def get_aufgabe(name: []):
+    """
+    Get back all information about tasks by their names
+
+    :param name: List of strings of task names
+    :return: Dict in form of: {aufgabenname: [inhalt, loesung, user, schwierigkeit, zeit, themengebiet]}
+    """
+
+    aufgaben = {}
+    for i in name:
+        aufgabe = Aufgabe.objects.get(name=i)
+        aufgaben[aufgabe.name] = [aufgabe.aufgabenstellung, aufgabe.loesung, aufgabe.user, aufgabe.schwierigkeit,
+                                  aufgabe.zeit, aufgabe.themengebiet]
+
+    return aufgaben
