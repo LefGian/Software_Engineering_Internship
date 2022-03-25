@@ -67,7 +67,7 @@ def startsite(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('userprofile-userprofile')
+                return redirect('home')
             show_login_error = 1
 
     else:  # else empy form

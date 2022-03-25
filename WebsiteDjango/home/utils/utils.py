@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-# from ... import Aufgabe muss noch importiert werden
+from startsite.models import Aufgabe
 
 
 

@@ -1,0 +1,219 @@
+html{
+    min-height: 100%!important;
+    height: 100%;
+}
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+    min-height: 100%!important;
+    height: 100%;
+}
+.main-page{
+    width: 100%;
+    height: 100%;
+    padding:10px;
+    display: flex;
+    flex-wrap:nowrap;
+}
+.main-page .main-image{
+    max-width: 35%;
+}
+.main-page .main-image img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+.main-page .main-area{
+    width:65%;
+    padding:10px;
+    text-align: right;
+}
+
+.main-page .main-area h1{
+    font-weight: bold;
+    margin-bottom:2%;
+}
+.main-page .main-area h1 .jgu-brand{
+    color:#c1002a;
+}
+.main-page .main-area p .jgu-welcome{
+    font-weight: 500;
+}
+.main-page .main-area p .jgu-brand{
+    color:#c1002a;
+    font-weight: 500;
+}
+.main-page .main-area .button-area .jgu-btn{
+    margin: 0 0 5px 0;
+    min-width: 195px;
+}
+.main-page .main-area .jgu-testklausur, .jgu-klausur-erstellen{
+    display: none;
+    padding:10px;
+    margin-top:2%;
+    border-top: 2px solid #c1002a;
+}
+.main-page .main-area .jgu-testklausur h2, .jgu-klausur-erstellen h2{
+    font-size:1.6rem;
+    font-weight: 500;
+    margin-top:1%;
+}
+.main-page .main-area .jgu-testklausur h2 .jgu-brand, .jgu-klausur-erstellen h2 .jgu-brand{
+    color:#c1002a;
+    font-weight: bold;
+}
+.main-page .main-area .jgu-testklausur .jgu-field label{
+    width:17%;
+    text-align: left;
+}
+.main-page .main-area .jgu-testklausur .jgu-field:focus-within{
+    color:#c1002a;
+    font-weight: bold;
+}
+.main-page .main-area .jgu-testklausur .jgu-field input, select{
+    width:40%;
+    padding:4px;
+    border:2px solid #000000;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: all ease .2s;
+    outline: none;
+}
+.main-page .main-area .jgu-testklausur .jgu-field.jgu-themen-area, .jgu-submit{
+    display: none;
+}
+.main-page .main-area .jgu-field-buttons{
+    margin-top:10px;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    float:left;
+    margin-bottom:10px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-filter-button-area .btn{
+    margin-top:-5px;
+    margin-bottom:15px;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field .jgu-filter:focus-within{
+    color:#c1002a;
+    font-weight: 500;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field .jgu-filter{
+    width:25%;
+    padding:5px;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field .jgu-filter.jgu-sub-filter{
+    display: none;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field .jgu-filter .jgu-label{
+    text-align: left;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field .jgu-filter select{
+    width: -moz-fit-content;
+    width: -webkit-fill-available;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-field{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-field .jgu-box{
+    width:45%;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-field .arrow-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:0 5px;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-field .arrow-area .btn:first-child{
+    margin-bottom:5px;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-option-field .arrow-area .mobile-show{
+    display: none;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-op-sub{
+    display: none;
+}
+.main-page .main-area .jgu-klausur-erstellen .jgu-crt-button{
+    margin-top:10px;
+}
+@media only screen and (max-width:990px){
+    .main-page{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+    .main-page .main-area{
+        width: 100%;
+        max-width: unset;
+        height: 60%;
+    }
+    .main-page .main-image{
+        width: 100%;
+        max-width: unset;
+        height: 30%;
+    }
+}
+@media only screen and (max-width:750px){
+    .main-page .main-area .jgu-testklausur .jgu-field label{
+        width:35%;
+    }
+    .main-page .main-area .jgu-testklausur .jgu-field input, select{
+        width:60%;
+    }
+}
+@media only screen and (max-width:530px){
+    .mobile-hide{
+        display: none;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field{
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field .jgu-filter{
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-filter-button-area .btn{
+        width:100%;
+        margin-top:5px;
+        margin-bottom: 20px;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-crt-button button{
+        width: 100%;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-filter-field .jgu-filter select{
+        width: 100%;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-field{
+        flex-direction: column;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-field .jgu-box{
+        width:100%;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-field .arrow-area{
+        margin:10px 0;
+    }
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-field .arrow-area .mobile-show{
+        display: block;
+    }
+
+    .main-page .main-area .jgu-klausur-erstellen .jgu-option-field .arrow-area .mobile-hide{
+        display: none;
+    }
+}
+@media only screen and (max-width:451px){
+    .main-page .main-area .button-area .jgu-btn{
+        width:100%;
+    }
+    .main-page .main-image{
+        height: 20%;
+    }
+}
