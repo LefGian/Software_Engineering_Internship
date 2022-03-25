@@ -17,7 +17,7 @@
             <p>Aktualisiere hier deine Profildaten. Bitte gebe bei jeder Änderung dein Passwort ein.</p>
             <div class="jgu-notifi-area">
                 <p class="jgu-notification" id="jgu-notification">
-                    {% for fehlermeldung in fehlermeldung_user_update_str_arr %}
+                    {% for fehlermeldung in error_messages %}
                         {{ fehlermeldung }}</br>
                     {% endfor %}
                 </p>
