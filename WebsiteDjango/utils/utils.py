@@ -121,7 +121,13 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
     :return:
     """
 
-    aufgabe = Aufgabe(name=name, aufgabenstellung=aufgabenstellung, loesung=loesung, user=user,
+    try:
+        aufgabe = Aufgabe(name=name, aufgabenstellung=aufgabenstellung, loesung=loesung, user=user,
                       schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet)
 
-    aufgabe.save()
+        aufgabe.save()
+    
+        return 0
+    except:
+        return -1
+
