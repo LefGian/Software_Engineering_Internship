@@ -1,12 +1,16 @@
-# se06
+# SE Group 06
 
 
+## Inhaltsverzeichnis
 
-## Getting started
+- [Einleitung](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#einleitung)
+- [Voraussetzungen](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#einleitung)
+- [Installation](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#installation)
+- [Team](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#installation)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Einleitung
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Das GitLab-Verzeichnis ist in mehreren Bereichen unterteilt. Um das Projekt komplett lokal verfügbar machen zu können, musst du entsprechend das Verzeichnis clonen.
 
 ## Add your files
 
