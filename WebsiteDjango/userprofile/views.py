@@ -1,9 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .forms import UserUpdateForm, User
 from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
+from .forms import UserUpdateForm, User
 
 
 # Create your views here.
@@ -20,7 +20,7 @@ def userprofile(request):
     if request.method == 'POST':
 
         password = ''
-        password1= ''
+        password1 = ''
         password2 = ''
         if 'jgu-password' in request.POST:
             password = request.POST['jgu-password']
@@ -28,14 +28,12 @@ def userprofile(request):
             password1 = request.POST['jgu-password-new']
         if 'jgu-password-new-confirm' in request.POST:
             password2 = request.POST['jgu-password-new-confirm']
-        
-
 
         user_update_form_dict = {'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
-                                  'first_name': request.POST['jgu-vorname'],
-                                  'last_name': request.POST['jgu-nachname'],
-                                  'username': request.POST['jgu-username'],
-                                }
+                                 'first_name': request.POST['jgu-vorname'],
+                                 'last_name': request.POST['jgu-nachname'],
+                                 'username': request.POST['jgu-username'],
+                                 }
 
         user_check = authenticate(request, username=user.username, password=password)
         if user_check is not None:
@@ -45,7 +43,7 @@ def userprofile(request):
             if password1:
                 user_pwd_update_dict = {
                     'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
-                    'old_password': password, 
+                    'old_password': password,
                     'new_password1': password1,
                     'new_password2': password2,
                 }
@@ -58,23 +56,18 @@ def userprofile(request):
                     form_user_pwd.save()
                     update_session_auth_hash(request, request.user)
                     return redirect('userprofile-userprofile')
-                
-                
-                
+
+
+
 
 
         else:
             fehlermeldung_password = 'Password Wrong'
 
-
         if form_user_update.is_valid():
             form_user_update.save()
-            
+
             return redirect('userprofile-userprofile')
-
-
-        
-
 
     fehlermeldung_user_update = form_user_update.errors.as_data()
     fehlermeldung_password_form = form_user_pwd.errors.as_data()
@@ -93,10 +86,10 @@ def userprofile(request):
     print(fehlermeldung_user_update_str_arr)
     user_group = 'filler'
     show_error = 0
-    if(fehlermeldung_user_update_str_arr):
+    if fehlermeldung_user_update_str_arr:
         show_error = 1
 
-    context ={
+    context = {
         'form_user_update': form_user_update,
         'user': user,
         'user_group': user_group,
