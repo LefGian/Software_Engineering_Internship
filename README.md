@@ -10,87 +10,60 @@
 
 ## Einleitung
 
-Das GitLab-Verzeichnis ist in mehreren Bereichen unterteilt. Um das Projekt komplett lokal verfügbar machen zu können, musst du entsprechend das Verzeichnis clonen.
+Willkommen im GitLab-Verzeichnis der SE Praktikum Gruppe 6. Im Inhaltsverzeichnis oben finden Sie alle Kategorien des README kategorisiert. Im Dokumenten-Verzeichnis
+finden Sie alle notwendigen Informationen, Vorbereitungen und Daten, die vor und während der Entwicklung des Projekts entstanden sind. Auch unsere Vorgehensweise ist 
+in diesem Verzeichnis festgehalten.
 
-## Add your files
+## Voraussetzungen
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Um das Projekt lokal installieren und ausführen zu können, müssen folgende Voraussetzungen erfüllt sein. Bitte überprüfen Sie entsprechend vor oder nach dem Kopieren
+des GitLab-Verzeichnisses die genannten Voraussetzungen.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06.git
-git branch -M main
-git push -uf origin main
-```
+Für die reine Ausführung im Browser, müssen folgende Voraussetzungen erfüllt werden:
 
-## Integrate with your tools
+- Aktuelle Browser: Mozilla Firefox (Version 96+), Google Chrome (Version 96+), Edge (Version 98+), Safari (Version 15+)
 
-- [ ] [Set up project integrations](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/settings/integrations)
+Für die Entwicklungsumgebung, müssen zusätzlich folgende Voraussetzungen erfüllt werden:
 
-## Collaborate with your team
+- [Python 3.10](https://www.python.org/downloads/release/python-3102/)
+- [Django 4.0.3](https://www.djangoproject.com/download/)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Zusätzlich kann [PyLint](https://www.pylint.org/) installiert werden, um die Qualität des Codes überprüfen zu können. Für das Begutachten oder Weiterentwickeln des Projekts wird PyLint empfehlen,
+wird aber nicht zwingend benötigt und ist entsprechend als eine optionale Empfehlung vermerkt.
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Um das Projekt in der Entwicklungsumgebung installieren und ausführen zu können, müssen Sie zu Beginn dieses Git-Verzeichnis kopieren. Installieren Sie im Nachhinein
+alle notwendigen Frameworks.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Klone per HTTPs:
+```
+git clone https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06.git
+```
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Öffnen Sie im Nachhinein das lokale GitLab-Verzeichnis mit Ihrer IDE, vorzugsweise mit [Visual Studio Code](https://visualstudio.microsoft.com/de/) (Microsoft) oder [PyCharm](https://www.jetbrains.com/de-de/pycharm/) (Jetbrains). Installieren Sie dort
+die entsprechenden Frameworks und Packages, die benötigt werden, um das Projekt lokal ausführen zu können oder um Anpassungen durchführen zu können.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Django:
+```
+pip install Django==4.0.3
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+PyLint
+```
+pip install pylint
+```
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Team
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Das Team besteht aus acht Mitgliedern. Die Aufgaben für die jeweiligen Mitglieder werden regelmäßig - siehe [Organisatorisches Konzept](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/blob/main/Dokumente/Organisatorisches_Konzept.pdf), verteilt.
+Das Team besteht aus folgenden Mitgliedern: 
 
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- Andreas Krieger
+- Nico Thomas Kunze
+- Gianluca Lefebvre
+- Daniel Britschak
+- Theo Stempel-Hauburger
+- Ricardo Pacilli
+- Hannes Bernhard Schott
+- Can Tarhan
