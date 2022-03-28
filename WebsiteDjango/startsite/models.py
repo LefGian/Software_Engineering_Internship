@@ -19,6 +19,7 @@ class Aufgabe(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     schwierigkeit = models.PositiveIntegerField()
     zeit = models.PositiveIntegerField()
+    fachgebiet = models.ForeignKey(Fachgebiet, on_delete=models.SET_NULL, blank=True, null=True)
     themengebiet = models.ForeignKey(Themengebiet, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):

@@ -16,7 +16,7 @@ def home(request):
     show_action = 3
     show_tasks = 0
     tasks = []
-    all_subjects = utils.get_subjects()
+    all_subjects = utils.get_fachgebiet()
 
     if request.method == 'POST':
         action = 9000

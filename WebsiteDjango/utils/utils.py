@@ -109,8 +109,9 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
 
     aufgaben = Aufgabe.objects.all()
     themengebiet_record = Themengebiet.objects.get(id=themengebietID)
+    aufgaben_gefiltert = []
 
-    if themengebiet is not None:
+    if themengebietID is not None:
         aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
 
     if schwierigkeit is not None:
@@ -119,7 +120,9 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     if zeit is not None:
         aufgaben = aufgaben.filter(zeit=zeit)
 
-    return aufgaben
+    for aufgabe in aufgaben:
+        aufgaben_gefiltert.append(aufgabe)
+    return aufgaben_gefiltert
 
 
 def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
