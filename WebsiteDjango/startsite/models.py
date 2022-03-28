@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Fachgebiet(models.Model):
+    name = models.TextField()
+
+
+class Themengebiet(models.Model):
+    name = models.TextField()
+    fachgebiet = models.ForeignKey(Fachgebiet, on_delete=models.CASCADE, null=True)
+
+
+
 class Aufgabe(models.Model):
     name = models.TextField()
     aufgabenstellung = models.TextField()
@@ -9,8 +19,7 @@ class Aufgabe(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     schwierigkeit = models.PositiveIntegerField()
     zeit = models.PositiveIntegerField()
-    themengebiet = models.TextField()
-    fachgebiet = models.TextField(blank=True, null=True)
+    themengebiet = models.ForeignKey(Themengebiet, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         """specify how to default cast Aufgabe"""
