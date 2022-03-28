@@ -1,12 +1,8 @@
-from tokenize import group
-from cv2 import log
+#from cv2 import log
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, update_session_auth_hash
 from .forms import AufgabeErstellenForm
-from django.contrib.auth.decorators import user_passes_test
 from utils import utils
-from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -32,8 +28,11 @@ def createassignment(request):
             'themengebiet': request.POST['jgu-topic'],
         }
 
-        # falls eingaben richtig:
-            #in datenbank speichern
+        print(utils.add_aufgabe(aufgabe_dict['name'], aufgabe_dict['aufgabenstellung'],
+                                aufgabe_dict['loesung'], user, aufgabe_dict['schwierigkeit'],
+                                aufgabe_dict['zeit'], aufgabe_dict['themengebiet']))
+
+
 
     context = {
         'testvar': 12
