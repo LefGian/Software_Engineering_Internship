@@ -58,6 +58,10 @@ ul {
 
 .navbar .container{
     max-width: unset!important;
+    display:flex;
+    justify-content:right;
+    text-align: right;
+
 }
 
 .navbar{
