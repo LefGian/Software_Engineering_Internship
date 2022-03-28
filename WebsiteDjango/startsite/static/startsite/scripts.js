@@ -28,6 +28,11 @@ function callJGUModal(option){
     }
     jguModal.style.display="block";
     document.getElementById('jgu-mod-art_shown').value = 1;
+
+    let show_burger_nav = document.getElementById('navbarToggle');
+    if (show_burger_nav.classList.contains('show')){
+        show_burger_nav.classList.remove('show');
+    }
 }
 function closeModal(){
     let jguModal = document.getElementById("jgu-modal");

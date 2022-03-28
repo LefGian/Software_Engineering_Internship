@@ -127,3 +127,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'startsite-startseite'
 LOGIN_URL = 'startsite-startseite'
+LOGOUT_REDIRECT_URL = 'startsite-startseite'
