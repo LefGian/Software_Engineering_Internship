@@ -125,3 +125,16 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
                       schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet)
 
     aufgabe.save()
+
+
+def get_subjects():
+    """
+    """
+
+    aufgaben = Aufgabe.objects.all()
+
+    subjects = []
+    for aufgabe in aufgaben:
+        if subjects.themengebiet not in subjects:
+            subjects.append(subjects.themengebiet)
+    return subjects

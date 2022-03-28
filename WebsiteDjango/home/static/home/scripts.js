@@ -62,7 +62,7 @@ function checkFilterData(){
 
     let errorMessage = "";
 
-    if (jguFachgebiet.value == 0 || jguTopic.value == 0){
+    if (jguFachgebiet.value == 0){
         errorMessage = "Bitte wähle ein Fachgebiet und ein Themengebiet aus.";
         alert(errorMessage);
     } else {
@@ -128,11 +128,29 @@ function checkFilter(){
     let actionArtFilter = document.getElementById("jgu-action-create");
     let subArtFilter = document.getElementById("jgu-op-sub");
 
-    if (fachFilter.value == 0 || themeFilter == 0){
-        alert("Bitte wählen Sie ein Fachgebiet und ein Themenbereich aus, um den Filter anwenden zu können.");
+    if (fachFilter.value == 0){
+        alert("Bitte wählen Sie ein Fachgebiet ein, um den Filter anwenden zu können.");
     } else {
-        actionArtFilter.value = 3;
+        if (actionArt.value == 1){
+            actionArt.value = 4;
+        }
+        else if (actionArt.value == 2){
+            actionArt.value = 5;
+        }
         subArtFilter.click();
+        
         // Filter anwenden
     }
+}
+
+function subjectSubmit(){
+    let subArtFilter = document.getElementById("jgu-op-sub");
+
+    if (actionArt.value == 1){
+        actionArt.value = 6;
+    }
+    else if (actionArt.value == 2){
+        actionArt.value = 7;
+    }
+    subArtFilter.click();
 }

@@ -49,7 +49,7 @@
             <div class="jgu-filter-area">
                 <div class="jgu-field">
                     <label for="jgu-fachgebiet">Fachgebiet</label>
-                    <select name="jgu-fachgebiet" id="jgu-fachgebiet" onchange="showTheme(this.value)" required>
+                    <select name="jgu-fachgebiet" id="jgu-fachgebiet" onchange="this.form.submit()" required>
                         <option value="" selected>Keine Auswahl</option>
                         <option value="1">Biologie</option>
                         <option value="2">Chemie</option>
@@ -62,7 +62,7 @@
 
             <div class="jgu-field jgu-themen-area" id="jgu-themen-area">
                 <label for="jgu-topic">Themengebiet</label>
-                <select name="jgu-topic" id="jgu-topic" required>
+                <select name="jgu-topic" id="jgu-topic">
                     <option value="">Keine Auswahl</option>
                     <option value="1">Datenbanken (DB)</option>
                     <option value="2">Datenstruktur (DS)</option>
@@ -131,7 +131,7 @@
                     <div class="jgu-option-filter-field">
                         <div class="jgu-filter">
                             <div class="jgu-label"><label for="jgu-fachgebiet-filter">Fachgebiet</label></div>
-                            <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet-filter" onchange="showThemeSec(this.value)" required>
+                            <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet-filter" onchange="subjectSubmit()" required>
                                 <option value="" selected>Keine Auswahl</option>
                                 <option value="1">Biologie</option>
                                 <option value="2">Chemie</option>
@@ -143,7 +143,7 @@
                         </div>
                         <div class="jgu-filter jgu-sub-filter" id="jgu-themen-area-sec">
                             <div class="jgu-label"><label for="jgu-topic-filter">Themengebiet</label></div>
-                            <select name="jgu-topic-filter" id="jgu-topic-filter" required>
+                            <select name="jgu-topic-filter" id="jgu-topic-filter">
                                 <option value="">Keine Auswahl</option>
                                 <option value="1">Datenbanken (DB)</option>
                                 <option value="2">Datenstruktur (DS)</option>
@@ -197,14 +197,12 @@
                         <option value="[value]">[task name] ([grade]: [time])</option>
                         -->
                         <select size="5" multiple="multiple" id="jguLeftBox" class="jgu-box" title="Verfügbare Aufgaben">
-                            <option value="">Aufgabe 1 - Binomische Formel (Leicht: 10 Minuten)</option>
-                            <option value="1">Aufgabe 2 - Progrmamfehler Recherche (Sehr Leicht: 10 Minuten)</option>
-                            <option value="2">Aufgabe 3 - Statistik PA (Schwierig: 45 Minuten)</option>
-                            <option value="3">Aufgabe 4 - Statistik PA2 (Schwierig: 45 Minuten)</option>
-                            <option value="4">Aufgabe 5 - Python Basic (Leicht: 20 Minuten)</option>
-                            <option value="5">Aufgabe 6 - Python If-Else (Mittel: 35 Minuten)</option>
-                            <option value="6">Aufgabe 7 - Python Loops (Mittel: 40 Minuten)</option>
-                            <option value="7">Aufgabe 8 - Scala Basic (Mittel: 60 Minuten)</option>
+                            {% if show_tasks %}
+                                {% for task in tasks %}
+                                    <option value="{{ forloop.counter }}" 
+                                    level='{{task.schwierigkeit}}'> {{task.aufgabenstellung}} </option>
+                                {% endfor %}
+                            {% endif %}
                         </select>
                         <div class="arrow-area">
                             <button type="button" class="btn btn-danger mobile-hide" onclick="move('jguLeftBox','jguRightBox');" title="Aufgabe hinzufügen"><i class="fa-solid fa-right-long"></i></button>
@@ -222,6 +220,19 @@
                         <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>
                     </div>
                 </div>
+                {% if show_action == 0 %}
+                    <script> document.addEventListener("DOMContentLoaded", function() {
+                        showProbeKlausur()
+                    })</script> 
+                {% elif show_action == 1 %}
+                    <script> document.addEventListener("DOMContentLoaded", function() {
+                        showCreateKlausur(1)
+                    })</script> 
+                {% elif show_action == 2 %}
+                    <script> document.addEventListener("DOMContentLoaded", function() {
+                        showCreateKlausur(2)
+                    })</script> 
+                {% endif %}
                 <!--
                 0 = Probeklausur
                 1 = Klausur erstellen
