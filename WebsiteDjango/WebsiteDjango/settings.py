@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'createassignment.apps.CreateassignmentConfig',
     'userprofile.apps.UserprofileConfig',
     'startsite.apps.StartsiteConfig',
     'home.apps.HomeConfig',

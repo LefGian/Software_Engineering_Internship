@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
-from startsite.models import Aufgabe
+from startsite.models import *
+
 
 
 
@@ -105,7 +106,7 @@ def filter_aufgabe_name(themengebiet: str, schwierigkeit: int, zeit: int):
 
 
 def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schwierigkeit: int, zeit: int,
-                themengebiet: str):
+                themengebiet: str, fachgebiet: str):
     """
     Use this to add a Aufgabe.
 
@@ -118,11 +119,19 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
     :param schwierigkeit: int to define the schwierigkeit of Aufgabe
     :param zeit: int to define the zeit of Aufgabe
     :param themengebiet: String to define the themengebiet of Aufgabe
-    :return:
+    :param fachgebiet: String to define the fachgebiet of Aufgabe
+    :return: 0 if all went right, -1 otherwise
     """
 
-    aufgabe = Aufgabe(name=name, aufgabenstellung=aufgabenstellung, loesung=loesung, user=user,
-                      schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet)
+    try:
+        aufgabe = Aufgabe(name=name, aufgabenstellung=aufgabenstellung, loesung=loesung, user=user,
+                      schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet, fachgebiet = fachgebiet)
+
+        aufgabe.save()
+    
+        return 0
+    except:
+        return -1
 
     aufgabe.save()
 

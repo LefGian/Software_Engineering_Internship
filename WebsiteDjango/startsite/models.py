@@ -10,6 +10,7 @@ class Aufgabe(models.Model):
     schwierigkeit = models.PositiveIntegerField()
     zeit = models.PositiveIntegerField()
     themengebiet = models.TextField()
+    fachgebiet = models.TextField(blank=True, null=True)
 
     def __str__(self):
         """specify how to default cast Aufgabe"""
