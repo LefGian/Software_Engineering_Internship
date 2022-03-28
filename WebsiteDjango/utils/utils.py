@@ -2,8 +2,6 @@ from django.contrib.auth.models import User, Group
 from startsite.models import *
 
 
-
-
 def set_group(user: User, groupname: str):
     """
     Use this to set users group.
@@ -71,7 +69,6 @@ def filter_aufgabe(themengebiet: str, schwierigkeit: int, zeit: int):
 
     if zeit is not None:
         aufgaben = aufgaben.filter(zeit=zeit)
-
 
     return aufgaben
 
@@ -144,6 +141,6 @@ def get_subjects():
 
     subjects = []
     for aufgabe in aufgaben:
-        if subjects.themengebiet not in subjects:
-            subjects.append(subjects.themengebiet)
+        if aufgabe.themengebiet not in subjects:
+            subjects.append(aufgabe.themengebiet)
     return subjects

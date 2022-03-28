@@ -20,6 +20,7 @@ function showProbeKlausur(){
 function showCreateKlausur(option){
     let header = document.getElementById("jgu-k-label");
     let paragraph = document.getElementById("jgu-p-label");
+
     if (option == 1){
         header.innerHTML = '<span class="jgu-brand">Klausur</span> erstellen';
         paragraph.innerText = 'Erstellen Sie hier innerhalb von wenigen Klicks eine Klausur, die Sie dann sich ausgeben können.';
@@ -127,16 +128,13 @@ function checkFilter(){
     let themeFilter = document.getElementById("jgu-topic-filter");
     let actionArtFilter = document.getElementById("jgu-action-create");
     let subArtFilter = document.getElementById("jgu-op-sub");
+    let filterArt = document.getElementById('jgu-action-create-filter')
+
 
     if (fachFilter.value == 0){
         alert("Bitte wählen Sie ein Fachgebiet ein, um den Filter anwenden zu können.");
     } else {
-        if (actionArt.value == 1){
-            actionArt.value = 4;
-        }
-        else if (actionArt.value == 2){
-            actionArt.value = 5;
-        }
+        filterArt.value = 3;
         subArtFilter.click();
         
         // Filter anwenden

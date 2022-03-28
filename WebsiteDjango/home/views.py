@@ -1,32 +1,23 @@
-import imp
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .utils import utils
-import random
+from utils import utils
 
 
-# Create your views here.
 
 @login_required
 def home(request):
+    # greet user with real name or username if realnameis not known
     user = request.user
-    username = user.username
-    first_name = ''
-    last_name = ''
-    use_username = True
-    if user.first_name and user.last_name:
-        use_username = False
-        first_name = user.first_name
-        last_name = user.last_name
-    
+    print(user.groups.all())
+    first_name = '' if not user.first_name else user.first_name
+    last_name = '' if not user.last_name else user.last_name
+    use_username = True if not first_name and not last_name else False
+
     show_action = 3
-    tasks = []
-    subject = -1
-    topic = -1
-    difficulty = 0
-    time = 0
     show_tasks = 0
-    # all_subjects = utils.subjects()
+    tasks = []
+    all_subjects = utils.get_subjects()
+
     if request.method == 'POST':
         action = 9000
         if request.POST['jgu-action']:
@@ -59,21 +50,22 @@ def home(request):
                 show_action = 2
                 show_tasks = 1
         elif action == '6':
+            subject = request.POST['jgu-fachgebiet-filter']
             show_action = 2
             show_tasks = 1
-            print('Test123')
             
         
 
 
     context = {
         'use_username'  : use_username,
-        'username'      : username,
+        'username'      : user.username,
         'first_name'    : first_name,
         'last_name'     : last_name,
         'DOZENT'        : True,
         'tasks'         : tasks,
         'show_action'   : show_action,
         'show_tasks'    :show_tasks,
+        'subjects'      : all_subjects,
     }
     return render(request, 'home/index.html', context)

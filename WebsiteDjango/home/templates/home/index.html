@@ -133,13 +133,11 @@
                             <div class="jgu-label"><label for="jgu-fachgebiet-filter">Fachgebiet</label></div>
                             <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet-filter" onchange="subjectSubmit()" required>
                                 <option value="" selected>Keine Auswahl</option>
-                                <option value="1">Biologie</option>
-                                <option value="2">Chemie</option>
-                                <option value="3">Informatik</option>
-                                <option value="4">Mathematik</option>
-                                <option value="5">Medizin</option>
-                                <option value="6">Physik</option>
+                                {% for subject in subjects %}
+                                    <option value="{{ forloop.counter }}" > {{subject}} </option>
+                                {% endfor %}
                             </select>
+                            <input type="hidden" name="jgu-fachgebiet-changed" value="{{subject}}">
                         </div>
                         <div class="jgu-filter jgu-sub-filter" id="jgu-themen-area-sec">
                             <div class="jgu-label"><label for="jgu-topic-filter">Themengebiet</label></div>
@@ -241,6 +239,7 @@
                 -->
                 <input type="submit" class="jgu-op-sub" id="jgu-op-sub">
                 <input type="hidden" name="jgu-action" value="1" id="jgu-action-create">
+                <input type="hidden" name="jgu-action-filter" value="0" id="jgu-action-create-filter">
             </form>
         </div>
     </div>
