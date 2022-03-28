@@ -9,6 +9,8 @@ from utils import utils
 
 @login_required
 def createassignment(request):
+    error_messages = ['Input Error. Check your input']
+    show_error = 0
     user = request.user
     if not ('Dozent' in utils.get_group(user=user)):
        return redirect('userprofile-userprofile')
@@ -20,21 +22,23 @@ def createassignment(request):
         aufgabe_dict = {
             'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
             'name': request.POST['jgu-task-name'],
-            'aufgabenstellung': request.POST['jgu-task-code'], # richtiger name ?
-            'loesung': request.POST['jgu-task-result'], # richtiger name ?
+            'aufgabenstellung': request.POST['jgu-task-code'],
+            'loesung': request.POST['jgu-task-result'],
             'user': user,
             'schwierigkeit': request.POST['jgu-level'],
             'zeit': request.POST['jgu-time'],
             'themengebiet': request.POST['jgu-topic'],
+            'fachgebiet': request.POST['jgu-fachgebiet'],
         }
 
-        print(utils.add_aufgabe(aufgabe_dict['name'], aufgabe_dict['aufgabenstellung'],
+
+        show_error = utils.add_aufgabe(aufgabe_dict['name'], aufgabe_dict['aufgabenstellung'],
                                 aufgabe_dict['loesung'], user, aufgabe_dict['schwierigkeit'],
-                                aufgabe_dict['zeit'], aufgabe_dict['themengebiet']))
-
-
+                                aufgabe_dict['zeit'], aufgabe_dict['themengebiet'], fachgebiet = aufgabe_dict['fachgebiet'])
+        
 
     context = {
-        'testvar': 12
+        'error_messages': error_messages,
+        'show_error': show_error
     }
     return render(request, 'createassignment/aufgabeerstellen.html', context)

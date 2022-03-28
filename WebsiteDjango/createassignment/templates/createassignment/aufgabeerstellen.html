@@ -18,7 +18,11 @@
         <h1 class="jgu-task"><span class="jgu-brand">Mein</span> Aufgabeneditor</h1>
         <p>Erstellen Sie hier Aufgaben, die sie im späteren in Klausuren oder Übungsblättern beifügen können.</p>
         <div class="jgu-notifi-area">
-            <p class="jgu-notification" id="jgu-notification"></p>
+            <p class="jgu-notification" id="jgu-notification">
+                {% for fehlermeldung in error_messages %}
+                    {{ fehlermeldung }}</br>
+                {% endfor %}
+            </p>
         </div>
         <form action="" method="post">
             {% csrf_token %}
@@ -87,6 +91,14 @@
         </form>
     </div>
 </div>
+
+{% if show_error %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('jgu-notification').style.display = 'block';
+        })
+    </script>    
+{% endif %}
 
 
 <script src="{% static 'createassignment/scripts.js' %}"></script>
