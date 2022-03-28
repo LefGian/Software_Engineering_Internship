@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
-# from ... import Aufgabe muss noch importiert werden
+from startsite.models import *
+
 
 
 
@@ -30,6 +31,54 @@ def get_group(user: User):
     return group_names
 
 
+def get_fachgebiet():
+
+    fachgebiete = Fachgebiet.objects.all()
+
+    return fachgebiete
+
+
+def get_fachgebiet_name():
+
+    fachgebiete = Fachgebiet.objects.all()
+
+    fachgebiete_name = [i.name for i in fachgebiete]
+
+    return fachgebiete_name
+
+
+def get_themengebiet(fachgebietID: int):
+    """
+    Use this to gather all objects of Themengebiete that belong to the Fachgebiet
+
+    :param FachgebietID: ID(int) of Fachgebiet that filters the Themengebiete by Fachgebiet. Can be None
+    :return: List of Objects of all Themengebiet names matching the filters
+    """
+
+    fachgebiet = Fachgebiet.objects.get(id=fachgebietID)
+
+    themengebiete = Themengebiet.objects.filter(fachgebiet=fachgebiet)
+
+    return themengebiete
+
+
+def get_themengebiet_name(fachgebietID: int):
+    """
+    Use this to gather all names of Themengebiete that belong to the Fachgebiet
+
+    :param FachgebietID: ID(int) of Fachgebiet that filters the Themengebiete by Fachgebiet. Can be None
+    :return: List of strings of all Themengebiet names matching the filters
+    """
+
+    fachgebiet = Fachgebiet.objects.get(id=fachgebietID)
+
+    themengebiete = Themengebiet.objects.filter(fachgebiet=fachgebiet)
+
+    themengebiete_name = [i.name for i in themengebiete]
+
+    return themengebiete_name
+
+
 def update_user(user: User, username: str, first_name: str, last_name: str, new_password: str):
     """
     Use this to update users information. No field should be None.
@@ -49,21 +98,22 @@ def update_user(user: User, username: str, first_name: str, last_name: str, new_
     user.save()
 
 
-def filter_aufgabe(themengebiet: str, schwierigkeit: int, zeit: int):
+def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     """
     Use this to gather all filtered tasks informations for sheets/exam latex.
     Fields can be None.
 
-    :param themengebiet: string that filters the tasks by topic. Can be None
+    :param themengebietID: ID(int) of Themengebiet that filters the tasks by topic. Can be None
     :param schwierigkeit: int that filters the tasks by difficulty. Can be None
     :param zeit: int that filters the tasks by time. Can be None
-    :return: QuerySet of all tasks matching the filters
+    :return: QuerySet(List of Objects) of all tasks matching the filters
     """
 
     aufgaben = Aufgabe.objects.all()
+    themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
     if themengebiet is not None:
-        aufgaben = aufgaben.filter(themengebiet=themengebiet)
+        aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
 
     if schwierigkeit is not None:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
@@ -75,21 +125,22 @@ def filter_aufgabe(themengebiet: str, schwierigkeit: int, zeit: int):
     return aufgaben
 
 
-def filter_aufgabe_name(themengebiet: str, schwierigkeit: int, zeit: int):
+def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
     """
     Use this to gather all filtered tasks names to display at site.
     Fields can be None.
 
-    :param themengebiet: string that filters the tasks by topic. Can be None
+    :param themengebietID: ID(int) of Themengebiet that filters the tasks by topic. Can be None
     :param schwierigkeit: int that filters the tasks by difficulty. Can be None
     :param zeit: int that filters the tasks by time. Can be None
     :return: List of strings of all task names matching the filters
     """
 
     aufgaben = Aufgabe.objects.all()
+    themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
     if themengebiet is not None:
-        aufgaben = aufgaben.filter(themengebiet=themengebiet)
+        aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
 
     if schwierigkeit is not None:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
@@ -103,9 +154,8 @@ def filter_aufgabe_name(themengebiet: str, schwierigkeit: int, zeit: int):
     return aufgaben_name
 
 
-
 def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schwierigkeit: int, zeit: int,
-                themengebiet: str):
+                themengebietID: int):
     """
     Use this to add a Aufgabe.
 
@@ -117,28 +167,19 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
     :param user: User to define the designer of the Aufgabe. Should be the current user
     :param schwierigkeit: int to define the schwierigkeit of Aufgabe
     :param zeit: int to define the zeit of Aufgabe
-    :param themengebiet: String to define the themengebiet of Aufgabe
-    :return:
+    :param themengebietID: ID(int) of Themengebiet to define the themengebiet of Aufgabe
+    :return: 0 on success, -1 on failure
     """
 
-    aufgabe = Aufgabe(name=name, aufgabenstellung=aufgabenstellung, loesung=loesung, user=user,
-                      schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet)
+    try:
+        themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
-    aufgabe.save()
+        aufgabe = Aufgabe(name=name, aufgabenstellung=aufgabenstellung, loesung=loesung, user=user,
+                      schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet_record)
 
+        aufgabe.save()
+    
+        return 0
+    except:
+        return -1
 
-def get_aufgabe(name: []):
-    """
-    Get back all information about tasks by their names
-
-    :param name: List of strings of task names
-    :return: Dict in form of: {aufgabenname: [inhalt, loesung, user, schwierigkeit, zeit, themengebiet]}
-    """
-
-    aufgaben = {}
-    for i in name:
-        aufgabe = Aufgabe.objects.get(name=i)
-        aufgaben[aufgabe.name] = [aufgabe.aufgabenstellung, aufgabe.loesung, aufgabe.user, aufgabe.schwierigkeit,
-                                  aufgabe.zeit, aufgabe.themengebiet]
-
-    return aufgaben
