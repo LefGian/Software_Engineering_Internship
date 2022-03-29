@@ -45,6 +45,12 @@ def get_fachgebiet_name():
     return fachgebiete_name
 
 
+def get_fachgebiet_by_id(id):
+    if not id:
+        return None
+    return Fachgebiet.objects.get(id=id)
+
+
 def get_themengebiet(fachgebietID: int):
     """
     Use this to gather all objects of Themengebiete that belong to the Fachgebiet
@@ -75,6 +81,10 @@ def get_themengebiet_name(fachgebietID: int):
     themengebiete_name = [i.name for i in themengebiete]
 
     return themengebiete_name
+
+
+def get_themengebiet_by_id(id):
+    return Themengebiet.objects.get(id=id)
 
 
 def update_user(user: User, username: str, first_name: str, last_name: str, new_password: str):
@@ -114,10 +124,10 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     if themengebietID is not None:
         aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
 
-    if schwierigkeit is not None:
+    if schwierigkeit is not None and schwierigkeit != 0:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
 
-    if zeit is not None:
+    if zeit is not None and zeit != 0:
         aufgaben = aufgaben.filter(zeit=zeit)
 
     for aufgabe in aufgaben:
@@ -139,7 +149,7 @@ def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
     aufgaben = Aufgabe.objects.all()
     themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
-    if themengebiet is not None:
+    if themengebietID is not None:
         aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
 
     if schwierigkeit is not None:
@@ -152,6 +162,10 @@ def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
     aufgaben_name = [i.name for i in aufgaben]
 
     return aufgaben_name
+
+
+def get_aufgabe_by_id(id):
+    return Aufgabe.objects.get(id=id)
 
 
 def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schwierigkeit: int, zeit: int,
@@ -183,3 +197,11 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
     except:
         return -1
 
+
+
+def check_if_value_is_set(value):
+    if not value:
+        return 0
+    else:
+        return int(value)
+    

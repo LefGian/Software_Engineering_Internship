@@ -20,11 +20,13 @@ function showProbeKlausur(){
 function showCreateKlausur(option){
     let header = document.getElementById("jgu-k-label");
     let paragraph = document.getElementById("jgu-p-label");
+    
 
     if (option == 1){
         header.innerHTML = '<span class="jgu-brand">Klausur</span> erstellen';
         paragraph.innerText = 'Erstellen Sie hier innerhalb von wenigen Klicks eine Klausur, die Sie dann sich ausgeben können.';
     } else if (option == 2){
+
         header.innerHTML = '<span class="jgu-brand">Übungsblatt</span> erstellen';
         paragraph.innerText = 'Erstellen Sie hier innerhalb von wenigen Klicks ein Übungsblatt, die Sie dann sich ausgeben können.';
     }
@@ -34,6 +36,8 @@ function showCreateKlausur(option){
     if (mainImage.classList.contains("mobile-hide")){}else{
         mainImage.classList.add("mobile-hide");
     }
+    
+
 }
 
 function showTheme(option){
@@ -82,12 +86,16 @@ function move(id_1, id_2){
 
             let selected_text = opt_obj.options[i].text;
             let selected_value = opt_obj.options[i].value;
+            let selected_level = opt_obj.options[i].getAttribute('level');
+            let selected_time = opt_obj.options[i].getAttribute('time');
 
             opt_obj.remove(i);
             i--;
 
             let new_option_index = sel_obj.options.length;
-            sel_obj.options[new_option_index] = new Option( selected_text, selected_value );
+            sel_obj.options[new_option_index] = new Option(selected_text, selected_value);
+            sel_obj.options[new_option_index].setAttribute("level", selected_level);
+            sel_obj.options[new_option_index].setAttribute("time", selected_time);
         }
     }
 
@@ -141,14 +149,10 @@ function checkFilter(){
     }
 }
 
-function subjectSubmit(){
-    let subArtFilter = document.getElementById("jgu-op-sub");
 
-    if (actionArt.value == 1){
-        actionArt.value = 6;
-    }
-    else if (actionArt.value == 2){
-        actionArt.value = 7;
-    }
-    subArtFilter.click();
+function switch_action(option){
+    let subject = document.getElementById('jgu-fachgebiet-filter');
+    subject.value = '';
+    document.getElementById('jgu-form').submit();
+    showCreateKlausur(option);
 }

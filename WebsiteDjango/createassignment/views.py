@@ -34,7 +34,7 @@ def createassignment(request):
 
         show_error = utils.add_aufgabe(aufgabe_dict['name'], aufgabe_dict['aufgabenstellung'],
                                 aufgabe_dict['loesung'], user, aufgabe_dict['schwierigkeit'],
-                                aufgabe_dict['zeit'], aufgabe_dict['themengebiet'], fachgebiet = int(aufgabe_dict['fachgebiet']))
+                                aufgabe_dict['zeit'], aufgabe_dict['themengebiet'])
         
 
     context = {
