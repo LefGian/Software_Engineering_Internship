@@ -5,10 +5,17 @@ from django.contrib.auth.models import User
 class Fachgebiet(models.Model):
     name = models.TextField()
 
+    def __str__(self):
+        """specify how to default cast Fachgebiet"""
+        return str(self.name)
+
 
 class Themengebiet(models.Model):
     name = models.TextField()
     fachgebiet = models.ForeignKey(Fachgebiet, on_delete=models.CASCADE, null=True)
+    def __str__(self):
+        """specify how to default cast Themenegebiet"""
+        return str(self.name)
 
 
 

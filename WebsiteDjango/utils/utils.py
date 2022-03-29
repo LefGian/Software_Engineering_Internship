@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User, Group
 from startsite.models import *
-
-
-
+import random
 
 def set_group(user: User, groupname: str):
     """
@@ -47,6 +45,12 @@ def get_fachgebiet_name():
     return fachgebiete_name
 
 
+def get_fachgebiet_by_id(id):
+    if not id:
+        return None
+    return Fachgebiet.objects.get(id=id)
+
+
 def get_themengebiet(fachgebietID: int):
     """
     Use this to gather all objects of Themengebiete that belong to the Fachgebiet
@@ -77,6 +81,10 @@ def get_themengebiet_name(fachgebietID: int):
     themengebiete_name = [i.name for i in themengebiete]
 
     return themengebiete_name
+
+
+def get_themengebiet_by_id(id):
+    return Themengebiet.objects.get(id=id)
 
 
 def update_user(user: User, username: str, first_name: str, last_name: str, new_password: str):
@@ -110,19 +118,26 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     """
 
     aufgaben = Aufgabe.objects.all()
-    themengebiet_record = Themengebiet.objects.get(id=themengebietID)
+    aufgaben_gefiltert = []
 
-    if themengebiet is not None:
-        aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
+    try:
+        themengebiet_record = Themengebiet.objects.get(id=themengebietID)
+    except:
+        return []
 
-    if schwierigkeit is not None:
+
+    if themengebietID is not None:
+        aufgaben = aufgaben.filter(themengebiet_id=themengebiet_record.id)
+
+    if schwierigkeit is not None and schwierigkeit != 0:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
 
-    if zeit is not None:
+    if zeit is not None and zeit != 0:
         aufgaben = aufgaben.filter(zeit=zeit)
 
-
-    return aufgaben
+    for aufgabe in aufgaben:
+        aufgaben_gefiltert.append(aufgabe)
+    return aufgaben_gefiltert
 
 
 def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
@@ -137,21 +152,30 @@ def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
     """
 
     aufgaben = Aufgabe.objects.all()
-    themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
-    if themengebiet is not None:
-        aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
+    try:
+        themengebiet_record = Themengebiet.objects.get(id=themengebietID)
+    except:
+        return []
+
+
+    if themengebietID is not None:
+        aufgaben = aufgaben.filter(themengebiet_id=themengebiet_record.id)
 
     if schwierigkeit is not None:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
 
-    if zeit is not None:
+    if zeit is not None and zeit != 0:
         aufgaben = aufgaben.filter(zeit=zeit)
 
 
     aufgaben_name = [i.name for i in aufgaben]
 
     return aufgaben_name
+
+
+def get_aufgabe_by_id(id):
+    return Aufgabe.objects.get(id=id)
 
 
 def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schwierigkeit: int, zeit: int,
@@ -183,3 +207,24 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
     except:
         return -1
 
+
+
+def check_if_value_is_set(value):
+    if not value:
+        return 0
+    else:
+        return int(value)
+    
+def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
+
+    aufgaben = [i for i in Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit)]
+    random.shuffle(aufgaben)
+    time = zeit
+    exam = []
+
+    for aufgabe in aufgaben:
+        if aufgabe.zeit < time:
+            exam.append(aufgabe)
+            time = time - int(aufgabe.zeit)
+
+    return exam
