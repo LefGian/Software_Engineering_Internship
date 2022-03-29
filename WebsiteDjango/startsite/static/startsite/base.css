@@ -1,0 +1,73 @@
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+}
+  
+ul {
+    margin: 0;
+}
+  
+/* change color of navbar background */
+.bg-steel {
+    /* background-color:#d6d2d3; */
+    background-color:#ffffff;
+}
+  
+/* change color of Text in Navbar */
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #004357;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #0193c0;
+}
+
+/* change color of Text in Navbar when hovered */
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.navbar-light .navbar-brand{
+    color: #004357;
+}
+.navbar-light .navbar-brand:hover {
+    color: #0193c0;
+}
+
+.navbar-light .navbar-toggler{
+    color: #004357;
+    border: none;
+    outline: none;
+}
+
+.content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+.navbar .container{
+    max-width: unset!important;
+    display:flex;
+    justify-content:right;
+    text-align: right;
+
+}
+
+.navbar{
+    box-shadow: 0 2px 4px rgb(0 67 87 / 20%);
+}
+
+.navbar .nav-link {
+    cursor: pointer;
+}

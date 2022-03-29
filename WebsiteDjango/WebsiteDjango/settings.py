@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'createassignment.apps.CreateassignmentConfig',
     'userprofile.apps.UserprofileConfig',
     'startsite.apps.StartsiteConfig',
     'django.contrib.admin',
@@ -126,3 +127,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'startsite-startseite'
 LOGIN_URL = 'startsite-startseite'
+LOGOUT_REDIRECT_URL = 'startsite-startseite'
