@@ -19,7 +19,6 @@ def home(request):
     all_subjects = utils.get_fachgebiet()
 
     if request.method == 'POST':
-        print(subject)
         action = 42 if not request.POST['jgu-action'] else request.POST['jgu-action']
         filter_applied = 0 if not request.POST['jgu-action-filter'] else request.POST['jgu-action-filter']
         subject = int(request.POST['jgu-fachgebiet-changed']) if subject != request.POST['jgu-fachgebiet-changed'] else ''
@@ -95,7 +94,6 @@ from utils import utils
 def home(request):
     # greet user with real name or username if realnameis not known
     user = request.user
-    print(user.groups.all())
     first_name = '' if not user.first_name else user.first_name
     last_name = '' if not user.last_name else user.last_name
     use_username = True if not first_name and not last_name else False

@@ -15,7 +15,6 @@ def userprofile(request):
     password_change_form = PasswordChangeForm(user)
 
     if request.method == 'POST':
-        print(request.POST)
         password = request.POST['jgu-password']
         user_update_dict = {
             'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
@@ -29,7 +28,6 @@ def userprofile(request):
             user_update_form = UserUpdateForm(user_update_dict, instance=user)
             new_password_entered = request.POST['jgu-password-new'] != ''
             new_password_confirmed = request.POST['jgu-password-new-confirm'] != ''
-            print(f'new_password_entered: {new_password_entered}, new_password_confirmed: {new_password_confirmed}')
             if new_password_entered and new_password_confirmed:
                 password1 = request.POST['jgu-password-new']
                 password2 = request.POST['jgu-password-new-confirm']
