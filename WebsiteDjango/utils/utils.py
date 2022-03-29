@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from startsite.models import *
-
+import random
 
 
 
@@ -110,15 +110,20 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     """
 
     aufgaben = Aufgabe.objects.all()
-    themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
-    if themengebiet is not None:
-        aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
+    try:
+        themengebiet_record = Themengebiet.objects.get(id=themengebietID)
+    except:
+        return []
+
+
+    if themengebietID is not None:
+        aufgaben = aufgaben.filter(themengebiet_id=themengebiet_record.id)
 
     if schwierigkeit is not None:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
 
-    if zeit is not None:
+    if zeit is not None and zeit != 0:
         aufgaben = aufgaben.filter(zeit=zeit)
 
 
@@ -137,15 +142,20 @@ def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
     """
 
     aufgaben = Aufgabe.objects.all()
-    themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
-    if themengebiet is not None:
-        aufgaben = aufgaben.filter(themengebiet=themengebiet_record)
+    try:
+        themengebiet_record = Themengebiet.objects.get(id=themengebietID)
+    except:
+        return []
+
+
+    if themengebietID is not None:
+        aufgaben = aufgaben.filter(themengebiet_id=themengebiet_record.id)
 
     if schwierigkeit is not None:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
 
-    if zeit is not None:
+    if zeit is not None and zeit != 0:
         aufgaben = aufgaben.filter(zeit=zeit)
 
 
@@ -183,3 +193,16 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
     except:
         return -1
 
+def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
+
+    aufgaben = [i for i in Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit)]
+    random.shuffle(aufgaben)
+    time = zeit
+    exam = []
+
+    for aufgabe in aufgaben:
+        if aufgabe.zeit < time:
+            exam.append(aufgabe)
+            time = time - int(aufgabe.zeit)
+
+    return exam
