@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-steel fixed-top">
     <div class="container">
-        {% comment %} <a class="navbar-brand mr-4" href="{% url 'startsite-startseite' %}">Start</a> {% endcomment %}
+        <a class="navbar-brand mr-4" href="{% url 'home' %}">Start</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -260,7 +260,7 @@
                             {% endfor %}
                         </select>
                         <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{task_list}}">
-                        <input type="hidden" name="dcoument-create" id="document-create" value="0">
+                        <input type="hidden" name="document-create" id="document-create" value="0">
                     </div>
                     <div class="jgu-crt-button">
                         <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>

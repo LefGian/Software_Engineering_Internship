@@ -52,7 +52,7 @@ def home(request):
         elif action == '2':
             # test sheet
             show_action = 2
-        if utils.check_if_value_is_set(request.POST['dcoument-create']):
+        if 'document-create' in request.POST and request.POST['document-create'] == '1':
                 subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet-filter'])
                 topic = utils.get_themengebiet_by_id(request.POST['jgu-topic-filter'])
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]

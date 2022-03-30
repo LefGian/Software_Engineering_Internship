@@ -10,4 +10,5 @@ urlpatterns = [
     path('userprofile/', include('userprofile.urls')),
     path('home/', include('home.urls')),
     path('createassignment/', include('createassignment.urls')),
+    path('download/', include('downloadapp.urls')),
 ]
