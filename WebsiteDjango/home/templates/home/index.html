@@ -264,6 +264,12 @@
                         <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{task_list}}">
                     </div>
                     <div class="jgu-crt-button">
+                        <input type="checkbox" id="jgu-show-results" name="jgu-show-results" value="0" onclick="refreshCheck()">
+                        <label for="jgu-show-results">
+                            Lösungen anzeigen
+                        </label>
+                    </div>
+                    <div class="jgu-crt-button">
                         <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>
                     </div>
                 </div>

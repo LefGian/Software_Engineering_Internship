@@ -169,3 +169,12 @@ function reset_subject(){
     document.getElementById('jgu-fachgebiet').selectedIndex = '';
     showProbeKlausur();
 }
+
+function refreshCheck(){
+    if (document.getElementById('jgu-show-results').checked == true){
+        document.getElementById('jgu-show-results').value = 1;
+    }
+    else if (document.getElementById('jgu-show-results').checked == false){
+        document.getElementById('jgu-show-results').value = 0;
+    } 
+}

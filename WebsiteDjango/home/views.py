@@ -58,14 +58,17 @@ def home(request):
             difficulty = utils.check_if_value_is_set(request.POST['jgu-level-filter'])
             time = utils.check_if_value_is_set(request.POST['jgu-time-filter'])
             selected_tasks = []
-            if utils.check_if_value_is_set(request.POST['random-tasks']):
+            if 'random-tasks' in request.POST:
                 selected_tasks = utils.create_exam(topic.id, difficulty, time)
             else:
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
                 selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
-                tex_code = utils.toLatex(selected_tasks, False)
-                data_str = utils.file_to_str(tex_code.name)
-                return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
+            use_results = False
+            if  'jgu-show-results' in request.POST and utils.check_if_value_is_set(request.POST['jgu-show-results']):
+                use_results = True
+            tex_code = utils.toLatex(selected_tasks, use_results)
+            data_str = utils.file_to_str(tex_code.name)
+            return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
         if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
             test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in test_list:
