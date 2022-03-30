@@ -12,6 +12,7 @@ def home(request):
     last_name = '' if not user.last_name else user.last_name
     use_username = True if not first_name and not last_name else False
 
+    tex_code = None
 
     time_list = [5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300, 360]
     difficulty_list = ['Sehr leicht', 'Leicht', 'Mittel', 'Mäßig', 'Schwer', 'Sehr schwer', 'Hölle']
@@ -29,10 +30,10 @@ def home(request):
 
     if request.method == 'POST':
         action = request.POST['jgu-action']
-        filter_applied = utils.check_if_value_is_set(request.POST['jgu-action-filter'])
+        filter_applied = utils.check_if_value_is_set(request.POST['jgu-action-filter']) if 'jgu-action-filter' in request.POST else 0
 
-        subject_id = utils.check_if_value_is_set(request.POST['jgu-fachgebiet-filter'])
-        subject = utils.get_fachgebiet_by_id(subject_id)
+        subject_id = utils.check_if_value_is_set(request.POST['jgu-fachgebiet-filter']) if 'jgu-fachgebiet-filter' in request.POST else 0
+        subject = utils.get_fachgebiet_by_id(subject_id) if subject_id != 0 else None
 
         db_query_topics = utils.get_themengebiet(subject.id) if subject else []
         for topics in db_query_topics:
@@ -40,34 +41,21 @@ def home(request):
 
         if action == '0':
             # test exam
-
             show_action = 0
-            pass
-        elif action == '1' or filter_applied == 1:
+        elif action == '1':
             # exam
-           
-            if filter_applied:
-                topic_id = utils.check_if_value_is_set(request.POST['jgu-topic-filter'])
-                topic = utils.get_themengebiet_by_id(topic_id)
-                time = utils.check_if_value_is_set(request.POST['jgu-time-filter'])
-                difficulty = utils.check_if_value_is_set(request.POST['jgu-level-filter'])
-                tasks = utils.filter_aufgabe(topic_id, difficulty, time)
-
-                selected_time = time
-                selected_difficulty = difficulty
-                
-
             show_action = 1
-        elif action == '2' or filter_applied == 1:
+        elif action == '2':
             # test sheet
-
             show_action = 2
-        if request.POST['jgu-task-list'] and request.POST['jgu-task-list'] != '[]':
+        if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
             test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in test_list:
                 right_list.append(utils.get_aufgabe_by_id(task_id))
             task_list = request.POST['jgu-task-list']
-            
+        if filter_applied:
+            tasks, selected_time, selected_difficulty, topic = utils.apply_filter(request)
+
 
     context = {
         'use_username'          : use_username,
@@ -94,4 +82,3 @@ def home(request):
     }
 
     return render(request, 'home/index.html', context)
-

@@ -153,6 +153,15 @@ function checkFilter(){
 function switch_action(option){
     let subject = document.getElementById('jgu-fachgebiet-filter');
     subject.value = '';
-    document.getElementById('jgu-form').submit();
+    document.getElementById('jguLeftBox').innerHTML = '';
+    document.getElementById('jguRightBox').innerHTML = '';
+    document.getElementById('jgu-task-id').value = '';
     showCreateKlausur(option);
+    document.getElementById('jgu-form').submit();
+}
+
+
+function reset_subject(){
+    document.getElementById('jgu-fachgebiet').selectedIndex = '';
+    showProbeKlausur();
 }

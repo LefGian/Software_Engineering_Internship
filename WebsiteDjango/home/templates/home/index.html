@@ -57,7 +57,7 @@
         -->
         
         <div class="button-area">
-            <button type="button" class="btn btn-danger jgu-btn" onclick="showProbeKlausur()"><i class="fa-solid fa-play"></i> Probleklausur starten</button>
+            <button type="button" class="btn btn-danger jgu-btn" onclick="reset_subject()"><i class="fa-solid fa-play"></i> Probleklausur starten</button>
             {% if 'Dozent' in user_group or 'Pruefer' in user_group%}
                 {% if 'Dozent' in user_group%}
                     <button type="button" class="btn btn-danger jgu-btn" onclick=""><i class="fa-solid fa-cloud-arrow-up"></i> Aufgabe hochladen</button>
@@ -74,59 +74,63 @@
             <div class="jgu-filter-area">
                 <div class="jgu-field">
                     <label for="jgu-fachgebiet">Fachgebiet</label>
-                    <select name="jgu-fachgebiet" id="jgu-fachgebiet" onchange="this.form.submit()" required>
+                    <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet" onchange="this.form.submit()" required>
                         <option value="" selected>Keine Auswahl</option>
-                        <option value="1">Biologie</option>
-                        <option value="2">Chemie</option>
-                        <option value="3">Informatik</option>
-                        <option value="4">Mathematik</option>
-                        <option value="5">Medizin</option>
-                        <option value="6">Physik</option>
+                            {% for subject in all_subjects %}
+                                {% if subject.id == current_subject.id %}
+                                    <option value="{{ subject.id }}" selected> {{subject}} </option>
+                                {% else %}
+                                    <option value="{{ subject.id }}"> {{subject}} </option>
+                                {% endif %}
+                            {% endfor %}
                     </select>
                 </div>
 
             <div class="jgu-field jgu-themen-area" id="jgu-themen-area">
                 <label for="jgu-topic">Themengebiet</label>
-                <select name="jgu-topic" id="jgu-topic">
-                    <option value="">Keine Auswahl</option>
-                    <option value="1">Datenbanken (DB)</option>
-                    <option value="2">Datenstruktur (DS)</option>
-                    <option value="3">Einführung in Programmieren (EIP)</option>
-                    <option value="4">Einführung in Softwareentwicklung (EIS)</option>
-                    <option value="5">Software Engineering (SE)</option>
-                    <option value="6">Programmiersprachen (PS)</option>
+                <select name="jgu-topic-filter" id="jgu-topic">
+                    <option value="" selected>Keine Auswahl</option>
+                        {% for topic in topics_for_subject %}
+                            {% if topic.id == current_topic.id %}
+                                <option value="{{ topic.id }}" selected> {{topic}} </option>
+                            {% else %}
+                                <option value="{{ topic.id }}"> {{topic}} </option>
+                            {% endif %}
+                        {% endfor %}
                 </select>
             </div>
             <div class="jgu-field">
                 <label for="jgu-time">Bearbeitungszeit</label>
                 <select name="jgu-time" id="jgu-time">
-                    <option value="" selected>Beliebig</option>
-                    <option value="0">5 Minuten</option>
-                    <option value="1">10 Minuten</option>
-                    <option value="2">15 Minuten</option>
-                    <option value="3">20 Minuten</option>
-                    <option value="4">25 Minuten</option>
-                    <option value="5">30 Minuten</option>
-                    <option value="6">45 Minuten</option>
-                    <option value="7">60 Minuten</option>
-                    <option value="8">90 Minuten</option>
-                    <option value="9">120 Minuten</option>
-                    <option value="10">150 Minuten</option>
-                    <option value="11">180 Minuten</option>
-                    <option value="12">240 Minuten</option>
-                    <option value="13">300 Minuten</option>
-                    <option value="14">360 Minuten</option>
+                    {% if selected_time %}
+                        <option value="">Beliebig</option>
+                    {% else %}
+                        <option value="" selected>Beliebig</option>
+                    {% endif %}
+                    {% for time in time_list %}
+                        {% if selected_time == time %}
+                            <option value="{{time}}" selected> {{time}} Minuten </option>
+                        {% else %}
+                            <option value="{{time}}"> {{time}} Minuten </option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
             <div class="jgu-field">
                 <label for="jgu-level">Schwierigkeit</label>
                 <select name="jgu-level" id="jgu-level">
-                    <option value="" selected>Sehr leicht</option>
-                    <option value="1">Leicht</option>
-                    <option value="3">Mittel</option>
-                    <option value="4">Mäßig</option>
-                    <option value="5">Schwierig</option>
-                    <option value="6">Sehr schwierig</option>
+                    {% if selected_difficulty %}
+                        <option value="">Beliebig</option>
+                    {% else %}
+                        <option value="" selected>Beliebig</option>
+                    {% endif %}
+                    {% for difficulty in difficulty_list %}
+                        {% if forloop.counter == selected_difficulty  and selected_difficulty != 0%}
+                            <option value="{{forloop.counter}}" selected>{{difficulty}}</option>
+                        {% else%}
+                            <option value="{{forloop.counter}}">{{difficulty}}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
                 <div class="jgu-field-buttons">
@@ -274,10 +278,16 @@
                         showCreateKlausur(2)
                     })</script> 
                 {% endif %}
-                {% if current_subject %}
+                {% if current_subject and show_action == 0 %}
                     <script>document.addEventListener("DOMContentLoaded", function() {
-                        showThemeSec(1);
+                        showTheme(1);
                     })</script>
+                {% elif current_subject  %}
+                    {% if show_action == 2 or show_action == 1%}
+                        <script>document.addEventListener("DOMContentLoaded", function() {
+                            showThemeSec(1);
+                        })</script>
+                    {% endif %}
                 {% endif %}
                 <!--
                 0 = Probeklausur
