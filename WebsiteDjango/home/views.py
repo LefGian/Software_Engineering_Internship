@@ -53,12 +53,18 @@ def home(request):
             # test sheet
             show_action = 2
         if 'document-create' in request.POST and request.POST['document-create'] == '1':
-                subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet-filter'])
-                topic = utils.get_themengebiet_by_id(request.POST['jgu-topic-filter'])
+            subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet-filter'])
+            topic = utils.get_themengebiet_by_id(request.POST['jgu-topic-filter'])
+            difficulty = utils.check_if_value_is_set(request.POST['jgu-level-filter'])
+            time = utils.check_if_value_is_set(request.POST['jgu-time-filter'])
+            selected_tasks = []
+            if utils.check_if_value_is_set(request.POST['random-tasks']):
+                selected_tasks = utils.create_exam(topic.id, difficulty, time)
+            else:
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
                 selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
-                tex_code = utils.toLatex_html(selected_tasks, False)
-                return redirect('questions')
+            tex_code = utils.toLatex_html(selected_tasks, False)
+            return redirect('questions')
         if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
             test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in test_list:

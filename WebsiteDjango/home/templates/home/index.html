@@ -101,7 +101,7 @@
             </div>
             <div class="jgu-field">
                 <label for="jgu-time">Bearbeitungszeit</label>
-                <select name="jgu-time" id="jgu-time">
+                <select name="jgu-time-filter" id="jgu-time">
                     {% if selected_time %}
                         <option value="">Beliebig</option>
                     {% else %}
@@ -118,7 +118,7 @@
             </div>
             <div class="jgu-field">
                 <label for="jgu-level">Schwierigkeit</label>
-                <select name="jgu-level" id="jgu-level">
+                <select name="jgu-level-filter" id="jgu-level">
                     {% if selected_difficulty %}
                         <option value="">Beliebig</option>
                     {% else %}
@@ -143,6 +143,8 @@
                 0 = Probeklausur generieren und herunterladen/anzeigen
                 -->
                 <input type="hidden" name="jgu-action" value="0">
+                <input type="hidden" name="random-tasks"  value="0" id="random-tasks">
+                <input type="hidden" name="document-create" id="document-create-test" value="0">
             </div>
             </form>
         </div>
@@ -260,7 +262,6 @@
                             {% endfor %}
                         </select>
                         <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{task_list}}">
-                        <input type="hidden" name="document-create" id="document-create" value="0">
                     </div>
                     <div class="jgu-crt-button">
                         <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>
@@ -297,6 +298,7 @@
                 3 = Filter
                 -->
                 <input type="submit" class="jgu-op-sub" id="jgu-op-sub">
+                <input type="hidden" name="document-create" id="document-create-exam" value="0">
                 <input type="hidden" name="jgu-action" value="1" id="jgu-action-create">
                 <input type="hidden" name="jgu-action-filter" value="0" id="jgu-action-create-filter">
             </form>
