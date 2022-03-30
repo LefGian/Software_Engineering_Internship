@@ -53,7 +53,7 @@
                 {% endfor %}
             </p>
         </div>
-        <form action="" method="post">
+        <form action="" method="post" id='myform'>
             {% csrf_token %}
             <div class="jgu-task-area">
                 <div class="jgu-task-field">
@@ -62,41 +62,43 @@
                 </div>
                 <div class="jgu-task-field">
                     <label for="jgu-fachgebiet">Fachgebiet</label>
-                    <select name="jgu-fachgebiet" id="jgu-fachgebiet" onchange="showTheme(this.value)" required>
+                    <select name="jgu-fachgebiet" id="jgu-fachgebiet" onchange="chose_fachgebiet_and_submit()" required>
                         <option value="">Keine Auswahl</option>
-                        <option value="1">Biologie</option>
-                        <option value="2">Chemie</option>
-                        <option value="3">Informatik</option>
-                        <option value="4">Mathematik</option>
-                        <option value="5">Medizin</option>
-                        <option value="6">Physik</option>
+                        {% for subject in all_subjects %}
+                            {% if subject.id == cur_subject.id%}
+                                <option value="{{subject.id}}" selected>{{subject}}</option>
+                            {% else %}
+                                <option value="{{subject.id}}">{{subject}}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="jgu-task-field themengebiet-cls" id="themengebiet-id">
                     <label for="jgu-topic">Themengebiet</label>
                     <select name="jgu-topic" id="jgu-topic" required>
                         <option value="">Keine Auswahl</option>
-                        <option value="1">Datenbanken (DB)</option>
-                        <option value="2">Datenstruktur (DS)</option>
-                        <option value="3">Einführung in Programmieren (EIP)</option>
-                        <option value="4">Einführung in Softwareentwicklung (EIS)</option>
-                        <option value="5">Software Engineering (SE)</option>
-                        <option value="6">Programmiersprachen (PS)</option>
+                        {% for topic in topics_for_subject %}
+                            
+                            <option value="{{topic.id}}">{{topic}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="jgu-task-field">
                     <label for="jgu-time">Bearbeitungszeit</label>
-                    <input type="number" min="0" max="500" name="jgu-time" id="jgu-time" value="" required>
+                    <select name="jgu-time" id="jgu-time" required>
+                        <option value="" selected>Beliebig</option>
+                        {% for time in time_list %}
+                        <option value="{{time}}"> {{time}} Minuten </option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="jgu-task-field">
                     <label for="jgu-level">Schwierigkeit</label>
                     <select name="jgu-level" id="jgu-level">
-                        <option value="0" selected>Sehr leicht</option>
-                        <option value="1">Leicht</option>
-                        <option value="3">Mittel</option>
-                        <option value="4">Mäßig</option>
-                        <option value="5">Schwierig</option>
-                        <option value="6">Sehr schwierig</option>
+                        <option value="">Beliebig</option>
+                        {% for difficulty in difficulty_list %}
+                            <option value="{{forloop.counter}}">{{difficulty}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="jgu-task-field-big">
@@ -116,7 +118,15 @@
                     <input type="submit" class="jgu-submitter" id="jgu-submit">
                 </div>
                 <input type="hidden" name="jgu-save" value="1">
+                <input type="hidden" name="chose_fachgebiet" id='chose_fachgebiet' value="0">
             </div>
+            {% if cur_subject %}
+                <script>document.addEventListener("DOMContentLoaded", function() {
+
+                    showTheme(1);
+
+                })</script
+            {% endif %}
         </form>
     </div>
 </div>
@@ -128,6 +138,7 @@
         })
     </script>    
 {% endif %}
+
 
 
 <script src="{% static 'createassignment/scripts.js' %}"></script>
