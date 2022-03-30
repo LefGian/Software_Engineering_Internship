@@ -3,6 +3,38 @@ from startsite.models import *
 import random
 
 
+def toLatex_html(aufgabe_arr, loesung_anzeigen: bool):
+    with open("home/templates/home/questions.html", "w", encoding="utf-8") as latex:
+        latex.write('<pre>\n')
+        latex.write("\\begin{questions}\n")
+        for aufgabe in aufgabe_arr:
+            latex.write("\Question{0}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
+            latex.write(aufgabe.aufgabenstellung + "\n")
+            if loesung_anzeigen:
+                latex.write("\\begin{solution}\n")
+                latex.write(aufgabe.loesung + "\n")
+                latex.write("\\end{solution}\n")
+            latex.write("\\pagebreak\n")
+        latex.write("\\end{questions}\n")
+        latex.write('</pre>\n')
+        latex.close()
+    return latex
+
+def toLatex(aufgabe_arr, loesung_anzeigen: bool):
+    with open("questions.tex", "w", encoding="utf-8") as latex:
+        latex.write("\\begin{questions}\n")
+        for aufgabe in aufgabe_arr:
+            latex.write("\Question{0}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
+            latex.write(aufgabe.aufgabenstellung + "\n")
+            if loesung_anzeigen:
+                latex.write("\\begin{solution}\n")
+                latex.write(aufgabe.loesung + "\n")
+                latex.write("\\end{solution}\n")
+            latex.write("\\pagebreak\n")
+        latex.write("\\end{questions}\n")
+        latex.close()
+    return latex
+
 
 def set_group(user: User, groupname: str):
     """
@@ -47,6 +79,12 @@ def get_fachgebiet_name():
     return fachgebiete_name
 
 
+def get_fachgebiet_by_id(id):
+    if not id:
+        return None
+    return Fachgebiet.objects.get(id=id)
+
+
 def get_themengebiet(fachgebietID: int):
     """
     Use this to gather all objects of Themengebiete that belong to the Fachgebiet
@@ -77,6 +115,10 @@ def get_themengebiet_name(fachgebietID: int):
     themengebiete_name = [i.name for i in themengebiete]
 
     return themengebiete_name
+
+
+def get_themengebiet_by_id(id):
+    return Themengebiet.objects.get(id=id)
 
 
 def update_user(user: User, username: str, first_name: str, last_name: str, new_password: str):
@@ -110,24 +152,27 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     """
 
     aufgaben = Aufgabe.objects.all()
+    aufgaben_gefiltert = []
 
     try:
         themengebiet_record = Themengebiet.objects.get(id=themengebietID)
     except:
+        print("Why u do dis???")
         return []
 
 
     if themengebietID is not None:
         aufgaben = aufgaben.filter(themengebiet_id=themengebiet_record.id)
 
-    if schwierigkeit is not None:
+    if schwierigkeit is not None and schwierigkeit != 0:
         aufgaben = aufgaben.filter(schwierigkeit=schwierigkeit)
 
     if zeit is not None and zeit != 0:
         aufgaben = aufgaben.filter(zeit=zeit)
 
-
-    return aufgaben
+    for aufgabe in aufgaben:
+        aufgaben_gefiltert.append(aufgabe)
+    return aufgaben_gefiltert
 
 
 def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
@@ -164,6 +209,10 @@ def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
     return aufgaben_name
 
 
+def get_aufgabe_by_id(id):
+    return Aufgabe.objects.get(id=id)
+
+
 def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schwierigkeit: int, zeit: int,
                 themengebietID: int):
     """
@@ -193,6 +242,15 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
     except:
         return -1
 
+
+
+def check_if_value_is_set(value):
+    if not value:
+        return 0
+    else:
+        return int(value)
+    
+    
 def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
 
     aufgaben = [i for i in Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit)]
@@ -206,3 +264,16 @@ def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
             time = time - int(aufgabe.zeit)
 
     return exam
+
+
+def apply_filter(request):
+    topic_id = check_if_value_is_set(request.POST['jgu-topic-filter'])
+    topic = get_themengebiet_by_id(topic_id)
+    time = check_if_value_is_set(request.POST['jgu-time-filter'])
+    difficulty = check_if_value_is_set(request.POST['jgu-level-filter'])
+    tasks = filter_aufgabe(topic_id, difficulty, time)
+
+    selected_time = time
+    selected_difficulty = difficulty
+
+    return tasks, selected_time, selected_difficulty, topic

@@ -1,0 +1,319 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JG4U Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static  'home/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'home/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'startsite/base.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-steel fixed-top">
+    <div class="container">
+        {% comment %} <a class="navbar-brand mr-4" href="{% url 'startsite-startseite' %}">Start</a> {% endcomment %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+                {% comment %} <a class="nav-item nav-link" href="{% url 'mainapp-home' %}">Home</a> {% endcomment %}
+            </div>
+        <!-- Navbar Rechts -->
+        <div class="navbar-nav">
+            <!-- change navogation Bar based on if user is logged in or not -->
+            {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profil</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Abmelden</a>
+            {% else %}
+                <a class="nav-item nav-link" onclick='callJGUModal(0)'>Anmelden</a>
+                <a class="nav-item nav-link" onclick='callJGUModal(1)'>Registrieren</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+</nav>
+<div class="main-page">
+    <div class="main-image">
+        <img src="{% static 'home/mainPageImage.jpg' %}" alt="Hauptseite Bild" title="Mein Start" id="main-image">
+    </div>
+    <!--
+    Django Fallunterscheidung im Paragraph (<p></p>)>:
+        - Willkommen, <vorname> <nachname>. <message>
+            - <message>: Bei Standard einfach belassen, bei Dotzend oder Prüfer entsprechend anders formulieren.
+    -->
+    <div class="main-area">
+        <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Start</h1>
+        <p><span class="jgu-welcome">Willkommen,
+            {% if use_username %} {{username}}
+            {% else %} {{first_name}}, {{last_name}}
+            {% endif %}
+        </span>.<br>Sie befinden sich hier auf Ihrem persönlichem <span class="jgu-brand">JGU</span>-Board. Sie können nun direkt anfangen Probeklausuren zu erstellen {% if STUDENT %} und zu lernen {% endif %}.</p>
+        <!--
+        Django Fallunterscheidung der Buttons
+        Je nach Rolle muss ein oder zwei Buttons ausgeblendet werden.
+        -->
+        
+        <div class="button-area">
+            <button type="button" class="btn btn-danger jgu-btn" onclick="reset_subject()"><i class="fa-solid fa-play"></i> Probleklausur starten</button>
+            {% if 'Dozent' in user_group or 'Pruefer' in user_group%}
+                {% if 'Dozent' in user_group%}
+                    <button type="button" class="btn btn-danger jgu-btn" onclick="redirect_task()"><i class="fa-solid fa-cloud-arrow-up"></i> Aufgabe hochladen</button>
+                {% endif %}
+                    <button type="button" class="btn btn-danger jgu-btn" onclick="switch_action(1)"><i class="fa-solid fa-plus"></i> Klausur erstellen</button>    
+                <button type="button" class="btn btn-danger jgu-btn" onclick="switch_action(2)"><i class="fa-solid fa-plus"></i> Übungsblatt erstellen</button>
+            {% endif %}
+        </div>
+        <div class="jgu-testklausur" id="jgu-testklausur-section">
+            <h2 class="jgu-container-header"><span class="jgu-brand">Probeklausur</span> starten</h2>
+            <p>Erstellen Sie hier innerhalb von wenigen Klicks eine komplett zufällig generierte Probleklausur.</p>
+            <form action="" method="post">
+                {% csrf_token %}
+            <div class="jgu-filter-area">
+                <div class="jgu-field">
+                    <label for="jgu-fachgebiet">Fachgebiet</label>
+                    <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet" onchange="this.form.submit()" required>
+                        <option value="" selected>Keine Auswahl</option>
+                            {% for subject in all_subjects %}
+                                {% if subject.id == current_subject.id %}
+                                    <option value="{{ subject.id }}" selected> {{subject}} </option>
+                                {% else %}
+                                    <option value="{{ subject.id }}"> {{subject}} </option>
+                                {% endif %}
+                            {% endfor %}
+                    </select>
+                </div>
+
+            <div class="jgu-field jgu-themen-area" id="jgu-themen-area">
+                <label for="jgu-topic">Themengebiet</label>
+                <select name="jgu-topic-filter" id="jgu-topic">
+                    <option value="" selected>Keine Auswahl</option>
+                        {% for topic in topics_for_subject %}
+                            {% if topic.id == current_topic.id %}
+                                <option value="{{ topic.id }}" selected> {{topic}} </option>
+                            {% else %}
+                                <option value="{{ topic.id }}"> {{topic}} </option>
+                            {% endif %}
+                        {% endfor %}
+                </select>
+            </div>
+            <div class="jgu-field">
+                <label for="jgu-time">Bearbeitungszeit</label>
+                <select name="jgu-time" id="jgu-time">
+                    {% if selected_time %}
+                        <option value="">Beliebig</option>
+                    {% else %}
+                        <option value="" selected>Beliebig</option>
+                    {% endif %}
+                    {% for time in time_list %}
+                        {% if selected_time == time %}
+                            <option value="{{time}}" selected> {{time}} Minuten </option>
+                        {% else %}
+                            <option value="{{time}}"> {{time}} Minuten </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="jgu-field">
+                <label for="jgu-level">Schwierigkeit</label>
+                <select name="jgu-level" id="jgu-level">
+                    {% if selected_difficulty %}
+                        <option value="">Beliebig</option>
+                    {% else %}
+                        <option value="" selected>Beliebig</option>
+                    {% endif %}
+                    {% for difficulty in difficulty_list %}
+                        {% if forloop.counter == selected_difficulty  and selected_difficulty != 0%}
+                            <option value="{{forloop.counter}}" selected>{{difficulty}}</option>
+                        {% else%}
+                            <option value="{{forloop.counter}}">{{difficulty}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+                <div class="jgu-field-buttons">
+                    <button type="button" class="btn btn-danger" onclick="checkFilterData()"><i class="fa-solid fa-play"></i> Starten</button>
+                </div>
+                <input type="submit" class="jgu-submit" id="jguSub">
+                <!--
+                Der Parameter "jgu-action" sagt uns genau welche Form nun abgesendet wird und wie wir diese
+                entsprechend mit Django zu verarbeiten haben.
+                0 = Probeklausur generieren und herunterladen/anzeigen
+                -->
+                <input type="hidden" name="jgu-action" value="0">
+            </div>
+            </form>
+        </div>
+
+        <!-- Dieser Bereich ab hier muss für Studenten ausgeblendet werden -->
+
+        <!-- Filter für Klausur erstellen -->
+
+        <div class="jgu-klausur-erstellen" id="jgu-klausur-id">
+            <h2 class="jgu-container-header" id="jgu-k-label"><span class="jgu-brand">Klausur</span> erstellen</h2>
+            <p id="jgu-p-label">Erstellen Sie hier innerhalb von wenigen Klicks eine Klausur, die Sie dann sich ausgeben können.</p>
+            <form action="" method="post" id="jgu-form">
+                {% csrf_token %}
+                <div class="jgu-filter-area">
+                    <div class="jgu-option-filter-field">
+                        <div class="jgu-filter">
+                            <div class="jgu-label"><label for="jgu-fachgebiet-filter">Fachgebiet</label></div>
+                            <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet-filter" onchange="this.form.submit()" required>
+                                <option value="" selected>Keine Auswahl</option>
+                                {% for subject in all_subjects %}
+                                    {% if subject.id == current_subject.id %}
+                                        <option value="{{ subject.id }}" selected> {{subject}} </option>
+                                    {% else %}
+                                        <option value="{{ subject.id }}"> {{subject}} </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            <input type="hidden" name="jgu-fachgebiet-changed" value="{{subject}}">
+                        </div>
+                        <div class="jgu-filter jgu-sub-filter" id="jgu-themen-area-sec">
+                            <div class="jgu-label"><label for="jgu-topic-filter">Themengebiet</label></div>
+                            <select name="jgu-topic-filter" id="jgu-topic-filter">
+                                <option value="">Keine Auswahl</option>
+                                {% for topic in topics_for_subject %}
+                                    {% if topic.id == current_topic.id %}
+                                        <option value="{{ topic.id }}" selected> {{topic}} </option>
+                                    {% else %}
+                                        <option value="{{ topic.id }}"> {{topic}} </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="jgu-filter">
+                            <div class="jgu-label"> <label for="jgu-time-filter">Bearbeitungszeit</label></div>
+                            <select name="jgu-time-filter" id="jgu-time-filter">
+                                {% if selected_time %}
+                                    <option value="">Beliebig</option>
+                                {% else %}
+                                    <option value="" selected>Beliebig</option>
+                                {% endif %}
+                                {% for time in time_list %}
+                                    {% if selected_time == time %}
+                                        <option value="{{time}}" selected> {{time}} Minuten </option>
+                                    {% else %}
+                                        <option value="{{time}}"> {{time}} Minuten </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="jgu-filter">
+                            <div class="jgu-label"><label for="jgu-level-filter">Schwierigkeit</label></div>
+                            <select name="jgu-level-filter" id="jgu-level-filter">
+                                {% if selected_difficulty %}
+                                    <option value="">Beliebig</option>
+                                {% else %}
+                                    <option value="" selected>Beliebig</option>
+                                {% endif %}
+                                {% for difficulty in difficulty_list %}
+                                    {% if forloop.counter == selected_difficulty  and selected_difficulty != 0%}
+                                        <option value="{{forloop.counter}}" selected>{{difficulty}}</option>
+                                    {% else%}
+                                        <option value="{{forloop.counter}}">{{difficulty}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="jgu-filter-button-area">
+                        <button type="button" class="btn btn-danger" onclick="checkFilter()">Filter anwenden</button>
+                    </div>
+                    <div class="jgu-option-field">
+                        <!-- Aufgaben als Beispiel zu betrachten. Aufgaben müssen entsprechend von der Datenbank geladen
+                        werden und per Schleife durchgegeben werden
+
+                        Aufbau:
+                        <option value="[value]">[task name] ([grade]: [time])</option>
+                        -->
+                        <select size="5" multiple="multiple" id="jguLeftBox" class="jgu-box" title="Verfügbare Aufgaben">
+                            {% for task in tasks %}
+                                {% if task.id not in test_list %}
+                                    <option value="{{task.id}}"
+                                    level="{{task.schwierigkeit}}"
+                                    time="{{task.zeit}}">
+                                    {{task.name}}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <div class="arrow-area">
+                            <button type="button" class="btn btn-danger mobile-hide" onclick="move('jguLeftBox','jguRightBox');" title="Aufgabe hinzufügen"><i class="fa-solid fa-right-long"></i></button>
+                            <button type="button" class="btn btn-danger mobile-hide" onclick="move('jguRightBox','jguLeftBox');" title="Aufgabe entfernen"><i class="fa-solid fa-left-long"></i></button>
+
+                            <button type="button" class="btn btn-danger mobile-show" style="margin-bottom:5px;" onclick="move('jguLeftBox','jguRightBox');" title="Aufgabe hinzufügen"><i class="fa-solid fa-arrow-up-long"></i></button>
+                            <button type="button" class="btn btn-danger mobile-show" onclick="move('jguLeftBox','jguRightBox');" title="Aufgabe entfernen"><i class="fa-solid fa-arrow-down-long"></i></button>
+                        </div>
+                        <select size="5" multiple="multiple" id="jguRightBox" class="jgu-box" title="Ausgewählte Aufgaben">
+                            {% for task in right_list %}
+                                {% if task.id in test_list %}
+                                    <option value="{{task.id}}"
+                                    level="{{task.schwierigkeit}}"
+                                    time="{{task.zeit}}">
+                                    {{task.name}}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{task_list}}">
+                        <input type="hidden" name="dcoument-create" id="document-create" value="0">
+                    </div>
+                    <div class="jgu-crt-button">
+                        <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>
+                    </div>
+                </div>
+                {% if show_action == 0 %}
+                    <script> document.addEventListener("DOMContentLoaded", function() {
+                        showProbeKlausur()
+                    })</script> 
+                {% elif show_action == 1 %}
+                    <script> document.addEventListener("DOMContentLoaded", function() {
+                        showCreateKlausur(1)
+                    })</script> 
+                {% elif show_action == 2 %}
+                    <script> document.addEventListener("DOMContentLoaded", function() {
+                        showCreateKlausur(2)
+                    })</script> 
+                {% endif %}
+                {% if current_subject and show_action == 0 %}
+                    <script>document.addEventListener("DOMContentLoaded", function() {
+                        showTheme(1);
+                    })</script>
+                {% elif current_subject  %}
+                    {% if show_action == 2 or show_action == 1%}
+                        <script>document.addEventListener("DOMContentLoaded", function() {
+                            showThemeSec(1);
+                        })</script>
+                    {% endif %}
+                {% endif %}
+                <!--
+                0 = Probeklausur
+                1 = Klausur erstellen
+                2 = Übung erstellen
+                3 = Filter
+                -->
+                <input type="submit" class="jgu-op-sub" id="jgu-op-sub">
+                <input type="hidden" name="jgu-action" value="1" id="jgu-action-create">
+                <input type="hidden" name="jgu-action-filter" value="0" id="jgu-action-create-filter">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function redirect_task(){
+        location.href="{% url 'createassignment-createassignment' %}"
+    }
+</script>
+
+<script src="{% static 'home/scripts.js' %}"></script>
+<script src="{% static 'home/all.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

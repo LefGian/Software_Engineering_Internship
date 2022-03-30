@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'createassignment.apps.CreateassignmentConfig',
     'userprofile.apps.UserprofileConfig',
     'startsite.apps.StartsiteConfig',
+    'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
