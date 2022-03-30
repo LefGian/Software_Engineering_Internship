@@ -123,9 +123,10 @@ function checkBeforeDocument(){
     let taskList = document.getElementById("jgu-task-id");
     let subArtDoc = document.getElementById("jgu-op-sub");
 
-    if (taskList.value == ""){
+    if (taskList.value == "" || taskList.value == "[]"){
         alert("Bitte wählen Sie mindestens eine Aufgabe aus, um ein Dokument erstellen zu können");
     } else {
+        document.getElementById('document-create').value = 1;
         subArtDoc.click();
         // Dokument erstellen oder LATEX-Code ausgeben.
     }
@@ -153,6 +154,15 @@ function checkFilter(){
 function switch_action(option){
     let subject = document.getElementById('jgu-fachgebiet-filter');
     subject.value = '';
-    document.getElementById('jgu-form').submit();
+    document.getElementById('jguLeftBox').innerHTML = '';
+    document.getElementById('jguRightBox').innerHTML = '';
+    document.getElementById('jgu-task-id').value = '';
     showCreateKlausur(option);
+    document.getElementById('jgu-form').submit();
+}
+
+
+function reset_subject(){
+    document.getElementById('jgu-fachgebiet').selectedIndex = '';
+    showProbeKlausur();
 }

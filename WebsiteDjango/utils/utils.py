@@ -4,7 +4,7 @@ import random
 
 
 def toLatex_html(aufgabe_arr, loesung_anzeigen: bool):
-    with open("questions.html", "w", encoding="utf-8") as latex:
+    with open("home/templates/home/questions.html", "w", encoding="utf-8") as latex:
         latex.write('<pre>\n')
         latex.write("\\begin{questions}\n")
         for aufgabe in aufgabe_arr:
@@ -157,6 +157,7 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     try:
         themengebiet_record = Themengebiet.objects.get(id=themengebietID)
     except:
+        print("Why u do dis???")
         return []
 
 
@@ -249,6 +250,7 @@ def check_if_value_is_set(value):
     else:
         return int(value)
     
+    
 def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
 
     aufgaben = [i for i in Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit)]
@@ -262,3 +264,16 @@ def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
             time = time - int(aufgabe.zeit)
 
     return exam
+
+
+def apply_filter(request):
+    topic_id = check_if_value_is_set(request.POST['jgu-topic-filter'])
+    topic = get_themengebiet_by_id(topic_id)
+    time = check_if_value_is_set(request.POST['jgu-time-filter'])
+    difficulty = check_if_value_is_set(request.POST['jgu-level-filter'])
+    tasks = filter_aufgabe(topic_id, difficulty, time)
+
+    selected_time = time
+    selected_difficulty = difficulty
+
+    return tasks, selected_time, selected_difficulty, topic

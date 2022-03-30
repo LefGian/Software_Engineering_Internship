@@ -12,6 +12,7 @@ def createassignment(request):
     error_messages = ['Input Error. Check your input']
     show_error = 0
     user = request.user
+    all_subjects = utils.get_fachgebiet()
     if not ('Dozent' in utils.get_group(user=user)):
        return redirect('userprofile-userprofile')
     
@@ -39,7 +40,8 @@ def createassignment(request):
             'fachgebiet': request.POST['jgu-fachgebiet'],
             'chose_fachgebiet': request.POST['chose_fachgebiet'],
         }
-
+        subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet'])
+        topic = utils.get_themengebiet_by_id(request.POST['jgu-topic'])
 
         subject_id = utils.check_if_value_is_set(request.POST['jgu-fachgebiet'])
         cur_subject = utils.get_fachgebiet_by_id(subject_id)
