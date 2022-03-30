@@ -1,9 +1,11 @@
+import imp
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, update_session_auth_hash
 from .forms import UserUpdateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UserUpdateForm, User
+from utils import utils
 
 
 @login_required
@@ -13,6 +15,10 @@ def userprofile(request):
     show_error = 0
     user_update_form = UserUpdateForm(instance=user)
     password_change_form = PasswordChangeForm(user)
+    user_group = utils.get_group(user)
+    user_group.sort()
+    user_group = user_group[0]
+
 
     if request.method == 'POST':
         password = request.POST['jgu-password']
@@ -76,6 +82,6 @@ def userprofile(request):
         'user' : user,
         'error_messages' : error_messages,
         'show_error' : show_error,
-        'user_role' : 'Student',
+        'user_role' : user_group,
     }
     return render(request, 'userprofile/nutzerprofil.html', context)

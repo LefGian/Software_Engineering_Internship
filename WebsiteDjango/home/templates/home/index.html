@@ -60,7 +60,7 @@
             <button type="button" class="btn btn-danger jgu-btn" onclick="reset_subject()"><i class="fa-solid fa-play"></i> Probleklausur starten</button>
             {% if 'Dozent' in user_group or 'Pruefer' in user_group%}
                 {% if 'Dozent' in user_group%}
-                    <button type="button" class="btn btn-danger jgu-btn" onclick=""><i class="fa-solid fa-cloud-arrow-up"></i> Aufgabe hochladen</button>
+                    <button type="button" class="btn btn-danger jgu-btn" onclick="redirect_task()"><i class="fa-solid fa-cloud-arrow-up"></i> Aufgabe hochladen</button>
                 {% endif %}
                     <button type="button" class="btn btn-danger jgu-btn" onclick="switch_action(1)"><i class="fa-solid fa-plus"></i> Klausur erstellen</button>    
                 <button type="button" class="btn btn-danger jgu-btn" onclick="switch_action(2)"><i class="fa-solid fa-plus"></i> Übungsblatt erstellen</button>
@@ -260,6 +260,7 @@
                             {% endfor %}
                         </select>
                         <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{task_list}}">
+                        <input type="hidden" name="dcoument-create" id="document-create" value="0">
                     </div>
                     <div class="jgu-crt-button">
                         <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>
@@ -302,6 +303,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function redirect_task(){
+        location.href="{% url 'createassignment-createassignment' %}"
+    }
+</script>
 
 <script src="{% static 'home/scripts.js' %}"></script>
 <script src="{% static 'home/all.min.js' %}"></script>

@@ -123,9 +123,10 @@ function checkBeforeDocument(){
     let taskList = document.getElementById("jgu-task-id");
     let subArtDoc = document.getElementById("jgu-op-sub");
 
-    if (taskList.value == ""){
+    if (taskList.value == "" || taskList.value == "[]"){
         alert("Bitte wählen Sie mindestens eine Aufgabe aus, um ein Dokument erstellen zu können");
     } else {
+        document.getElementById('document-create').value = 1;
         subArtDoc.click();
         // Dokument erstellen oder LATEX-Code ausgeben.
     }

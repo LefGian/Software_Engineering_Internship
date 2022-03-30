@@ -4,7 +4,7 @@ import random
 
 
 def toLatex_html(aufgabe_arr, loesung_anzeigen: bool):
-    with open("questions.html", "w", encoding="utf-8") as latex:
+    with open("home/templates/home/questions.html", "w", encoding="utf-8") as latex:
         latex.write('<pre>\n')
         latex.write("\\begin{questions}\n")
         for aufgabe in aufgabe_arr:
@@ -157,6 +157,7 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
     try:
         themengebiet_record = Themengebiet.objects.get(id=themengebietID)
     except:
+        print("Why u do dis???")
         return []
 
 

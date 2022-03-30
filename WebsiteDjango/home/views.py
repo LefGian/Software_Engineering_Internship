@@ -1,4 +1,6 @@
+from ctypes import util
 from re import sub
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from utils import utils
@@ -39,6 +41,8 @@ def home(request):
         for topics in db_query_topics:
             topics_for_subject.append(topics)
 
+        if filter_applied:
+            tasks, selected_time, selected_difficulty, topic = utils.apply_filter(request)
         if action == '0':
             # test exam
             show_action = 0
@@ -48,14 +52,18 @@ def home(request):
         elif action == '2':
             # test sheet
             show_action = 2
+        if utils.check_if_value_is_set(request.POST['dcoument-create']):
+                subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet-filter'])
+                topic = utils.get_themengebiet_by_id(request.POST['jgu-topic-filter'])
+                selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
+                selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
+                tex_code = utils.toLatex_html(selected_tasks, False)
+                return redirect('questions')
         if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
             test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in test_list:
                 right_list.append(utils.get_aufgabe_by_id(task_id))
             task_list = request.POST['jgu-task-list']
-        if filter_applied:
-            tasks, selected_time, selected_difficulty, topic = utils.apply_filter(request)
-
 
     context = {
         'use_username'          : use_username,
@@ -82,3 +90,7 @@ def home(request):
     }
 
     return render(request, 'home/index.html', context)
+
+
+def questions(request):
+    return render(request, 'home/questions.html', {})

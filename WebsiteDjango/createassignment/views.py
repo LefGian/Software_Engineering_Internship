@@ -12,6 +12,7 @@ def createassignment(request):
     error_messages = ['Input Error. Check your input']
     show_error = 0
     user = request.user
+    all_subjects = utils.get_fachgebiet()
     if not ('Dozent' in utils.get_group(user=user)):
        return redirect('userprofile-userprofile')
     
@@ -30,7 +31,8 @@ def createassignment(request):
             'themengebiet': request.POST['jgu-topic'],
             'fachgebiet': request.POST['jgu-fachgebiet'],
         }
-
+        subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet'])
+        topic = utils.get_themengebiet_by_id(request.POST['jgu-topic'])
 
         show_error = utils.add_aufgabe(aufgabe_dict['name'], aufgabe_dict['aufgabenstellung'],
                                 aufgabe_dict['loesung'], user, aufgabe_dict['schwierigkeit'],
@@ -38,7 +40,9 @@ def createassignment(request):
         
 
     context = {
-        'error_messages': error_messages,
-        'show_error': show_error
+        'error_messages'    : error_messages,
+        'show_error'        : show_error,
+        'all_subjects'      : all_subjects,
+        
     }
     return render(request, 'createassignment/aufgabeerstellen.html', context)
