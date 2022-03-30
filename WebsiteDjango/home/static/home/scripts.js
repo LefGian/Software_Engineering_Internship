@@ -67,7 +67,7 @@ function checkFilterData(){
 
     let errorMessage = "";
 
-    if (jguFachgebiet.value == 0){
+    if (jguFachgebiet.value == 0 || jguTopic.value == ''){
         errorMessage = "Bitte wähle ein Fachgebiet und ein Themengebiet aus.";
         alert(errorMessage);
     } else {
@@ -140,7 +140,7 @@ function checkFilter(){
     let filterArt = document.getElementById('jgu-action-create-filter')
 
 
-    if (fachFilter.value == 0){
+    if (fachFilter.value == 0 || themeFilter.value == 0){
         alert("Bitte wählen Sie ein Fachgebiet ein, um den Filter anwenden zu können.");
     } else {
         filterArt.value = 3;
