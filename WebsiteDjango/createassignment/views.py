@@ -40,8 +40,6 @@ def createassignment(request):
             'fachgebiet': request.POST['jgu-fachgebiet'],
             'chose_fachgebiet': request.POST['chose_fachgebiet'],
         }
-        subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet'])
-        topic = utils.get_themengebiet_by_id(request.POST['jgu-topic'])
 
         subject_id = utils.check_if_value_is_set(request.POST['jgu-fachgebiet'])
         cur_subject = utils.get_fachgebiet_by_id(subject_id)

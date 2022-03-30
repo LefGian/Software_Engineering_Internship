@@ -18,6 +18,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserRegisterForm
+from utils import utils
 
 
 def startsite(request):
@@ -45,6 +46,9 @@ def startsite(request):
 
             if form_register.is_valid():
                 form_register.save()
+
+                user = authenticate(request, username=register_form_dict['username'], password=register_form_dict['password1'])
+                utils.set_group(user, 'Student')
 
                 # user = User.objects.get(username = register_form_dict['username'])
                 # user.groups.add()
