@@ -59,3 +59,8 @@ function showTheme(option){
         hiddenThemenGebiet.style.display="block";
     }
 }
+
+function chose_fachgebiet_and_submit(){
+    document.getElementById('chose_fachgebiet').value = 1;
+    document.getElementById('myform').submit();
+}
