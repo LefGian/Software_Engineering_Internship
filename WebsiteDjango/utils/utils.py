@@ -2,6 +2,40 @@ from django.contrib.auth.models import User, Group
 from startsite.models import *
 import random
 
+
+def toLatex_html(aufgabe_arr, loesung_anzeigen: bool):
+    with open("questions.html", "w", encoding="utf-8") as latex:
+        latex.write('<pre>\n')
+        latex.write("\\begin{questions}\n")
+        for aufgabe in aufgabe_arr:
+            latex.write("\Question{0}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
+            latex.write(aufgabe.aufgabenstellung + "\n")
+            if loesung_anzeigen:
+                latex.write("\\begin{solution}\n")
+                latex.write(aufgabe.loesung + "\n")
+                latex.write("\\end{solution}\n")
+            latex.write("\\pagebreak\n")
+        latex.write("\\end{questions}\n")
+        latex.write('</pre>\n')
+        latex.close()
+    return latex
+
+def toLatex(aufgabe_arr, loesung_anzeigen: bool):
+    with open("questions.tex", "w", encoding="utf-8") as latex:
+        latex.write("\\begin{questions}\n")
+        for aufgabe in aufgabe_arr:
+            latex.write("\Question{0}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
+            latex.write(aufgabe.aufgabenstellung + "\n")
+            if loesung_anzeigen:
+                latex.write("\\begin{solution}\n")
+                latex.write(aufgabe.loesung + "\n")
+                latex.write("\\end{solution}\n")
+            latex.write("\\pagebreak\n")
+        latex.write("\\end{questions}\n")
+        latex.close()
+    return latex
+
+
 def set_group(user: User, groupname: str):
     """
     Use this to set users group.
