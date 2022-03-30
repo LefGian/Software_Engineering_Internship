@@ -1,0 +1,29 @@
+\begin{questions}
+\Question{0}{TemplateAufgabe(Ana)}
+Gegeben sei der NEA $N = (\{A,B,C,D,E,F\},\{0,1\},\delta,\{A\},\{A,F\})$ mit Übergangsfunktion $\delta$:\\
+\begin{center}
+    \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto, initial text=,every initial by arrow/.style=rectangle, accepting/.style=rectangle]
+        \node[state, initial, rectangle] (A) {A};
+        \node[state] (B) [right=of A] {B};
+        \node[state] (C) [right=of B] {C};
+        \node[state] (D) [below=of B] {D};
+        \node[state] (E) [below=of C]{E};
+        \node[state, accepting] (F) [right=of E] {F};
+        
+        \path[->]   (A) edge [bend left]        node        {0} (C)
+                        edge                    node [swap] {1} (D)
+                    (B) edge                    node        {0} (C)
+                        edge [bend left]        node        {1} (D)
+                    (C) edge [bend left]        node        {0} (E)
+                        edge                    node        {0} (F)
+                        edge [loop above]       node        {1} ()
+                    (D) edge [bend left]        node        {0} (B)
+                        edge [bend right]       node [swap] {0} (F)
+                        edge                    node        {1} (C)
+                    (E) edge                    node        {0} (D)
+                        edge [bend left]        node        {1} (C);
+    \end{tikzpicture}
+\end{center}
+Verwenden Sie die Potenzmengenkontruktion, um aus $N$ einen DEA $M$ mit $L(M) = L(N)$ zu erzeugen. Sie dürfen dabei nicht erreichbare Zustände vernachlässigen.
+\pagebreak
+\end{questions}

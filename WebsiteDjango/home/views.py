@@ -63,8 +63,9 @@ def home(request):
             else:
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
                 selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
-            tex_code = utils.toLatex_html(selected_tasks, False)
-            return redirect('questions')
+                tex_code = utils.toLatex(selected_tasks, False)
+                data_str = utils.file_to_str(tex_code.name)
+                return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
         if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
             test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in test_list:
@@ -99,4 +100,4 @@ def home(request):
 
 
 def questions(request):
-    return render(request, 'home/questions.html', {})
+    return render(request, 'downloadapp/download.html', {})
