@@ -71,6 +71,8 @@ function checkFilterData(){
         errorMessage = "Bitte wähle ein Fachgebiet und ein Themengebiet aus.";
         alert(errorMessage);
     } else {
+        document.getElementById('document-create-test').value = 1;
+        document.getElementById('random-tasks').value = 1; 
         jguSubmitter.click();
     }
 }
@@ -126,7 +128,7 @@ function checkBeforeDocument(){
     if (taskList.value == "" || taskList.value == "[]"){
         alert("Bitte wählen Sie mindestens eine Aufgabe aus, um ein Dokument erstellen zu können");
     } else {
-        document.getElementById('document-create').value = 1;
+        document.getElementById('document-create-exam').value = 1;
         subArtDoc.click();
         // Dokument erstellen oder LATEX-Code ausgeben.
     }
@@ -143,6 +145,7 @@ function checkFilter(){
     if (fachFilter.value == 0 || themeFilter.value == 0){
         alert("Bitte wählen Sie ein Fachgebiet ein, um den Filter anwenden zu können.");
     } else {
+
         filterArt.value = 3;
         subArtFilter.click();
         
@@ -165,4 +168,13 @@ function switch_action(option){
 function reset_subject(){
     document.getElementById('jgu-fachgebiet').selectedIndex = '';
     showProbeKlausur();
+}
+
+function refreshCheck(){
+    if (document.getElementById('jgu-show-results').checked == true){
+        document.getElementById('jgu-show-results').value = 1;
+    }
+    else if (document.getElementById('jgu-show-results').checked == false){
+        document.getElementById('jgu-show-results').value = 0;
+    } 
 }

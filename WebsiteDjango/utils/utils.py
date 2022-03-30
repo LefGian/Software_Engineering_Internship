@@ -36,6 +36,12 @@ def toLatex(aufgabe_arr, loesung_anzeigen: bool):
     return latex
 
 
+def file_to_str(filename: str):
+    with open(filename, 'r') as file:
+        data = file.read()
+    return data
+
+
 def set_group(user: User, groupname: str):
     """
     Use this to set users group.
