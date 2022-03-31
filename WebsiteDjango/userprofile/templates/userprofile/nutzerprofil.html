@@ -42,7 +42,7 @@
         </div>
         <div class="main-settings">
             <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Profil</h1>
-            <p>Aktualisiere hier deine Profildaten. Bitte gebe bei jeder Änderung dein Passwort ein.</p>
+            <p>Aktualisieren Sie hier Ihre Profildaten. Bitte geben Sie bei jeder Änderung Ihr Passwort ein.</p>
             <div class="jgu-notifi-area">
                 <p class="jgu-notification" id="jgu-notification">
                     {% for fehlermeldung in error_messages %}
@@ -70,16 +70,6 @@
                             <label for="jgu-role">Rolle</label>
                             <input type="text" name="jgu-role" id="jgu-role" value="{{user_role}}" readonly>
                         </div>
-                        {% comment %} <div class="jgu-profile-field">
-                            <label for="jgu-topic">Themengebiet</label>
-                            <select name="jgu-topic" id="jgu-topic" required>
-                                <option value="0">Keine Auswahl</option>
-                                <option value="1">Einführung in Programmieren (EIP)</option>
-                                <option value="2">Einführung in Softwareentwicklung (EIS)</option>
-                                <option value="3">Software Engineering (SE)</option>
-                                <option value="4">Programmiersprachen (PS)</option>
-                            </select>
-                        </div> {% endcomment %}
                     </div>
                     <div class="jgu-profile-second">
                         <div class="jgu-profile-field">

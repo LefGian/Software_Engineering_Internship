@@ -51,7 +51,7 @@ def home(request):
             selected_tasks = []
             if 'random-tasks' in request.POST:
                 subject, topic, difficulty, time = utils.get_filter_attributes(request)
-                selected_tasks = utils.create_exam(topic.id, difficulty, time)
+                selected_tasks = utils.create_exam(topic, difficulty, time)
             else:
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
                 selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
