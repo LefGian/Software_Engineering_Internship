@@ -6,7 +6,10 @@
 - [Einleitung](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#einleitung)
 - [Voraussetzungen](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#einleitung)
 - [Installation](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#installation)
-- [Erste Schritte](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#erste_schritte)
+- [Erste Schritte](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#erste-schritte)
+	- [Verzeichnis auswählen](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#verzeichnis-ausw%C3%A4hlen)
+	- [Superuser erstellen](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#superuser-erstellen)
+	- [Server starten und Daten migrieren](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#server-starten-und-daten-migrieren)
 - [Team](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#team)
 
 ## Einleitung
