@@ -260,7 +260,7 @@ def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
     exam = []
 
     for aufgabe in aufgaben:
-        if aufgabe.zeit < time:
+        if aufgabe.zeit <= time:
             exam.append(aufgabe)
             time = time - int(aufgabe.zeit)
 

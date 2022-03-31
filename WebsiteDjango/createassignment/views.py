@@ -22,6 +22,8 @@ def createassignment(request):
     jgu_save = 0
     chose_fachgebiet = 0
 
+    task_name = ''
+
 
     time_list = [5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300, 360]   # times available to choose from in Bearbeitungszeit
     difficulty_list = ['Sehr leicht', 'Leicht', 'Mittel', 'Mäßig', 'Schwer', 'Sehr schwer', 'Hölle']    # difficulties available to choose from
@@ -48,7 +50,6 @@ def createassignment(request):
         cur_subject = utils.get_fachgebiet_by_id(subject_id)
         topics = utils.get_themengebiet(subject_id) if cur_subject else []
         topics_for_subject = [topic for topic in topics]
-        print(aufgabe_dict['chose_fachgebiet'])
 
         if aufgabe_dict['chose_fachgebiet'] == '0':
             # try to safe Aufgabe in DB, show_error = 0 if went well -1 otherwise
@@ -63,6 +64,7 @@ def createassignment(request):
         if(show_error): # add error message 
             error_messages = ['Input Error. Check your input']
         chose_fachgebiet = request.POST['chose_fachgebiet']
+        if 'jgu-task-name' in request.POST: task_name = request.POST['jgu-task-name']
 
     context = { # pass info variables to html
         'error_messages': error_messages,
@@ -74,6 +76,7 @@ def createassignment(request):
         'difficulty_list': difficulty_list,
         'jgu_save': int(jgu_save),
         'chose_fachgebiet': int(chose_fachgebiet),
+        'task_name' : task_name,
 
     }
     return render(request, 'createassignment/aufgabeerstellen.html', context)
