@@ -124,7 +124,7 @@ body {
     .main-page .main-image, .main-page .main-settings{
         width: 100%;
         max-width: unset;
-        height: 50%;
+        height: 40%;
     }
 }
 
