@@ -22,6 +22,7 @@ def userprofile(request):
     password_change_form = PasswordChangeForm(user) # Empty initialize of Form that holds PasswordInfo
     user_group = utils.get_group(user)  # get the group of the user 
     user_group.sort()   # sort alphabetically, because we can only display one group
+    print(user_group)
     user_group = user_group[0]
     jgu_save = 0
 
@@ -50,7 +51,6 @@ def userprofile(request):
                     'new_password1': password1,
                     'new_password2': password2,
                 }
-
                 user_password_form = PasswordChangeForm(user, user_password_dict)   # fill Form with info from dict
 
                 # get Errors and append them to error_messages

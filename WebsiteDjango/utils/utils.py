@@ -8,7 +8,7 @@ def toLatex_html(aufgabe_arr, loesung_anzeigen: bool):
         latex.write('<pre>\n')
         latex.write("\\begin{questions}\n")
         for aufgabe in aufgabe_arr:
-            latex.write("\Question{0}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
+            latex.write(f"\Question{{{aufgabe.zeit}}}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
             latex.write(aufgabe.aufgabenstellung + "\n")
             if loesung_anzeigen:
                 latex.write("\\begin{solution}\n")
@@ -25,7 +25,7 @@ def toLatex(aufgabe_arr, loesung_anzeigen: bool):
     with open("questions.tex", "w", encoding="utf-8") as latex:
         latex.write("\\begin{questions}\n")
         for aufgabe in aufgabe_arr:
-            latex.write("\Question{0}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
+            latex.write(f"\Question{{{aufgabe.zeit}}}" + "{" + f"{aufgabe.name}({aufgabe.themengebiet})" + "}\n")
             latex.write(aufgabe.aufgabenstellung + "\n")
             if loesung_anzeigen:
                 latex.write("\\begin{solution}\n")
@@ -254,7 +254,7 @@ def check_if_value_is_set(value):
 
 def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
     aufgaben = [i for i in
-                Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit)]
+                Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit+1)]
     random.shuffle(aufgaben)
     time = zeit
     exam = []
