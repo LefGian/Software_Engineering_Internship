@@ -103,9 +103,9 @@
                 <label for="jgu-time">Bearbeitungszeit</label>
                 <select name="jgu-time-filter" id="jgu-time">
                     {% if selected_time %}
-                        <option value="">Beliebig</option>
+                        <option value="">Keine Auswahl</option>
                     {% else %}
-                        <option value="" selected>Beliebig</option>
+                        <option value="" selected>Keine Auswahl</option>
                     {% endif %}
                     {% for time in time_list %}
                         {% if selected_time == time %}
@@ -120,9 +120,9 @@
                 <label for="jgu-level">Schwierigkeit</label>
                 <select name="jgu-level-filter" id="jgu-level">
                     {% if selected_difficulty %}
-                        <option value="">Beliebig</option>
+                        <option value="">Keine Auswahl</option>
                     {% else %}
-                        <option value="" selected>Beliebig</option>
+                        <option value="" selected>Keine Auswahl</option>
                     {% endif %}
                     {% for difficulty in difficulty_list %}
                         {% if forloop.counter == selected_difficulty  and selected_difficulty != 0%}

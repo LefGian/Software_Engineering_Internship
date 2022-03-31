@@ -284,7 +284,13 @@ def apply_filter(request):
 
     return tasks, selected_time, selected_difficulty, topic
 
+def get_filter_attributes(request):
+    subject = check_if_value_is_set(request.POST['jgu-fachgebiet-filter'])
+    topic = check_if_value_is_set(request.POST['jgu-topic-filter'])
+    difficulty = check_if_value_is_set(request.POST['jgu-level-filter'])
+    time = check_if_value_is_set(request.POST['jgu-time-filter'])
 
+    return subject, topic, difficulty, time
 
 def init_aufgabe():
 

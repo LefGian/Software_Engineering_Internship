@@ -86,7 +86,7 @@
                 <div class="jgu-task-field">
                     <label for="jgu-time">Bearbeitungszeit</label>
                     <select name="jgu-time" id="jgu-time" required>
-                        <option value="" selected>Beliebig</option>
+                        <option value="" selected>Keine Auswahl</option>
                         {% for time in time_list %}
                         <option value="{{time}}"> {{time}} Minuten </option>
                         {% endfor %}
@@ -95,7 +95,7 @@
                 <div class="jgu-task-field">
                     <label for="jgu-level">Schwierigkeit</label>
                     <select name="jgu-level" id="jgu-level">
-                        <option value="">Beliebig</option>
+                        <option value="">Keine Auswahl</option>
                         {% for difficulty in difficulty_list %}
                             <option value="{{forloop.counter}}">{{difficulty}}</option>
                         {% endfor %}
