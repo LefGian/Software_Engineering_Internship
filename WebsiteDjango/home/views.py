@@ -13,7 +13,7 @@ def home(request):
     first_name = '' if not user.first_name else user.first_name
     last_name = '' if not user.last_name else user.last_name
     use_username = True if not first_name and not last_name else False
-
+    context = {}
     tex_code = None
 
     time_list = [5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300, 360]
@@ -31,44 +31,38 @@ def home(request):
     topics_for_subject = []
 
     if request.method == 'POST':
+        # action shows which action is selected (Probeklausur, Klausur, Übungsblatt)
         action = request.POST['jgu-action']
         filter_applied = utils.check_if_value_is_set(request.POST['jgu-action-filter']) if 'jgu-action-filter' in request.POST else 0
 
         subject_id = utils.check_if_value_is_set(request.POST['jgu-fachgebiet-filter']) if 'jgu-fachgebiet-filter' in request.POST else 0
         subject = utils.get_fachgebiet_by_id(subject_id) if subject_id != 0 else None
 
-        db_query_topics = utils.get_themengebiet(subject.id) if subject else []
+        db_query_topics = utils.get_themengebiet(subject_id) if subject else []
         for topics in db_query_topics:
             topics_for_subject.append(topics)
 
+        show_action = utils.check_if_value_is_set(action)
+        
         if filter_applied:
             tasks, selected_time, selected_difficulty, topic = utils.apply_filter(request)
-        if action == '0':
-            # test exam
-            show_action = 0
-        elif action == '1':
-            # exam
-            show_action = 1
-        elif action == '2':
-            # test sheet
-            show_action = 2
-        if 'document-create' in request.POST and request.POST['document-create'] == '1':
-            subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet-filter'])
-            topic = utils.get_themengebiet_by_id(request.POST['jgu-topic-filter'])
-            difficulty = utils.check_if_value_is_set(request.POST['jgu-level-filter'])
-            time = utils.check_if_value_is_set(request.POST['jgu-time-filter'])
+
+        if utils.check_if_value_is_set(request.POST['document-create']):
             selected_tasks = []
             if 'random-tasks' in request.POST:
+                subject, topic, difficulty, time = utils.get_filter_attributes(request)
                 selected_tasks = utils.create_exam(topic.id, difficulty, time)
             else:
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
                 selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
+            
             use_results = False
             if  'jgu-show-results' in request.POST and utils.check_if_value_is_set(request.POST['jgu-show-results']):
                 use_results = True
             tex_code = utils.toLatex(selected_tasks, use_results)
             data_str = utils.file_to_str(tex_code.name)
             return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
+        
         if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
             test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in test_list:
