@@ -56,6 +56,10 @@ body {
     width:58%;
 }
 
+.main-page .main-settings .jgu-notification.successful{
+    background-color: #4caf50;
+}
+
 .main-page .main-settings .jgu-profile-field{
     padding:3px 0;
     transition: all ease .2s;
@@ -124,7 +128,7 @@ body {
     .main-page .main-image, .main-page .main-settings{
         width: 100%;
         max-width: unset;
-        height: 50%;
+        height: 40%;
     }
 }
 

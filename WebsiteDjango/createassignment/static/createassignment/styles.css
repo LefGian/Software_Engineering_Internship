@@ -56,6 +56,10 @@ body {
     width:58%;
 }
 
+.main-page .main-settings .jgu-notification.successful{
+    background-color: #4caf50;
+}
+
 .main-page .main-settings .jgu-task-field.themengebiet-cls{
     display: none;
 }

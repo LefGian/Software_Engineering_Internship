@@ -1,0 +1,64 @@
+html{
+    min-height: 100%!important;
+    height: 100%;
+}
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+    min-height: 100% !important;
+}
+.main-latex{
+    width: 100%;
+    height: 100%;
+    padding:10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.main-latex .main-latex-head, .main-latex .main-latex-text-area, .main-latex .main-latex-buttons{
+    width: 75%;
+}
+.main-latex .main-latex-head{
+    text-align: right;
+}
+.main-latex .main-latex-head h1{
+    font-weight: bold;
+}
+.main-latex .main-latex-head h1 .jgu-brand{
+    color:#c1002a;
+}
+.main-latex .main-latex-head p{
+    font-weight: 500;
+}
+.main-latex .main-latex-text-area textarea{
+    width: 100%;
+    min-height: 300px;
+    padding:10px;
+    border:2px solid #000000;
+    border-radius: 10px;
+    transition: all ease .2s;
+    outline: none;
+}
+.main-latex .main-latex-text-area textarea:hover, .main-latex .main-latex-text-area textarea:active, .main-latex .main-latex-text-area textarea:focus{
+    border:2px solid #c1002a;
+}
+.main-latex .main-latex-buttons{
+    margin-top:15px;
+}
+.main-latex .main-latex-buttons button{
+    min-width: 170px;
+}
+.main-latex .main-latex-buttons button:last-child{
+    float:right;
+}
+
+@media only screen and (max-width:710px){
+    .main-latex .main-latex-buttons button{
+        width: 100%;
+        margin-bottom:5px;
+    }
+    .main-latex .main-latex-head, .main-latex .main-latex-text-area, .main-latex .main-latex-buttons{
+        width:90%;
+    }
+}

@@ -52,14 +52,23 @@ def home(request):
         elif action == '2':
             # test sheet
             show_action = 2
-        if utils.check_if_value_is_set(request.POST['dcoument-create']):
-                subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet-filter'])
-                topic = utils.get_themengebiet_by_id(request.POST['jgu-topic-filter'])
+        if 'document-create' in request.POST and request.POST['document-create'] == '1':
+            subject = utils.get_fachgebiet_by_id(request.POST['jgu-fachgebiet-filter'])
+            topic = utils.get_themengebiet_by_id(request.POST['jgu-topic-filter'])
+            difficulty = utils.check_if_value_is_set(request.POST['jgu-level-filter'])
+            time = utils.check_if_value_is_set(request.POST['jgu-time-filter'])
+            selected_tasks = []
+            if 'random-tasks' in request.POST:
+                selected_tasks = utils.create_exam(topic.id, difficulty, time)
+            else:
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
                 selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
-                tex_code = utils.toLatex(selected_tasks, False)
-                data_str = utils.file_to_str(tex_code.name)
-                return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
+            use_results = False
+            if  'jgu-show-results' in request.POST and utils.check_if_value_is_set(request.POST['jgu-show-results']):
+                use_results = True
+            tex_code = utils.toLatex(selected_tasks, use_results)
+            data_str = utils.file_to_str(tex_code.name)
+            return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
         if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
             test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in test_list:
