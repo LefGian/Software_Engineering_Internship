@@ -75,7 +75,6 @@ option 0 => Themengebiete ausblenden
 option 1 => Themengebiete anzeigen
  */
 
-
 function showTheme(option){
     let hiddenThemenGebiet = document.getElementById("themengebiet-id");
     if (option==0){
