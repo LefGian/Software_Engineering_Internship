@@ -20,11 +20,11 @@ def home(request):
     difficulty_list = ['Sehr leicht', 'Leicht', 'Mittel', 'Mäßig', 'Schwer', 'Sehr schwer', 'Hölle']
     selected_time = 0
     selected_difficulty = 0
-    show_action = -1
+    show_action = None
     tasks = []
-    task_list = []
+    selected_task_list = []
     right_list = []
-    test_list = []
+    selected_task_list_as_list = []
     subject = None
     topic = None
     all_subjects = utils.get_fachgebiet()
@@ -64,32 +64,32 @@ def home(request):
             return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
         
         if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
-            test_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
-            for task_id in test_list:
+            selected_task_list_as_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
+            for task_id in selected_task_list_as_list:
                 right_list.append(utils.get_aufgabe_by_id(task_id))
-            task_list = request.POST['jgu-task-list']
+            selected_task_list = request.POST['jgu-task-list']
 
     context = {
-        'use_username'          : use_username,
-        'first_name'            : first_name,
-        'last_name'             : last_name,
-        'username'              : user.username,
-        'user_group'            : user_group,
+        'use_username'                  : use_username,
+        'first_name'                    : first_name,
+        'last_name'                     : last_name,
+        'username'                      : user.username,
+        'user_group'                    : user_group,
 
-        'all_subjects'          : all_subjects,
-        'current_subject'       : subject,
-        'topics_for_subject'    : topics_for_subject,
-        'current_topic'         : topic,
+        'all_subjects'                  : all_subjects,
+        'current_subject'               : subject,
+        'topics_for_subject'            : topics_for_subject,
+        'current_topic'                 : topic,
 
-        'tasks'                 : tasks,
-        'test_list'             : test_list,
-        'task_list'             : task_list,
-        'right_list'            : right_list,
-        'show_action'           : show_action,
-        'difficulty_list'       : difficulty_list,
-        'selected_difficulty'   : selected_difficulty,
-        'time_list'             : time_list,
-        'selected_time'         : selected_time,
+        'tasks'                         : tasks,
+        'selected_task_list_as_list'    : selected_task_list_as_list,
+        'selected_task_list'            : selected_task_list,
+        'right_list'                    : right_list,
+        'show_action'                   : show_action,
+        'difficulty_list'               : difficulty_list,
+        'selected_difficulty'           : selected_difficulty,
+        'time_list'                     : time_list,
+        'selected_time'                 : selected_time,
         
     }
 
