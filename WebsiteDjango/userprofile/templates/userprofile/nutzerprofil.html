@@ -21,7 +21,7 @@
                     </div>
                 <!-- Navbar Rechts -->
                 <div class="navbar-nav">
-                    <!-- change navogation Bar based on if user is logged in or not -->
+                    {% comment "" %}change navigation Bar based on if user is logged in or not{% endcomment %}
                     {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Profil</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Abmelden</a>
@@ -44,15 +44,15 @@
             <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Profil</h1>
             <p>Aktualisieren Sie hier Ihre Profildaten. Bitte geben Sie bei jeder Änderung Ihr Passwort ein.</p>
             <div class="jgu-notifi-area">
-            {% if show_error == 0 and jgu_save == 1%}
+            {% if show_error == 0 and jgu_save == 1%} {% comment "" %}show message in green when params are right{% endcomment %}
                 <p class="jgu-notification successful" id="jgu-notification">
             {% else %}
-                <p class="jgu-notification" id="jgu-notification">
+                <p class="jgu-notification" id="jgu-notification">  {% comment "" %}else show them in red{% endcomment %}
             {% endif %}
-                    {% for fehlermeldung in error_messages %}
+                    {% for fehlermeldung in error_messages %}   {% comment "" %}loop over error_messages and display them{% endcomment %}
                         {{ fehlermeldung }}</br>
                     {% endfor %}
-                {% if show_error == 0 and jgu_save == 1%}
+                {% if show_error == 0 and jgu_save == 1%}   {% comment "" %}if we have no errors and the form was submitted, then we successfuly submitted a form{% endcomment %}
                     Ihre Daten wurden erfolgreich gespeichert.
                 {% endif %}
                 </p>
