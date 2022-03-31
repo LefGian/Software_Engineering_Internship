@@ -16,13 +16,13 @@ function callJGUModal(option){
     if (option==0) {
       repPassword.style.display = "none";
       headLabel.innerText = "Anmelden";
-      headParagraph.innerText = "Melde dich jetzt in deinem JG4UBoard Account an und lerne direkt los.";
+      headParagraph.innerText = "Melden Sie sich jetzt in Ihrem JG4UBoard Account an.";
       mainButton.innerText = "Anmelden";
       jguSubArt.value = 0;
     } else if (option==1){
         repPassword.style.display = "block";
         headLabel.innerText = "Registrieren";
-        headParagraph.innerText = "Erstelle jetzt kostenlos und schnell deinen JG4UBoard Account.";
+        headParagraph.innerText = "Erstellen Sie jetzt kostenlos und schnell Ihren JG4UBoard Account.";
         mainButton.innerText = "Registrieren";
         jguSubArt.value = 1;
     }

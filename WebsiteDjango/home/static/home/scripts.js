@@ -24,11 +24,11 @@ function showCreateKlausur(option){
 
     if (option == 1){
         header.innerHTML = '<span class="jgu-brand">Klausur</span> erstellen';
-        paragraph.innerText = 'Erstellen Sie hier innerhalb von wenigen Klicks eine Klausur, die Sie dann sich ausgeben können.';
+        paragraph.innerText = 'Erstellen Sie hier innerhalb von wenigen Klicks eine Klausur, die Sie sich dann ausgeben lassen können.';
     } else if (option == 2){
 
         header.innerHTML = '<span class="jgu-brand">Übungsblatt</span> erstellen';
-        paragraph.innerText = 'Erstellen Sie hier innerhalb von wenigen Klicks ein Übungsblatt, die Sie dann sich ausgeben können.';
+        paragraph.innerText = 'Erstellen Sie hier innerhalb von wenigen Klicks ein Übungsblatt, die sich Sie dann ausgeben lasen können.';
     }
     probeArea.style.display="none";
     klausurArea.style.display="block";
@@ -67,8 +67,12 @@ function checkFilterData(){
 
     let errorMessage = "";
 
-    if (jguFachgebiet.value == 0 || jguTopic.value == ''){
-        errorMessage = "Bitte wähle ein Fachgebiet und ein Themengebiet aus.";
+    if (jguFachgebiet.value == 0 || jguTopic.value == 0){
+        errorMessage = "Bitte wählen Sie ein Fachgebiet und ein Themengebiet aus.";
+        alert(errorMessage);
+    }
+    else if(jguTime.value == 0 || jguLevel.value == 0){
+        errorMessage = 'Bitte wählen Sie eine Schwierigkeit und Zeit aus.';
         alert(errorMessage);
     } else {
         document.getElementById('document-create-test').value = 1;
@@ -143,7 +147,7 @@ function checkFilter(){
 
 
     if (fachFilter.value == 0 || themeFilter.value == 0){
-        alert("Bitte wählen Sie ein Fachgebiet ein, um den Filter anwenden zu können.");
+        alert("Bitte wählen Sie ein Fachgebiet und Themengebiet, um den Filter anwenden zu können.");
     } else {
 
         filterArt.value = 3;

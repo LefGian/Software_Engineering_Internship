@@ -1,11 +1,7 @@
-#from cv2 import log
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .forms import AufgabeErstellenForm
 from utils import utils
 
-
-# Create your views here.
 
 @login_required
 def createassignment(request):
@@ -24,9 +20,6 @@ def createassignment(request):
     all_subjects = utils.get_fachgebiet()
     topics_for_subject = []
     cur_subject = None
-
-    aufgabe_erstellen_form = AufgabeErstellenForm(instance=user)
-
 
     if request.method == 'POST':
         jgu_save = request.POST['jgu-save']
@@ -49,10 +42,13 @@ def createassignment(request):
         topics_for_subject = [topic for topic in topics]
         print(aufgabe_dict['chose_fachgebiet'])
 
-        if(aufgabe_dict['chose_fachgebiet'] == '0'):
-            show_error = utils.add_aufgabe(aufgabe_dict['name'], aufgabe_dict['aufgabenstellung'],
-                                    aufgabe_dict['loesung'], user, aufgabe_dict['schwierigkeit'],
-                                    aufgabe_dict['zeit'], aufgabe_dict['themengebiet'])
+        if aufgabe_dict['chose_fachgebiet'] == '0':
+            show_error = utils.add_aufgabe(aufgabe_dict['name'],
+                                           aufgabe_dict['aufgabenstellung'],
+                                           aufgabe_dict['loesung'],
+                                           user, aufgabe_dict['schwierigkeit'],
+                                           aufgabe_dict['zeit'],
+                                           aufgabe_dict['themengebiet'])
         
         if(show_error == -1): show_error = 1
         if(show_error):

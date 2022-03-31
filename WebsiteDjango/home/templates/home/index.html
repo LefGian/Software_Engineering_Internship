@@ -48,9 +48,9 @@
         <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Start</h1>
         <p><span class="jgu-welcome">Willkommen,
             {% if use_username %} {{username}}
-            {% else %} {{first_name}}, {{last_name}}
+            {% else %} {{first_name}} {{last_name}}
             {% endif %}
-        </span>.<br>Sie befinden sich hier auf Ihrem persönlichem <span class="jgu-brand">JGU</span>-Board. Sie können nun direkt anfangen Probeklausuren zu erstellen {% if STUDENT %} und zu lernen {% endif %}.</p>
+        </span>.<br>Sie befinden sich hier auf Ihrem persönlichem <span class="jgu-brand">JG4U</span>-Board. Sie können nun direkt anfangen Probeklausuren zu erstellen {% if STUDENT %} und zu lernen {% endif %}.</p>
         <!--
         Django Fallunterscheidung der Buttons
         Je nach Rolle muss ein oder zwei Buttons ausgeblendet werden.
@@ -103,9 +103,9 @@
                 <label for="jgu-time">Bearbeitungszeit</label>
                 <select name="jgu-time-filter" id="jgu-time">
                     {% if selected_time %}
-                        <option value="">Beliebig</option>
+                        <option value="">Keine Auswahl</option>
                     {% else %}
-                        <option value="" selected>Beliebig</option>
+                        <option value="" selected>Keine Auswahl</option>
                     {% endif %}
                     {% for time in time_list %}
                         {% if selected_time == time %}
@@ -120,9 +120,9 @@
                 <label for="jgu-level">Schwierigkeit</label>
                 <select name="jgu-level-filter" id="jgu-level">
                     {% if selected_difficulty %}
-                        <option value="">Beliebig</option>
+                        <option value="">Keine Auswahl</option>
                     {% else %}
-                        <option value="" selected>Beliebig</option>
+                        <option value="" selected>Keine Auswahl</option>
                     {% endif %}
                     {% for difficulty in difficulty_list %}
                         {% if forloop.counter == selected_difficulty  and selected_difficulty != 0%}
@@ -155,7 +155,7 @@
 
         <div class="jgu-klausur-erstellen" id="jgu-klausur-id">
             <h2 class="jgu-container-header" id="jgu-k-label"><span class="jgu-brand">Klausur</span> erstellen</h2>
-            <p id="jgu-p-label">Erstellen Sie hier innerhalb von wenigen Klicks eine Klausur, die Sie dann sich ausgeben können.</p>
+            <p id="jgu-p-label">Erstellen Sie hier innerhalb von wenigen Klicks eine Klausur, die Sie sich dann ausgeben lassen können.</p>
             <form action="" method="post" id="jgu-form">
                 {% csrf_token %}
                 <div class="jgu-filter-area">
@@ -261,7 +261,7 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{task_list}}">
+                        <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{selected_task_list}}">
                     </div>
                     <div class="jgu-crt-button jgu-check">
                            <!-- <input type="checkbox" id="jgu-show-results" name="jgu-show-results" value="0" onclick="refreshCheck()">

@@ -13,10 +13,10 @@ class Fachgebiet(models.Model):
 class Themengebiet(models.Model):
     name = models.TextField()
     fachgebiet = models.ForeignKey(Fachgebiet, on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         """specify how to default cast Themenegebiet"""
         return str(self.name)
-
 
 
 class Aufgabe(models.Model):

@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
 from django.contrib.auth import views as auth_views
 from userprofile.views import userprofile
+from . import views
 
 urlpatterns = [
     path('', views.startsite, name="startsite-startseite"),

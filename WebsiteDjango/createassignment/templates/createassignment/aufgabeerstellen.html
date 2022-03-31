@@ -45,7 +45,7 @@
     </div>
     <div class="main-settings">
         <h1 class="jgu-task"><span class="jgu-brand">Mein</span> Aufgabeneditor</h1>
-        <p>Erstellen Sie hier Aufgaben, die sie im späteren in Klausuren oder Übungsblättern beifügen können.</p>
+        <p>Erstellen Sie hier Aufgaben, die Sie in späteren Klausuren oder Übungsblättern beifügen können.</p>
         <div class="jgu-notifi-area">
             {% if show_error == 0 and jgu_save == 1 and chose_fachgebiet == 0%}
                 <p class="jgu-notification successful" id="jgu-notification">
@@ -93,7 +93,7 @@
                 <div class="jgu-task-field">
                     <label for="jgu-time">Bearbeitungszeit</label>
                     <select name="jgu-time" id="jgu-time" required>
-                        <option value="" selected>Beliebig</option>
+                        <option value="" selected>Keine Auswahl</option>
                         {% for time in time_list %}
                         <option value="{{time}}"> {{time}} Minuten </option>
                         {% endfor %}
@@ -102,7 +102,7 @@
                 <div class="jgu-task-field">
                     <label for="jgu-level">Schwierigkeit</label>
                     <select name="jgu-level" id="jgu-level">
-                        <option value="">Beliebig</option>
+                        <option value="">Keine Auswahl</option>
                         {% for difficulty in difficulty_list %}
                             <option value="{{forloop.counter}}">{{difficulty}}</option>
                         {% endfor %}
