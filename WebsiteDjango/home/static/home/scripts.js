@@ -67,8 +67,12 @@ function checkFilterData(){
 
     let errorMessage = "";
 
-    if (jguFachgebiet.value == 0 || jguTopic.value == ''){
+    if (jguFachgebiet.value == 0 || jguTopic.value == 0){
         errorMessage = "Bitte wählen Sie ein Fachgebiet und ein Themengebiet aus.";
+        alert(errorMessage);
+    }
+    else if(jguTime.value == 0 || jguLevel.value == 0){
+        errorMessage = 'Bitte wählen Sie eine Schwierigkeit und Zeit aus.';
         alert(errorMessage);
     } else {
         document.getElementById('document-create-test').value = 1;
