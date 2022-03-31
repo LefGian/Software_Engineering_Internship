@@ -47,6 +47,7 @@
     <div class="main-area">
         <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Start</h1>
         <p><span class="jgu-welcome">Willkommen,
+            {% comment%} greet user with real name if he entered one in his profile. Else greet him with his username {% endcomment%}
             {% if use_username %} {{username}}
             {% else %} {{first_name}} {{last_name}}
             {% endif %}
@@ -58,6 +59,7 @@
         
         <div class="button-area">
             <button type="button" class="btn btn-danger jgu-btn" onclick="reset_subject()"><i class="fa-solid fa-play"></i> Probleklausur starten</button>
+            {% comment %} show content of website according to rank of user {% endcomment %}
             {% if 'Dozent' in user_group or 'Pruefer' in user_group%}
                 {% if 'Dozent' in user_group%}
                     <button type="button" class="btn btn-danger jgu-btn" onclick="redirect_task()"><i class="fa-solid fa-cloud-arrow-up"></i> Aufgabe hochladen</button>
@@ -75,14 +77,19 @@
                 <div class="jgu-field">
                     <label for="jgu-fachgebiet">Fachgebiet</label>
                     <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet" onchange="this.form.submit()" required>
-                        <option value="" selected>Keine Auswahl</option>
-                            {% for subject in all_subjects %}
-                                {% if subject.id == current_subject.id %}
-                                    <option value="{{ subject.id }}" selected> {{subject}} </option>
-                                {% else %}
-                                    <option value="{{ subject.id }}"> {{subject}} </option>
-                                {% endif %}
-                            {% endfor %}
+                        {% if selected_subject %}
+                            <option value="" selected> Keine Auswahl </option>
+                        {% else %}
+                            <option value=""> Keine Auswahl </option>
+                        {% endif %}
+                        {% comment %} show all subjects from database {% endcomment %}
+                        {% for subject in all_subjects %}
+                            {% if subject.id == selected_subject.id %}
+                                <option value="{{ subject.id }}" selected> {{subject}} </option>
+                            {% else %}
+                                <option value="{{ subject.id }}"> {{subject}} </option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
                 </div>
 
@@ -90,8 +97,14 @@
                 <label for="jgu-topic">Themengebiet</label>
                 <select name="jgu-topic-filter" id="jgu-topic">
                     <option value="" selected>Keine Auswahl</option>
+                        {% if selected_topic %}
+                            <option value="" selected> Keine Auswahl </option>
+                        {% else %}
+                            <option value=""> Keine Auswahl </option>
+                        {% endif %}
+                        {% comment %} show all topics for selected subject {% endcomment %}
                         {% for topic in topics_for_subject %}
-                            {% if topic.id == current_topic.id %}
+                            {% if topic.id == selected_topic.id %}
                                 <option value="{{ topic.id }}" selected> {{topic}} </option>
                             {% else %}
                                 <option value="{{ topic.id }}"> {{topic}} </option>
@@ -107,6 +120,7 @@
                     {% else %}
                         <option value="" selected>Keine Auswahl</option>
                     {% endif %}
+                    {% comment %} show time dynamicly so that it can be changed easily in the view {% endcomment %}
                     {% for time in time_list %}
                         {% if selected_time == time %}
                             <option value="{{time}}" selected> {{time}} Minuten </option>
@@ -124,6 +138,7 @@
                     {% else %}
                         <option value="" selected>Keine Auswahl</option>
                     {% endif %}
+                    {% comment %} show difficulty dynamicly so that it can be changed easily in the view {% endcomment %}
                     {% for difficulty in difficulty_list %}
                         {% if forloop.counter == selected_difficulty  and selected_difficulty != 0%}
                             <option value="{{forloop.counter}}" selected>{{difficulty}}</option>
@@ -143,7 +158,7 @@
                 0 = Probeklausur generieren und herunterladen/anzeigen
                 -->
                 <input type="hidden" name="jgu-action" value="0">
-                <input type="hidden" name="random-tasks"  value="0" id="random-tasks">
+                <input type="hidden" name="create-test-exam"  value="0" id="create-test-exam">
                 <input type="hidden" name="document-create" id="document-create-test" value="0">
             </div>
             </form>
@@ -164,8 +179,9 @@
                             <div class="jgu-label"><label for="jgu-fachgebiet-filter">Fachgebiet</label></div>
                             <select name="jgu-fachgebiet-filter" id="jgu-fachgebiet-filter" onchange="this.form.submit()" required>
                                 <option value="" selected>Keine Auswahl</option>
+                                {% comment %} show all subjects from database {% endcomment %}
                                 {% for subject in all_subjects %}
-                                    {% if subject.id == current_subject.id %}
+                                    {% if subject.id == selected_subject.id %}
                                         <option value="{{ subject.id }}" selected> {{subject}} </option>
                                     {% else %}
                                         <option value="{{ subject.id }}"> {{subject}} </option>
@@ -178,8 +194,9 @@
                             <div class="jgu-label"><label for="jgu-topic-filter">Themengebiet</label></div>
                             <select name="jgu-topic-filter" id="jgu-topic-filter">
                                 <option value="">Keine Auswahl</option>
+                                {% comment %} show all topics for selected subject {% endcomment %}
                                 {% for topic in topics_for_subject %}
-                                    {% if topic.id == current_topic.id %}
+                                    {% if topic.id == selected_topic.id %}
                                         <option value="{{ topic.id }}" selected> {{topic}} </option>
                                     {% else %}
                                         <option value="{{ topic.id }}"> {{topic}} </option>
@@ -195,6 +212,7 @@
                                 {% else %}
                                     <option value="" selected>Beliebig</option>
                                 {% endif %}
+                                {% comment %} show time dynamicly so that it can be changed easily in the view {% endcomment %}
                                 {% for time in time_list %}
                                     {% if selected_time == time %}
                                         <option value="{{time}}" selected> {{time}} Minuten </option>
@@ -212,6 +230,7 @@
                                 {% else %}
                                     <option value="" selected>Beliebig</option>
                                 {% endif %}
+                                {% comment %} show difficulty dynamicly so that it can be changed easily in the view {% endcomment %}
                                 {% for difficulty in difficulty_list %}
                                     {% if forloop.counter == selected_difficulty  and selected_difficulty != 0%}
                                         <option value="{{forloop.counter}}" selected>{{difficulty}}</option>
@@ -234,7 +253,7 @@
                         -->
                         <select size="5" multiple="multiple" id="jguLeftBox" class="jgu-box" title="Verfügbare Aufgaben">
                             {% for task in tasks %}
-                                {% if task.id not in test_list %}
+                                {% if task.id not in selected_tasks_as_list %}
                                     <option value="{{task.id}}"
                                     level="{{task.schwierigkeit}}"
                                     time="{{task.zeit}}">
@@ -251,8 +270,8 @@
                             <button type="button" class="btn btn-danger mobile-show" onclick="move('jguLeftBox','jguRightBox');" title="Aufgabe entfernen"><i class="fa-solid fa-arrow-down-long"></i></button>
                         </div>
                         <select size="5" multiple="multiple" id="jguRightBox" class="jgu-box" title="Ausgewählte Aufgaben">
-                            {% for task in right_list %}
-                                {% if task.id in test_list %}
+                            {% for task in tasks %}
+                                {% if task.id in selected_tasks_as_list %}
                                     <option value="{{task.id}}"
                                     level="{{task.schwierigkeit}}"
                                     time="{{task.zeit}}">
@@ -261,7 +280,7 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{selected_task_list}}">
+                        <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{selected_tasks}}">
                     </div>
                     <div class="jgu-crt-button jgu-check">
                            <!-- <input type="checkbox" id="jgu-show-results" name="jgu-show-results" value="0" onclick="refreshCheck()">
@@ -278,25 +297,26 @@
                         <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>
                     </div>
                 </div>
-                {% if show_action == 0 %}
+                {% comment %} decides which action should be loaded after post {% endcomment %}
+                {% if action == 0 %}
                     <script> document.addEventListener("DOMContentLoaded", function() {
                         showProbeKlausur()
                     })</script> 
-                {% elif show_action == 1 %}
+                {% elif action == 1 %}
                     <script> document.addEventListener("DOMContentLoaded", function() {
                         showCreateKlausur(1)
                     })</script> 
-                {% elif show_action == 2 %}
+                {% elif action == 2 %}
                     <script> document.addEventListener("DOMContentLoaded", function() {
                         showCreateKlausur(2)
                     })</script> 
                 {% endif %}
-                {% if current_subject and show_action == 0 %}
+                {% if selected_subject and action == 0 %}
                     <script>document.addEventListener("DOMContentLoaded", function() {
                         showTheme(1);
                     })</script>
-                {% elif current_subject  %}
-                    {% if show_action == 2 or show_action == 1%}
+                {% elif selected_subject  %}
+                    {% if action == 2 or action == 1%}
                         <script>document.addEventListener("DOMContentLoaded", function() {
                             showThemeSec(1);
                         })</script>

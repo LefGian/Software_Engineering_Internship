@@ -76,7 +76,7 @@ function checkFilterData(){
         alert(errorMessage);
     } else {
         document.getElementById('document-create-test').value = 1;
-        document.getElementById('random-tasks').value = 1; 
+        document.getElementById('create-test-exam').value = 1; 
         jguSubmitter.click();
     }
 }
