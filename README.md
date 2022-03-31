@@ -6,7 +6,11 @@
 - [Einleitung](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#einleitung)
 - [Voraussetzungen](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#einleitung)
 - [Installation](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#installation)
-- [Team](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#installation)
+- [Erste Schritte](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#erste-schritte)
+	- [Verzeichnis auswählen](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#verzeichnis-ausw%C3%A4hlen)
+	- [Superuser erstellen](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#superuser-erstellen)
+	- [Server starten und Daten migrieren](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#server-starten-und-daten-migrieren)
+- [Team](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/tree/main#team)
 
 ## Einleitung
 
@@ -53,6 +57,45 @@ PyLint
 ```
 pip install pylint
 ```
+
+## Erste Schritte
+
+Damit das Projekt ausgeführt werden kann, müssen gewisse Voraussetzungen erfüllt werden und Daten vorhanden sein. Zu Beginn, nachdem die Installation erfolgreich abgeschlossen worden ist, können wir prüfen, ob alles funktioniert.
+Hierfür müssen wir zuerst darauf achten, dass wir im richtigen Verzeichnis sind, wo sich auch die Datei "manage.py" befindet.
+
+### Verzeichnis auswählen
+
+Falls nicht, navigieren wir im Terminal ins richtige Verzeichnis. Wir gehen zum Beispiel davon aus, dass wir uns in folgendem Verzeichnis befinden "C:\Users\(user)\PhpstormProjects\se06\".
+Mit folgendem Befehl gelangen wir dann ins richtige Verzeichnis:
+```
+cd WebsiteDjango
+```
+
+### Superuser erstellen
+
+Damit das Login und die Registrierung von neuen Benutzern möglich ist, muss ein Superuser erstellt werden, der die Benutzerrollen ("Groups") anlegt. 
+Hierfür gehen wir wie folgt vor:
+
+```
+python manage.py createsuperuser
+```
+
+Nachdem wir diesen Befehl eingegeben haben, können wir nun ein Benutzernamen, eine E-Mail Adresse (nicht notwendig) und ein Passwort setzen. Diese benötigen wir gleich, um Daten in die Datenbank eintragen zu können.
+
+### Server starten und Daten migrieren
+
+Um den Server starten zu können und auf unser Projekt im Browser zugreifen zu können, geben wir folgenden Befehl im Terminal ein:
+```
+py -m manage runserver
+```
+Falls der Befehl erfolgreich ausgeführt sein sollte, wird im Terminal auch die Serveradresse erwähnt, mit der wir das Projekt im Browser aufrufen können. Standardmäßig sollte die Adresse lauten "[http://127.0.0.1:8000/](http://127.0.0.1:8000/)".
+Sollte der Server unter der folgenden Adresse aufrufbar sein, kannst du nun in den Adminbereich navigieren: "/admin/"
+
+Melde dich dort mit deinem Superuser-Zugang an und navigiere im anschließenden auf "Groups". Erstelle dort folgende Rollen: "Student", "Prüfer" und "Dozent". Sollten dir die Datenbanken nicht angezeigt werden, musst du noch bevor du den Server startest folgenden Befehl ausführen:
+```
+python manage.py migrate
+```
+
 
 ## Team
 
