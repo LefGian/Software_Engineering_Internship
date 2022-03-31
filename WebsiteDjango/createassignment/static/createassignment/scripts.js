@@ -47,6 +47,10 @@ function checkTaskData(){
     } else {
         jguNotification.style.display="block";
         jguNotification.innerText = errorMessage;
+        if (jguNotification.classList.contains('successful')){
+            jguNotification.classList.remove('successful');
+        }
+        
     }
 
 }
@@ -63,4 +67,5 @@ function showTheme(option){
 function chose_fachgebiet_and_submit(){
     document.getElementById('chose_fachgebiet').value = 1;
     document.getElementById('myform').submit();
+
 }

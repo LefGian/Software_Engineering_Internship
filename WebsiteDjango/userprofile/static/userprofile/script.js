@@ -43,6 +43,9 @@ function checkFirstData(){
     } else {
         jguNotification.style.display="block";
         jguNotification.innerText=errorMessage;
+        if (jguNotification.classList.contains('successful')){
+            jguNotification.classList.remove('successful');
+        }
     }
 
 }

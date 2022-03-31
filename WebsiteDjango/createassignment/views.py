@@ -9,13 +9,14 @@ from utils import utils
 
 @login_required
 def createassignment(request):
-    error_messages = ['Input Error. Check your input']
+    error_messages = []
     show_error = 0
     user = request.user
     all_subjects = utils.get_fachgebiet()
     if not ('Dozent' in utils.get_group(user=user)):
        return redirect('userprofile-userprofile')
-    
+    jgu_save = 0
+    chose_fachgebiet = 0
 
 
     time_list = [5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300, 360]
@@ -28,6 +29,7 @@ def createassignment(request):
 
 
     if request.method == 'POST':
+        jgu_save = request.POST['jgu-save']
         aufgabe_dict = {
             'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
             'name': request.POST['jgu-task-name'],
@@ -52,6 +54,10 @@ def createassignment(request):
                                     aufgabe_dict['loesung'], user, aufgabe_dict['schwierigkeit'],
                                     aufgabe_dict['zeit'], aufgabe_dict['themengebiet'])
         
+        if(show_error == -1): show_error = 1
+        if(show_error):
+            error_messages = ['Input Error. Check your input']
+        chose_fachgebiet = request.POST['chose_fachgebiet']
 
     context = {
         'error_messages': error_messages,
@@ -61,6 +67,8 @@ def createassignment(request):
         'cur_subject': cur_subject,
         'time_list': time_list,
         'difficulty_list': difficulty_list,
+        'jgu_save': int(jgu_save),
+        'chose_fachgebiet': int(chose_fachgebiet),
 
     }
     return render(request, 'createassignment/aufgabeerstellen.html', context)
