@@ -124,6 +124,8 @@ body {
 }
 .main-page .main-area .jgu-klausur-erstellen .jgu-option-field .jgu-box{
     width:45%;
+    overflow-x:auto;
+    overflow-y:auto;
 }
 .main-page .main-area .jgu-klausur-erstellen .jgu-option-field .arrow-area{
     display: flex;
@@ -143,6 +145,75 @@ body {
 .main-page .main-area .jgu-klausur-erstellen .jgu-crt-button{
     margin-top:10px;
 }
+.jgu-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.jgu-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.jgu-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.jgu-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .jgu-slider {
+    background-color: #dc3545;
+}
+
+input:focus + .jgu-slider {
+    box-shadow: 0 0 1px #dc3545;
+}
+
+input:checked + .jgu-slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+.jgu-slider.round {
+    border-radius: 34px;
+}
+
+.jgu-slider.round:before {
+    border-radius: 50%;
+}
+
+
+.main-page .main-area .jgu-klausur-erstellen .jgu-crt-button.jgu-check{
+    margin-top:20px;
+}
+
+.jgu-crt-button.jgu-check .jgu-check-label{
+    font-weight:500;
+    margin-left:5px;
+}
+
 @media only screen and (max-width:990px){
     .main-page{
         flex-wrap: wrap;
@@ -160,6 +231,12 @@ body {
         height: 30%;
     }
 }
+@media only screen and (max-width:850px){
+    .main-page .main-image{
+        height: 25%;
+    }
+}
+
 @media only screen and (max-width:750px){
     .main-page .main-area .jgu-testklausur .jgu-field label{
         width:35%;
@@ -217,3 +294,4 @@ body {
         height: 20%;
     }
 }
+

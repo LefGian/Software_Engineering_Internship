@@ -263,11 +263,16 @@
                         </select>
                         <input type="hidden" name="jgu-task-list" id="jgu-task-id" value="{{task_list}}">
                     </div>
-                    <div class="jgu-crt-button">
-                        <input type="checkbox" id="jgu-show-results" name="jgu-show-results" value="0" onclick="refreshCheck()">
-                        <label for="jgu-show-results">
-                            Lösungen anzeigen
+                    <div class="jgu-crt-button jgu-check">
+                           <!-- <input type="checkbox" id="jgu-show-results" name="jgu-show-results" value="0" onclick="refreshCheck()">
+                            <label for="jgu-show-results">
+                                Lösungen anzeigen
+                            </label> -->
+                        <label class="jgu-switch">
+                            <input type="checkbox" id="jgu-show-results" name="jgu-show-results" value="0" onclick="refreshCheck()" >
+                            <span class="jgu-slider round"></span>
                         </label>
+                        <label class="jgu-check-label" id="jguChckId">Lösungen anzeigen</label>
                     </div>
                     <div class="jgu-crt-button">
                         <button type="button" class="btn btn-danger" onclick="checkBeforeDocument()">Dokument erstellen</button>
