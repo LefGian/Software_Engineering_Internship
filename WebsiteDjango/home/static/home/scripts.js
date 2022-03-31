@@ -143,7 +143,7 @@ function checkFilter(){
 
 
     if (fachFilter.value == 0 || themeFilter.value == 0){
-        alert("Bitte wählen Sie ein Fachgebiet ein, um den Filter anwenden zu können.");
+        alert("Bitte wählen Sie ein Fachgebiet und Themengebiet, um den Filter anwenden zu können.");
     } else {
 
         filterArt.value = 3;
