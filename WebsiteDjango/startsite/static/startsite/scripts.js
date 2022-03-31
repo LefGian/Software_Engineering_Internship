@@ -1,4 +1,14 @@
 let jguContent = document.getElementById("jgu-m-content");
+
+/*
+callJGUModal ruft das Modal-Fenster auf, welches beim Anmelden oder beim Registrieren benötigt wird. Zusätzlich sorgt
+diese Funktion für eine entsprechende Unterscheidung zwischen beiden Aktionen, sodass man in Django genau unterscheiden
+kann zwischen diesen Aktionen.
+
+Parameter 0 => Anmeldung
+Parameter 1 => Registrierung
+ */
+
 function callJGUModal(option){
     let repPassword = document.getElementById("j-password-repeat");
     let headLabel = document.getElementById("jgu-m-label");
@@ -34,6 +44,9 @@ function callJGUModal(option){
         show_burger_nav.classList.remove('show');
     }
 }
+
+// CloseModal schließt das Modal-Fenster (animiert).
+
 function closeModal(){
     let jguModal = document.getElementById("jgu-modal");
     if (!jguContent.classList.contains("fadeOut")){jguContent.classList.add("fadeOut");}
@@ -42,6 +55,9 @@ function closeModal(){
     document.getElementById('jgu-notification').innerText = '';
     document.getElementById('jgu-notification').style.display="none";
 }
+
+// checkInputData überprüft alle Eingaben im Client ("Vorprüfung") und gibt dann dem Nutzer entsprechende Rückmeldung
+
 function checkInputData(){
     let username = document.getElementById("jgu-name-id");
     let password = document.getElementById("jgu-password-id");
@@ -73,6 +89,7 @@ function checkInputData(){
         notifier.style.display="none";
     }
 }
+
 window.onclick = function(event) {
     if (event.target == document.getElementById("jgu-modal")){closeModal();}
 }
