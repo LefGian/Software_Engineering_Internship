@@ -1,9 +1,7 @@
-from ctypes import util
-from re import sub
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from utils import utils
+
 
 @login_required
 def home(request):
@@ -33,9 +31,11 @@ def home(request):
     if request.method == 'POST':
         # action shows which action is selected (Probeklausur, Klausur, Übungsblatt)
         action = request.POST['jgu-action']
-        filter_applied = utils.check_if_value_is_set(request.POST['jgu-action-filter']) if 'jgu-action-filter' in request.POST else 0
+        filter_applied = utils.check_if_value_is_set(
+            request.POST['jgu-action-filter']) if 'jgu-action-filter' in request.POST else 0
 
-        subject_id = utils.check_if_value_is_set(request.POST['jgu-fachgebiet-filter']) if 'jgu-fachgebiet-filter' in request.POST else 0
+        subject_id = utils.check_if_value_is_set(
+            request.POST['jgu-fachgebiet-filter']) if 'jgu-fachgebiet-filter' in request.POST else 0
         subject = utils.get_fachgebiet_by_id(subject_id) if subject_id != 0 else None
 
         db_query_topics = utils.get_themengebiet(subject_id) if subject else []
@@ -43,7 +43,7 @@ def home(request):
             topics_for_subject.append(topics)
 
         show_action = utils.check_if_value_is_set(action)
-        
+
         if filter_applied:
             tasks, selected_time, selected_difficulty, topic = utils.apply_filter(request)
 
@@ -55,42 +55,44 @@ def home(request):
             else:
                 selected_task_ids = [int(x) for x in request.POST['jgu-task-list'].split(',')]
                 selected_tasks = [utils.get_aufgabe_by_id(task_id) for task_id in selected_task_ids]
-            
+
             use_results = False
-            if  'jgu-show-results' in request.POST and utils.check_if_value_is_set(request.POST['jgu-show-results']):
+            if 'jgu-show-results' in request.POST \
+                    and utils.check_if_value_is_set(request.POST['jgu-show-results']):
                 use_results = True
             tex_code = utils.toLatex(selected_tasks, use_results)
             data_str = utils.file_to_str(tex_code.name)
-            return render(request, 'downloadapp/download.html', {'tex_code': data_str,})
-        
-        if 'jgu-task-list' in request.POST and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
-            selected_task_list_as_list = [ int(x) for x in request.POST['jgu-task-list'].split(',')]
+            return render(request, 'downloadapp/download.html', {'tex_code': data_str, })
+
+        if 'jgu-task-list' in request.POST \
+                and request.POST['jgu-task-list'] != '[]' and request.POST['jgu-task-list']:
+            selected_task_list_as_list = [int(x) for x in request.POST['jgu-task-list'].split(',')]
             for task_id in selected_task_list_as_list:
                 right_list.append(utils.get_aufgabe_by_id(task_id))
             selected_task_list = request.POST['jgu-task-list']
 
     context = {
-        'use_username'                  : use_username,
-        'first_name'                    : first_name,
-        'last_name'                     : last_name,
-        'username'                      : user.username,
-        'user_group'                    : user_group,
+        'use_username': use_username,
+        'first_name': first_name,
+        'last_name': last_name,
+        'username': user.username,
+        'user_group': user_group,
 
-        'all_subjects'                  : all_subjects,
-        'current_subject'               : subject,
-        'topics_for_subject'            : topics_for_subject,
-        'current_topic'                 : topic,
+        'all_subjects': all_subjects,
+        'current_subject': subject,
+        'topics_for_subject': topics_for_subject,
+        'current_topic': topic,
 
-        'tasks'                         : tasks,
-        'selected_task_list_as_list'    : selected_task_list_as_list,
-        'selected_task_list'            : selected_task_list,
-        'right_list'                    : right_list,
-        'show_action'                   : show_action,
-        'difficulty_list'               : difficulty_list,
-        'selected_difficulty'           : selected_difficulty,
-        'time_list'                     : time_list,
-        'selected_time'                 : selected_time,
-        
+        'tasks': tasks,
+        'selected_task_list_as_list': selected_task_list_as_list,
+        'selected_task_list': selected_task_list,
+        'right_list': right_list,
+        'show_action': show_action,
+        'difficulty_list': difficulty_list,
+        'selected_difficulty': selected_difficulty,
+        'time_list': time_list,
+        'selected_time': selected_time,
+
     }
 
     return render(request, 'home/index.html', context)

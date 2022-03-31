@@ -1,11 +1,7 @@
-#from cv2 import log
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .forms import AufgabeErstellenForm
 from utils import utils
 
-
-# Create your views here.
 
 @login_required
 def createassignment(request):
@@ -14,18 +10,13 @@ def createassignment(request):
     user = request.user
     all_subjects = utils.get_fachgebiet()
     if not ('Dozent' in utils.get_group(user=user)):
-       return redirect('userprofile-userprofile')
-    
-
+        return redirect('userprofile-userprofile')
 
     time_list = [5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300, 360]
     difficulty_list = ['Sehr leicht', 'Leicht', 'Mittel', 'Mäßig', 'Schwer', 'Sehr schwer', 'Hölle']
     all_subjects = utils.get_fachgebiet()
     topics_for_subject = []
     cur_subject = None
-
-    aufgabe_erstellen_form = AufgabeErstellenForm(instance=user)
-
 
     if request.method == 'POST':
         aufgabe_dict = {
@@ -47,11 +38,13 @@ def createassignment(request):
         topics_for_subject = [topic for topic in topics]
         print(aufgabe_dict['chose_fachgebiet'])
 
-        if(aufgabe_dict['chose_fachgebiet'] == '0'):
-            show_error = utils.add_aufgabe(aufgabe_dict['name'], aufgabe_dict['aufgabenstellung'],
-                                    aufgabe_dict['loesung'], user, aufgabe_dict['schwierigkeit'],
-                                    aufgabe_dict['zeit'], aufgabe_dict['themengebiet'])
-        
+        if aufgabe_dict['chose_fachgebiet'] == '0':
+            show_error = utils.add_aufgabe(aufgabe_dict['name'],
+                                           aufgabe_dict['aufgabenstellung'],
+                                           aufgabe_dict['loesung'],
+                                           user, aufgabe_dict['schwierigkeit'],
+                                           aufgabe_dict['zeit'],
+                                           aufgabe_dict['themengebiet'])
 
     context = {
         'error_messages': error_messages,

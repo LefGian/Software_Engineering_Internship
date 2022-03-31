@@ -1,6 +1,6 @@
+import random
 from django.contrib.auth.models import User, Group
 from startsite.models import *
-import random
 
 
 def toLatex_html(aufgabe_arr, loesung_anzeigen: bool):
@@ -19,6 +19,7 @@ def toLatex_html(aufgabe_arr, loesung_anzeigen: bool):
         latex.write('</pre>\n')
         latex.close()
     return latex
+
 
 def toLatex(aufgabe_arr, loesung_anzeigen: bool):
     with open("questions.tex", "w", encoding="utf-8") as latex:
@@ -70,14 +71,12 @@ def get_group(user: User):
 
 
 def get_fachgebiet():
-
     fachgebiete = Fachgebiet.objects.all()
 
     return fachgebiete
 
 
 def get_fachgebiet_name():
-
     fachgebiete = Fachgebiet.objects.all()
 
     fachgebiete_name = [i.name for i in fachgebiete]
@@ -166,7 +165,6 @@ def filter_aufgabe(themengebietID: int, schwierigkeit: int, zeit: int):
         print("Why u do dis???")
         return []
 
-
     if themengebietID is not None:
         aufgaben = aufgaben.filter(themengebiet_id=themengebiet_record.id)
 
@@ -199,7 +197,6 @@ def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
     except:
         return []
 
-
     if themengebietID is not None:
         aufgaben = aufgaben.filter(themengebiet_id=themengebiet_record.id)
 
@@ -208,7 +205,6 @@ def filter_aufgabe_name(themengebietID: int, schwierigkeit: int, zeit: int):
 
     if zeit is not None and zeit != 0:
         aufgaben = aufgaben.filter(zeit=zeit)
-
 
     aufgaben_name = [i.name for i in aufgaben]
 
@@ -240,14 +236,13 @@ def add_aufgabe(name: str, aufgabenstellung: str, loesung: str, user: User, schw
         themengebiet_record = Themengebiet.objects.get(id=themengebietID)
 
         aufgabe = Aufgabe(name=name, aufgabenstellung=aufgabenstellung, loesung=loesung, user=user,
-                      schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet_record)
+                          schwierigkeit=schwierigkeit, zeit=zeit, themengebiet=themengebiet_record)
 
         aufgabe.save()
-    
+
         return 0
     except:
         return -1
-
 
 
 def check_if_value_is_set(value):
@@ -255,11 +250,11 @@ def check_if_value_is_set(value):
         return 0
     else:
         return int(value)
-    
-    
-def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
 
-    aufgaben = [i for i in Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit)]
+
+def create_exam(themengebietID: int, schwierigkeit: int, zeit: int):
+    aufgaben = [i for i in
+                Aufgabe.objects.filter(themengebiet_id=themengebietID, schwierigkeit=schwierigkeit, zeit__lt=zeit)]
     random.shuffle(aufgaben)
     time = zeit
     exam = []
@@ -284,6 +279,7 @@ def apply_filter(request):
 
     return tasks, selected_time, selected_difficulty, topic
 
+
 def get_filter_attributes(request):
     subject = check_if_value_is_set(request.POST['jgu-fachgebiet-filter'])
     topic = check_if_value_is_set(request.POST['jgu-topic-filter'])
@@ -292,8 +288,8 @@ def get_filter_attributes(request):
 
     return subject, topic, difficulty, time
 
-def init_aufgabe():
 
+def init_aufgabe():
     themengebiete = Themengebiet.objects.all()
     schwierigkeit = 1
     zeit = 5
@@ -306,5 +302,3 @@ def init_aufgabe():
 
             schwierigkeit = (schwierigkeit % 7) + 1
             zeit = (zeit % 25) + 5
-
-

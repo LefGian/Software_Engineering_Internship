@@ -1,10 +1,8 @@
-import imp
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, update_session_auth_hash
-from .forms import UserUpdateForm
 from django.contrib.auth.forms import PasswordChangeForm
-from .forms import UserUpdateForm, User
+from .forms import UserUpdateForm
 from utils import utils
 
 
@@ -18,7 +16,6 @@ def userprofile(request):
     user_group = utils.get_group(user)
     user_group.sort()
     user_group = user_group[0]
-
 
     if request.method == 'POST':
         password = request.POST['jgu-password']
@@ -61,27 +58,27 @@ def userprofile(request):
                 user_update_form.save()
                 return redirect('userprofile-userprofile')
             else:
-                errors =  user_update_form.errors.as_data()
+                errors = user_update_form.errors.as_data()
                 for error_key in errors:
-                        for error_list in errors[error_key]:
-                            for error in error_list:
-                                error_messages.append(error)
-                
-                errors =  password_change_form.errors.as_data()
+                    for error_list in errors[error_key]:
+                        for error in error_list:
+                            error_messages.append(error)
+
+                errors = password_change_form.errors.as_data()
                 for error_key in errors:
-                        for error_list in errors[error_key]:
-                            for error in error_list:
-                                error_messages.append(error)
+                    for error_list in errors[error_key]:
+                        for error in error_list:
+                            error_messages.append(error)
         else:
             error_messages.append('Wrong password')
-    
+
     if error_messages:
         show_error = 1
-    
+
     context = {
-        'user' : user,
-        'error_messages' : error_messages,
-        'show_error' : show_error,
-        'user_role' : user_group,
+        'user': user,
+        'error_messages': error_messages,
+        'show_error': show_error,
+        'user_role': user_group,
     }
     return render(request, 'userprofile/nutzerprofil.html', context)
