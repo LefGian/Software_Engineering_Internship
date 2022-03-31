@@ -283,3 +283,22 @@ def apply_filter(request):
     selected_difficulty = difficulty
 
     return tasks, selected_time, selected_difficulty, topic
+
+
+
+def init_aufgabe():
+
+    themengebiete = Themengebiet.objects.all()
+    schwierigkeit = 1
+    zeit = 5
+
+    for i in themengebiete:
+        for j in range(100):
+            a = Aufgabe(name=f"{i.name} Aufgabe {j}", aufgabenstellung=f"{j} * {j}", loesung=f"{j * j}",
+                        schwierigkeit=schwierigkeit, zeit=zeit, themengebiet_id=i.id, user=User.objects.get(id=1))
+            a.save()
+
+            schwierigkeit = (schwierigkeit % 7) + 1
+            zeit = (zeit % 25) + 5
+
+
