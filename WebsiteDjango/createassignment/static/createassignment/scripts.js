@@ -1,10 +1,15 @@
-function checkTaskData(){
+/*
+ Die Funktion checkTaskData überprüft alle Eingaben des Nutzers bevor diese verarbeitet und übermittelt werden.
+ Sollten Daten nicht vollständig sein oder komplett fehlen, werden entsprechende Warnungen ausgegeben und die
+ Übermittelung wird abgebrochen.
 
-    /*
-    Zu Beginn initialisieren wir die DOM-Elemente.
-    Beachte, dass taskTime, taskLevel und taskTopic jeweils eine Zahl sind, z.B. bei der Zeit:
-    "1" => 10 Minuten, der Wert "1" wird in diesem Fall eingelesen
-     */
+
+ Zu Beginn initialisieren wir die DOM-Elemente aus der HTML-Datei.
+ Beachte, dass taskTime, taskLevel und taskTopic jeweils eine Zahl sind, z.B. bei der Zeit:
+ "1" => 10 Minuten, der Wert "1" wird in diesem Fall eingelesen
+  */
+
+function checkTaskData(){
 
     let taskName = document.getElementById("jgu-task-name");
     let taskTopic = document.getElementById("jgu-topic");
@@ -15,6 +20,9 @@ function checkTaskData(){
     let taskResult = document.getElementById("jgu-task-result");
     let taskSubmitter = document.getElementById("jgu-submit");
     let jguNotification = document.getElementById("jgu-notification");
+
+    // errorCount entspricht der Anzahl von Fehlermeldungen
+    // errorMessage entspricht der Nachricht, die dem Nutzer als Rückmeldung dienen soll
 
     let errorCount = 0;
     let errorMessage = "";
@@ -42,18 +50,30 @@ function checkTaskData(){
         errorMessage = "Ihre Lösung ist zu kurz.";
     }
 
+    // Wenn der errorCount null ist, sprich keine Fehler vorher gefunden worden sind, so kann die Übermittlung erfolgen.
+
     if (errorCount == 0){
         taskSubmitter.click();
     } else {
         jguNotification.style.display="block";
         jguNotification.innerText = errorMessage;
+
+        // In der folgenden Bedingung wird der "Successfor"-Marker entfernt, sodass Fehlermeldungen in rot
+        // dargestellt werden können.
+
         if (jguNotification.classList.contains('successful')){
             jguNotification.classList.remove('successful');
         }
-        
     }
-
 }
+
+/*
+Die Funktion showTheme sorgt dafür, dass bei der Auswahl eines Fachgebiets die Themengebiete nach erfolgreichem
+Laden (Django) angezeigt werden. Dabei kann man der Funktion einen Parameter übergeben.
+
+option 0 => Themengebiete ausblenden
+option 1 => Themengebiete anzeigen
+ */
 
 function showTheme(option){
     let hiddenThemenGebiet = document.getElementById("themengebiet-id");
@@ -64,8 +84,12 @@ function showTheme(option){
     }
 }
 
+/*
+Die Funktion chose_fachgebiet_and_submit() setzt in der Form den Wert vhon "chose_fachgebiet" auf 1. Dieser Wert ist
+wichtig, sodass in Django unterschieden werden kann zwischen einem normalen Submit und einem Fachgebiet-Submit.
+ */
+
 function chose_fachgebiet_and_submit(){
     document.getElementById('chose_fachgebiet').value = 1;
     document.getElementById('myform').submit();
-
 }
