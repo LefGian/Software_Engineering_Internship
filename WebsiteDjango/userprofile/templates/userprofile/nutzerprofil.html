@@ -44,10 +44,17 @@
             <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Profil</h1>
             <p>Aktualisieren Sie hier Ihre Profildaten. Bitte geben Sie bei jeder Änderung Ihr Passwort ein.</p>
             <div class="jgu-notifi-area">
+            {% if show_error == 0 and jgu_save == 1%}
+                <p class="jgu-notification successful" id="jgu-notification">
+            {% else %}
                 <p class="jgu-notification" id="jgu-notification">
+            {% endif %}
                     {% for fehlermeldung in error_messages %}
                         {{ fehlermeldung }}</br>
                     {% endfor %}
+                {% if show_error == 0 and jgu_save == 1%}
+                    Ihre Daten wurden erfolgreich gespeichert.
+                {% endif %}
                 </p>
             </div>
             <form action="" method="post">
@@ -95,7 +102,7 @@
         </div>
     </div>
 
-    {% if show_error %}
+    {% if show_error or show_error == 0 and jgu_save == 1%}
         <script>
             document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('jgu-notification').style.display = 'block';

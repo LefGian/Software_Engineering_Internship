@@ -16,8 +16,10 @@ def userprofile(request):
     user_group = utils.get_group(user)
     user_group.sort()
     user_group = user_group[0]
+    jgu_save = 0
 
     if request.method == 'POST':
+        jgu_save = request.POST['jgu-save']
         password = request.POST['jgu-password']
         user_update_dict = {
             'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
@@ -53,10 +55,11 @@ def userprofile(request):
                     user_password_form.save()
                     user_update_form.save()
                     update_session_auth_hash(request, user)
-                    return redirect('userprofile-userprofile')
+                    # return redirect('userprofile-userprofile')
+                    return render(request, 'userprofile/nutzerprofil.html', {'jgu_save': 1, 'show_error' : 0, 'user_role' : user_group,})
             elif user_update_form.is_valid():
                 user_update_form.save()
-                return redirect('userprofile-userprofile')
+                return render(request, 'userprofile/nutzerprofil.html', {'jgu_save': 1, 'show_error' : 0, 'user_role' : user_group,})
             else:
                 errors = user_update_form.errors.as_data()
                 for error_key in errors:
@@ -76,9 +79,10 @@ def userprofile(request):
         show_error = 1
 
     context = {
-        'user': user,
-        'error_messages': error_messages,
-        'show_error': show_error,
-        'user_role': user_group,
+        'user' : user,
+        'error_messages' : error_messages,
+        'show_error' : show_error,
+        'user_role' : user_group,
+        'jgu_save': jgu_save, 
     }
     return render(request, 'userprofile/nutzerprofil.html', context)
