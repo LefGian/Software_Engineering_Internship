@@ -1,0 +1,77 @@
+startsite package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   startsite.migrations
+
+Submodules
+----------
+
+startsite.admin module
+----------------------
+
+.. automodule:: startsite.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+startsite.apps module
+---------------------
+
+.. automodule:: startsite.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+startsite.forms module
+----------------------
+
+.. automodule:: startsite.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+startsite.models module
+-----------------------
+
+.. automodule:: startsite.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+startsite.tests module
+----------------------
+
+.. automodule:: startsite.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+startsite.urls module
+---------------------
+
+.. automodule:: startsite.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+startsite.views module
+----------------------
+
+.. automodule:: startsite.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: startsite
+   :members:
+   :undoc-members:
+   :show-inheritance:

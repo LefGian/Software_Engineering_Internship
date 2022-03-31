@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utils package &mdash; JG4U 1.00 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="userprofile.migrations package" href="userprofile.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> JG4U
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">WebsiteDjango</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="WebsiteDjango.html">WebsiteDjango package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createassignment.html">createassignment package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="downloadapp.html">downloadapp package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="home.html">home package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage.html">manage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startsite.html">startsite package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userprofile.html">userprofile package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">utils package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.utils">utils.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JG4U</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">WebsiteDjango</a> &raquo;</li>
+      <li>utils package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utils-package">
+<h1>utils package<a class="headerlink" href="#utils-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-utils.utils">
+<span id="utils-utils-module"></span><h2>utils.utils module<a class="headerlink" href="#module-utils.utils" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.add_aufgabe">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">add_aufgabe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aufgabenstellung</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loesung</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">django.contrib.auth.models.User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schwierigkeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">themengebietID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.add_aufgabe" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to add a Aufgabe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – String to define the name of Aufgabe</p></li>
+<li><p><strong>aufgabenstellung</strong> – String to define the aufgabenstellung of Aufgabe</p></li>
+<li><p><strong>loesung</strong> – String to define the loesung of Aufgabe</p></li>
+<li><p><strong>user</strong> – User to define the designer of the Aufgabe. Should be the current user</p></li>
+<li><p><strong>schwierigkeit</strong> – int to define the schwierigkeit of Aufgabe</p></li>
+<li><p><strong>zeit</strong> – int to define the zeit of Aufgabe</p></li>
+<li><p><strong>themengebietID</strong> – ID(int) of Themengebiet to define the themengebiet of Aufgabe</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 on success, -1 on failure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.apply_filter">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">apply_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.apply_filter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.check_if_value_is_set">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">check_if_value_is_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.check_if_value_is_set" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.create_exam">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">create_exam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">themengebietID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schwierigkeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.create_exam" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.file_to_str">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">file_to_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.file_to_str" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.filter_aufgabe">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">filter_aufgabe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">themengebietID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schwierigkeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.filter_aufgabe" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to gather all filtered tasks informations for sheets/exam latex.
+Fields can be None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>themengebietID</strong> – ID(int) of Themengebiet that filters the tasks by topic. Can be None</p></li>
+<li><p><strong>schwierigkeit</strong> – int that filters the tasks by difficulty. Can be None</p></li>
+<li><p><strong>zeit</strong> – int that filters the tasks by time. Can be None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>QuerySet(List of Objects) of all tasks matching the filters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.filter_aufgabe_name">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">filter_aufgabe_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">themengebietID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schwierigkeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.filter_aufgabe_name" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to gather all filtered tasks names to display at site.
+Fields can be None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>themengebietID</strong> – ID(int) of Themengebiet that filters the tasks by topic. Can be None</p></li>
+<li><p><strong>schwierigkeit</strong> – int that filters the tasks by difficulty. Can be None</p></li>
+<li><p><strong>zeit</strong> – int that filters the tasks by time. Can be None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of strings of all task names matching the filters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_aufgabe_by_id">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_aufgabe_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_aufgabe_by_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_fachgebiet">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_fachgebiet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_fachgebiet" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_fachgebiet_by_id">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_fachgebiet_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_fachgebiet_by_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_fachgebiet_name">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_fachgebiet_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_fachgebiet_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_filter_attributes">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_filter_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_filter_attributes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_group">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">django.contrib.auth.models.User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_group" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to get users groups as list of strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user</strong> – user whose groups will be returned</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of groupnames as strings</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_themengebiet">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_themengebiet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fachgebietID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_themengebiet" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to gather all objects of Themengebiete that belong to the Fachgebiet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FachgebietID</strong> – ID(int) of Fachgebiet that filters the Themengebiete by Fachgebiet. Can be None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of Objects of all Themengebiet names matching the filters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_themengebiet_by_id">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_themengebiet_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_themengebiet_by_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.get_themengebiet_name">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">get_themengebiet_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fachgebietID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.get_themengebiet_name" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to gather all names of Themengebiete that belong to the Fachgebiet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FachgebietID</strong> – ID(int) of Fachgebiet that filters the Themengebiete by Fachgebiet. Can be None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of strings of all Themengebiet names matching the filters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.init_aufgabe">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">init_aufgabe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.init_aufgabe" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.set_group">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">set_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">django.contrib.auth.models.User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.set_group" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to set users group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> – user whose groups will be set</p></li>
+<li><p><strong>groupname</strong> – string of group that will be assigned to user. e.g. “Student”, “Dozent”, “Prüfender”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.toLatex">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">toLatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aufgabe_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loesung_anzeigen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.toLatex" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.toLatex_html">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">toLatex_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aufgabe_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loesung_anzeigen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.toLatex_html" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.utils.update_user">
+<span class="sig-prename descclassname"><span class="pre">utils.utils.</span></span><span class="sig-name descname"><span class="pre">update_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">django.contrib.auth.models.User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.utils.update_user" title="Permalink to this definition"></a></dt>
+<dd><p>Use this to update users information. No field should be None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> – user that will be updated</p></li>
+<li><p><strong>username</strong> – new username as string</p></li>
+<li><p><strong>first_name</strong> – new first_name as string</p></li>
+<li><p><strong>last_name</strong> – new last_name as string</p></li>
+<li><p><strong>new_password</strong> – new password as string</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-utils" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="userprofile.migrations.html" class="btn btn-neutral float-left" title="userprofile.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, SE06.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

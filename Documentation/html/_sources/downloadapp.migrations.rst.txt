@@ -1,0 +1,10 @@
+downloadapp.migrations package
+==============================
+
+Module contents
+---------------
+
+.. automodule:: downloadapp.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:
