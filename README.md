@@ -32,7 +32,7 @@ Für die Entwicklungsumgebung, müssen zusätzlich folgende Voraussetzungen erf�
 - [Python 3.10](https://www.python.org/downloads/release/python-3102/)
 - [Django 4.0.3](https://www.djangoproject.com/download/)
 
-Zusätzlich kann [PyLint](https://www.pylint.org/) installiert werden, um die Qualität des Codes überprüfen zu können. Für das Begutachten oder Weiterentwickeln des Projekts wird PyLint empfehlen,
+Zusätzlich kann [PyLint](https://www.pylint.org/) installiert werden, um die Qualität des Codes überprüfen zu können. Für das Begutachten oder Weiterentwickeln des Projekts wird PyLint empfohlen,
 wird aber nicht zwingend benötigt und ist entsprechend als eine optionale Empfehlung vermerkt.
 
 ## Installation
@@ -46,7 +46,7 @@ git clone https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06.git
 ```
 
 Öffnen Sie im Nachhinein das lokale GitLab-Verzeichnis mit Ihrer IDE, vorzugsweise mit [Visual Studio Code](https://visualstudio.microsoft.com/de/) (Microsoft) oder [PyCharm](https://www.jetbrains.com/de-de/pycharm/) (Jetbrains). Installieren Sie dort
-die entsprechenden Frameworks und Packages, die benötigt werden, um das Projekt lokal ausführen zu können oder um Anpassungen durchführen zu können.
+die entsprechenden Frameworks und Packages, die benötigt werden, um das Projekt lokal ausführen oder um Anpassungen durchführen zu können.
 
 Django:
 ```
@@ -84,14 +84,14 @@ Nachdem wir diesen Befehl eingegeben haben, können wir nun ein Benutzernamen, e
 
 ### Server starten und Daten migrieren
 
-Um den Server starten zu können und auf unser Projekt im Browser zugreifen zu können, geben wir folgenden Befehl im Terminal ein:
+Um den Server starten und auf unser Projekt im Browser zugreifen zu können, geben wir folgenden Befehl im Terminal ein:
 ```
 py -m manage runserver
 ```
 Falls der Befehl erfolgreich ausgeführt sein sollte, wird im Terminal auch die Serveradresse erwähnt, mit der wir das Projekt im Browser aufrufen können. Standardmäßig sollte die Adresse lauten "[http://127.0.0.1:8000/](http://127.0.0.1:8000/)".
 Sollte der Server unter der folgenden Adresse aufrufbar sein, kannst du nun in den Adminbereich navigieren: "/admin/"
 
-Melde dich dort mit deinem Superuser-Zugang an und navigiere im anschließenden auf "Groups". Erstelle dort folgende Rollen: "Student", "Prüfer" und "Dozent". Sollten dir die Datenbanken nicht angezeigt werden, musst du noch bevor du den Server startest folgenden Befehl ausführen:
+Melde dich dort mit deinem Superuser-Zugang an und navigiere anschließend auf "Groups". Erstelle dort folgende Rollen: "Student", "Prüfer" und "Dozent". Sollten dir die Datenbanken nicht angezeigt werden, musst du noch bevor du den Server startest folgenden Befehl ausführen:
 ```
 python manage.py migrate
 ```
