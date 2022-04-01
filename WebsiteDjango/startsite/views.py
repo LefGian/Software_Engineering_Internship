@@ -12,7 +12,10 @@ def startsite(request):
     :type request: HttpRequest
     :return: render of startsite/startseite.html with context Dict
     :rtype: HttpResponse
-    """   
+    """
+    if request.user.is_authenticated:
+        return redirect('home')
+
     show_login_error = 0
     show_register_error = 0
     is_register = 0
