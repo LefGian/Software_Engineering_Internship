@@ -48,10 +48,10 @@
         <h1 class="jgu-profile"><span class="jgu-brand">Mein</span> Start</h1>
         <p><span class="jgu-welcome">Willkommen,
             {% comment%} greet user with real name if he entered one in his profile. Else greet him with his username {% endcomment%}
-            {% if use_username %} {{username}}
-            {% else %} {{first_name}} {{last_name}}
+            {% if use_username %} {{username}}.
+            {% else %} {{first_name}} {{last_name}}.
             {% endif %}
-        </span>.<br>Sie befinden sich hier auf Ihrem persönlichem <span class="jgu-brand">JG4U</span>-Board. Sie können nun direkt anfangen Dokumente zu erstellen {% if STUDENT %} und zu lernen {% endif %}.</p>
+        </span><br>Sie befinden sich hier auf Ihrem persönlichem <span class="jgu-brand">JG4U</span>-Board. Sie können nun direkt anfangen Dokumente zu erstellen{% if not student%}.{% elif STUDENT %} und zu lernen.{% endif %}</p>
         <!--
         Django Fallunterscheidung der Buttons
         Je nach Rolle muss ein oder zwei Buttons ausgeblendet werden.
