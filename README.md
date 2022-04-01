@@ -97,21 +97,6 @@ python manage.py migrate
 ```
 
 
-## Team
-
-Das Team besteht aus acht Mitgliedern. Die Aufgaben für die jeweiligen Mitglieder werden regelmäßig - siehe [Organisatorisches Konzept](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/blob/main/Dokumente/Organisatorisches_Konzept.pdf), verteilt.
-Das Team besteht aus folgenden Mitgliedern: 
-
-- Andreas Krieger
-- Nico Thomas Kunze
-- Gianluca Lefebvre
-- Daniel Britschak
-- Theo Stempel-Hauburger
-- Ricardo Pacilli
-- Hannes Bernhard Schott
-- Can Tarhan
-
-
 ## Datenbanken
 
 Um auf eine externe Datenbank zuzugreifen, gehen sie die folgenden Schritte durch. Dies wird am Beispiel einer mySQL-Datenbank erläutert.
@@ -143,3 +128,19 @@ DATABASES = {
 
 . . .
 ```
+
+
+## Team
+
+Das Team besteht aus acht Mitgliedern. Die Aufgaben für die jeweiligen Mitglieder werden regelmäßig - siehe [Organisatorisches Konzept](https://gitlab.rlp.net/sw-eng-internship-2022/group-6/se06/-/blob/main/Dokumente/Organisatorisches_Konzept.pdf), verteilt.
+Das Team besteht aus folgenden Mitgliedern: 
+
+- Andreas Krieger
+- Nico Thomas Kunze
+- Gianluca Lefebvre
+- Daniel Britschak
+- Theo Stempel-Hauburger
+- Ricardo Pacilli
+- Hannes Bernhard Schott
+- Can Tarhan
+
