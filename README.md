@@ -91,7 +91,7 @@ py -m manage runserver
 Falls der Befehl erfolgreich ausgeführt sein sollte, wird im Terminal auch die Serveradresse erwähnt, mit der wir das Projekt im Browser aufrufen können. Standardmäßig sollte die Adresse lauten "[http://127.0.0.1:8000/](http://127.0.0.1:8000/)".
 Sollte der Server unter der folgenden Adresse aufrufbar sein, kannst du nun in den Adminbereich navigieren: "/admin/"
 
-Melde dich dort mit deinem Superuser-Zugang an und navigiere anschließend auf "Groups". Erstelle dort folgende Rollen: "Student", "Prüfer" und "Dozent". Sollten dir die Datenbanken nicht angezeigt werden, musst du noch bevor du den Server startest folgenden Befehl ausführen:
+Melde dich dort mit deinem Superuser-Zugang an und navigiere anschließend auf "Groups". Erstelle dort folgende Rollen: "Student", "Pruefer" und "Dozent". Sollten dir die Datenbanken nicht angezeigt werden, musst du noch bevor du den Server startest folgenden Befehl ausführen:
 ```
 python manage.py migrate
 ```
@@ -122,7 +122,7 @@ pip install django mysqlclient
 ```
 Nun in der Datei 
 ```
-<projectname>/<projectname>/settings.py
+WebsiteDjango/WebsiteDjango/settings.py
 ```
 
 die Zugangsdaten der Datenbank einfügen.
