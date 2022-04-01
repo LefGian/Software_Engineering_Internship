@@ -23,6 +23,7 @@ def createassignment(request):
     chose_fachgebiet = 0
 
     task_name = ''
+    cur_topic_id = 0
 
 
     time_list = [5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300, 360]   # times available to choose from in Bearbeitungszeit
@@ -65,6 +66,8 @@ def createassignment(request):
             error_messages = ['Input Error. Check your input']
         chose_fachgebiet = request.POST['chose_fachgebiet']
         if 'jgu-task-name' in request.POST: task_name = request.POST['jgu-task-name']
+        if 'jgu-topic' in request.POST: cur_topic_id = utils.check_if_value_is_set(request.POST['jgu-topic'])
+        print(cur_topic_id)
 
     context = { # pass info variables to html
         'error_messages': error_messages,
@@ -72,6 +75,7 @@ def createassignment(request):
         'all_subjects': all_subjects,
         'topics_for_subject': topics_for_subject,
         'cur_subject': cur_subject,
+        'cur_topic_id' : cur_topic_id,
         'time_list': time_list,
         'difficulty_list': difficulty_list,
         'jgu_save': int(jgu_save),

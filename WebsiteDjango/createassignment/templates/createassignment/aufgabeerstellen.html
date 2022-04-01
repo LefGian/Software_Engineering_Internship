@@ -85,7 +85,12 @@
                     <select name="jgu-topic" id="jgu-topic" required>
                         <option value="">Keine Auswahl</option>
                         {% for topic in topics_for_subject %}   {% comment "" %}loop over all topics in current subject{% endcomment %}
-                            <option value="{{topic.id}}">{{topic}}</option>
+                            {{topic.id}}, {{cur_topic_id}}
+                            {% if topic.id == cur_topic_id %}
+                                <option value="{{topic.id}}" selected>{{topic}}</option>
+                            {% else %}
+                                <option value="{{topic.id}}">{{topic}}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </div>
