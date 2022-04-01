@@ -27,7 +27,7 @@
                     </div>
                 <!-- Navbar Rechts -->
                 <div class="navbar-nav">
-                    <!-- change navogation Bar based on if user is logged in or not -->
+                    {% comment "" %}change navigation Bar based on if user is logged in or not{% endcomment %}
                     {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Profil</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Abmelden</a>
@@ -75,10 +75,10 @@
                 </div>
                 <div class="jgu-modal-body">
                     <div class="jgu-modal-notification" id="jgu-notification">
-                        {% if show_login_error %}
+                        {% if show_login_error %} {% comment "" %}if we have log in error, show it -> otherwise show register errors{% endcomment %}
                             {{fehlermeldung_login}}
                         {% elif show_register_error %}
-                            {% for fehlermeldung in fehlermeldung_register_str_arr %}
+                            {% for fehlermeldung in fehlermeldung_register_str_arr %}   {% comment "" %}loop over register errors and display them{% endcomment %}
                                 {{ fehlermeldung }}</br>
                             {% endfor %}
                         {% endif %}
@@ -115,14 +115,14 @@
 
        
 
-    {% if show_login_error %}
+    {% if show_login_error %}   {% comment "" %} display login error in login popup{% endcomment %}
         <script>
             document.addEventListener("DOMContentLoaded", function() {
             callJGUModal(0);
             document.getElementById('jgu-notification').style.display = 'block';
             })
         </script>    
-    {% elif show_register_error %}
+    {% elif show_register_error %}  {% comment "" %}display register error in register pop up{% endcomment %}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
         callJGUModal(1);

@@ -1,7 +1,12 @@
+
+//Die Funktion openOverleaf() ruft die angegebene Seite (siehe Variable "ovearLeafLink") in einem neuen Tab auf
+
 function openOverleaf(){
     let overleafLink = "https://latex.zdv.uni-mainz.de/";
     window.open(overleafLink);
 }
+
+// Die Funktion copyToClipboard() kopiert den (LaTeX-)Code aus der Textbox in den Clipboard.
 
 function copyToClipboard(){
     let textarea = document.getElementById("latex-textarea");
@@ -10,6 +15,8 @@ function copyToClipboard(){
     navigator.clipboard.writeText(textarea.value);
     copySuccessfull();
 }
+
+// copySuccessfull signalisiert dem Nutzer, dass der Kopiervorgang erfolgreich war (Button wird grün)
 
 function copySuccessfull(){
     let copyBtn = document.getElementById("copy-button");
@@ -27,6 +34,11 @@ function copySuccessfull(){
     }, 2000);
 }
 
+/*
+startDownload erstellt eine Datei anhand gegebener Parameter und DOM-Element und lädt diese dann automatisch runter.
+So kann der LaTeX-Code aus der Textarea in eine .TEX-Datei übergeben werden und heruntergeladen werden.
+ */
+
 function startDownload(filename, text) {
     const element = document.createElement('a');
     const blob = new Blob([text], { type: 'plain/text' });
@@ -38,6 +50,12 @@ function startDownload(filename, text) {
     element.click();
     document.body.removeChild(element);
 }
+
+/*
+downloadFile() sammelt die notwendigen Informationen (Parameter) und gibt diese der Funktion startDownload() weiter.
+Nach dem Start des Downloads wird dem Nutzer im anschließendem (identisch wie bei der Copy-Funktion) ein Feedback
+ausgegeben.
+ */
 
 function downloadFile(){
     let latexCode = document.getElementById("latex-textarea").value;

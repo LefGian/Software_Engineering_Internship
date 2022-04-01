@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-steel fixed-top">
     <div class="container">
-        <a class="navbar-brand mr-4" href="{% url 'home' %}">Start</a>
+        <a class="navbar-brand mr-4" href="{% url 'home' %}">Start</a>  
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,7 +22,7 @@
             </div>
         <!-- Navbar Rechts -->
         <div class="navbar-nav">
-            <!-- change navogation Bar based on if user is logged in or not -->
+            {% comment "" %}change navigation Bar based on if user is logged in or not{% endcomment %}
             {% if user.is_authenticated %}
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profil</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Abmelden</a>

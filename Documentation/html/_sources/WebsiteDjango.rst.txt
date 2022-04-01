@@ -1,0 +1,45 @@
+WebsiteDjango package
+=====================
+
+Submodules
+----------
+
+WebsiteDjango.asgi module
+-------------------------
+
+.. automodule:: WebsiteDjango.asgi
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+WebsiteDjango.settings module
+-----------------------------
+
+.. automodule:: WebsiteDjango.settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+WebsiteDjango.urls module
+-------------------------
+
+.. automodule:: WebsiteDjango.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+WebsiteDjango.wsgi module
+-------------------------
+
+.. automodule:: WebsiteDjango.wsgi
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: WebsiteDjango
+   :members:
+   :undoc-members:
+   :show-inheritance:

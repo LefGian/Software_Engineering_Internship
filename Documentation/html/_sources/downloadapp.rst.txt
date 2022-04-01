@@ -1,0 +1,69 @@
+downloadapp package
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   downloadapp.migrations
+
+Submodules
+----------
+
+downloadapp.admin module
+------------------------
+
+.. automodule:: downloadapp.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+downloadapp.apps module
+-----------------------
+
+.. automodule:: downloadapp.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+downloadapp.models module
+-------------------------
+
+.. automodule:: downloadapp.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+downloadapp.tests module
+------------------------
+
+.. automodule:: downloadapp.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+downloadapp.urls module
+-----------------------
+
+.. automodule:: downloadapp.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+downloadapp.views module
+------------------------
+
+.. automodule:: downloadapp.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: downloadapp
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,21 @@
+startsite.migrations package
+============================
+
+Submodules
+----------
+
+startsite.migrations.0001\_initial module
+-----------------------------------------
+
+.. automodule:: startsite.migrations.0001_initial
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: startsite.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:

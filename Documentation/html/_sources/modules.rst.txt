@@ -1,0 +1,14 @@
+WebsiteDjango
+=============
+
+.. toctree::
+   :maxdepth: 4
+
+   WebsiteDjango
+   createassignment
+   downloadapp
+   home
+   manage
+   startsite
+   userprofile
+   utils

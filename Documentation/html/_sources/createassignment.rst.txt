@@ -1,0 +1,77 @@
+createassignment package
+========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   createassignment.migrations
+
+Submodules
+----------
+
+createassignment.admin module
+-----------------------------
+
+.. automodule:: createassignment.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+createassignment.apps module
+----------------------------
+
+.. automodule:: createassignment.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+createassignment.forms module
+-----------------------------
+
+.. automodule:: createassignment.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+createassignment.models module
+------------------------------
+
+.. automodule:: createassignment.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+createassignment.tests module
+-----------------------------
+
+.. automodule:: createassignment.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+createassignment.urls module
+----------------------------
+
+.. automodule:: createassignment.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+createassignment.views module
+-----------------------------
+
+.. automodule:: createassignment.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: createassignment
+   :members:
+   :undoc-members:
+   :show-inheritance:

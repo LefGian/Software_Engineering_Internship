@@ -1,6 +1,7 @@
-function checkFirstData(){
+// checkFirstData() prüft alle Eingaben des Nutzers auf Vollständigkeit und gibt dem Nutzer eine Rückmeldung, wenn
+// Daten fehlen oder nicht den Vorgaben entsprechen.
 
-    // Zu Beginn erstmal alle DOM-Elemente einlesen
+function checkFirstData(){
 
     let jguVorname = document.getElementById("jgu-vorname");
     let jguNachname = document.getElementById("jgu-nachname");
@@ -10,12 +11,8 @@ function checkFirstData(){
     let jguSubmitter = document.getElementById("jgu-submit");
     let jguNotification = document.getElementById("jgu-notification");
 
-    
-
     let errorCounter = 0;
     let errorMessage = "";
-
-    // Nutzereingaben prüfen nach Vorlegen und entsprechend Fehler sammeln, falls was nicht stimmt.
 
     if (jguVorname.value.length < 3 || jguNachname.value.length < 3){
         errorCounter++;
@@ -35,9 +32,6 @@ function checkFirstData(){
         }
     }
 
-    // Falls Fehler vorhanden (errorCode != 0), führen wir den Submit nicht aus. Stattdessen geben wir den Fehler
-    // dem Nutzer aus.
-
     if (errorCounter == 0){
         jguSubmitter.click();
     } else {
@@ -47,5 +41,4 @@ function checkFirstData(){
             jguNotification.classList.remove('successful');
         }
     }
-
 }

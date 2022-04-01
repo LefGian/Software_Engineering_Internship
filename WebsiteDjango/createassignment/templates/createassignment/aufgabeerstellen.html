@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-steel fixed-top">
         <div class="container">
-            <a class="navbar-brand mr-4" href="{% url 'home' %}">Start</a>
+            <a class="navbar-brand mr-4" href="{% url 'home' %}">Start</a>  {% comment %}Link in NavigationBar to Homepage{% endcomment %}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,7 +22,7 @@
                 </div>
             <!-- Navbar Rechts -->
             <div class="navbar-nav">
-                <!-- change navogation Bar based on if user is logged in or not -->
+                {% comment "" %}change navigation Bar based on if user is logged in or not{% endcomment %}
                 {% if user.is_authenticated %}
                     <a class="nav-item nav-link" href="{% url 'profile' %}">Profil</a>
                     <a class="nav-item nav-link" href="{% url 'logout' %}">Abmelden</a>
@@ -47,15 +47,15 @@
         <h1 class="jgu-task"><span class="jgu-brand">Mein</span> Aufgabeneditor</h1>
         <p>Erstellen Sie hier Aufgaben, die Sie in späteren Klausuren oder Übungsblättern beifügen können.</p>
         <div class="jgu-notifi-area">
-            {% if show_error == 0 and jgu_save == 1 and chose_fachgebiet == 0%}
+            {% if show_error == 0 and jgu_save == 1 and chose_fachgebiet == 0%} {% comment "" %}show message in green when params are right{% endcomment %}
                 <p class="jgu-notification successful" id="jgu-notification">
             {% else %}
-                <p class="jgu-notification" id="jgu-notification">
-            {% endif %}
-                    {% for fehlermeldung in error_messages %}
+                <p class="jgu-notification" id="jgu-notification"> {% comment "" %}else show them in red{% endcomment %}
+            {% endif %} 
+                    {% for fehlermeldung in error_messages %}   {% comment "" %}loop over error_messages and display them{% endcomment %}
                         {{ fehlermeldung }}</br>
                     {% endfor %}
-                {% if show_error == 0 and jgu_save == 1 and chose_fachgebiet == 0%}
+                {% if show_error == 0 and jgu_save == 1 and chose_fachgebiet == 0%} {% comment "" %}if we have no errors and the form was submitted, then we successfuly submitted a form{% endcomment %}
                     Ihre Daten wurden erfolgreich gespeichert.
                 {% endif %}
                 </p>
@@ -65,17 +65,17 @@
             <div class="jgu-task-area">
                 <div class="jgu-task-field">
                     <label for="jgu-task-name">Aufgabentitel</label>
-                    <input type="text" name="jgu-task-name" id="jgu-task-name" value="" required>
+                    <input type="text" name="jgu-task-name" id="jgu-task-name" value="{{task_name}}" required>
                 </div>
                 <div class="jgu-task-field">
                     <label for="jgu-fachgebiet">Fachgebiet</label>
                     <select name="jgu-fachgebiet" id="jgu-fachgebiet" onchange="chose_fachgebiet_and_submit()" required>
                         <option value="">Keine Auswahl</option>
-                        {% for subject in all_subjects %}
-                            {% if subject.id == cur_subject.id%}
+                        {% for subject in all_subjects %}   {% comment "" %}loop over all subjects{% endcomment %}
+                            {% if subject.id == cur_subject.id%}{% comment "" %}if we are at the currently chosen subject set selected{% endcomment %}
                                 <option value="{{subject.id}}" selected>{{subject}}</option>
                             {% else %}
-                                <option value="{{subject.id}}">{{subject}}</option>
+                                <option value="{{subject.id}}">{{subject}}</option> {% comment "" %}otherwise just display it{% endcomment %}
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -84,8 +84,7 @@
                     <label for="jgu-topic">Themengebiet</label>
                     <select name="jgu-topic" id="jgu-topic" required>
                         <option value="">Keine Auswahl</option>
-                        {% for topic in topics_for_subject %}
-                            
+                        {% for topic in topics_for_subject %}   {% comment "" %}loop over all topics in current subject{% endcomment %}
                             <option value="{{topic.id}}">{{topic}}</option>
                         {% endfor %}
                     </select>
@@ -94,7 +93,7 @@
                     <label for="jgu-time">Bearbeitungszeit</label>
                     <select name="jgu-time" id="jgu-time" required>
                         <option value="" selected>Keine Auswahl</option>
-                        {% for time in time_list %}
+                        {% for time in time_list %} {% comment "" %}display all prechosen time options{% endcomment %}
                         <option value="{{time}}"> {{time}} Minuten </option>
                         {% endfor %}
                     </select>
@@ -103,7 +102,7 @@
                     <label for="jgu-level">Schwierigkeit</label>
                     <select name="jgu-level" id="jgu-level">
                         <option value="">Keine Auswahl</option>
-                        {% for difficulty in difficulty_list %}
+                        {% for difficulty in difficulty_list %} {% comment "" %}display all prechosen difficulty levels{% endcomment %}
                             <option value="{{forloop.counter}}">{{difficulty}}</option>
                         {% endfor %}
                     </select>
@@ -137,8 +136,8 @@
         </form>
     </div>
 </div>
-
-{% if show_error or show_error == 0 and jgu_save == 1 and chose_fachgebiet == 0%}
+{% comment "" %}only show notification area if we have errors or if we want to display the green successful message when form was submitted without errors{% endcomment %}
+{% if show_error or show_error == 0 and jgu_save == 1 and chose_fachgebiet == 0%}   
     <script>
         document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('jgu-notification').style.display = 'block';
