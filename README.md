@@ -133,10 +133,10 @@ die Zugangsdaten der Datenbank einfügen.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '<projectname>',
-        'USER': '<projectname>',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '',		
     }
 }
