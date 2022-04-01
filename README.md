@@ -110,3 +110,36 @@ Das Team besteht aus folgenden Mitgliedern:
 - Ricardo Pacilli
 - Hannes Bernhard Schott
 - Can Tarhan
+
+
+## Datenbanken
+
+Um auf eine externe Datenbank zuzugreifen, gehen sie die folgenden Schritte durch. Dies wird am Beispiel einer mySQL-Datenbank erläutert.
+
+Den jeweiligen django client installieren.
+```
+pip install django mysqlclient
+```
+Nun in der Datei 
+```
+<projectname>/<projectname>/settings.py
+```
+
+die Zugangsdaten der Datenbank einfügen.
+
+```
+. . .
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '<projectname>',
+        'USER': '<projectname>',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',		
+    }
+}
+
+. . .
+```
